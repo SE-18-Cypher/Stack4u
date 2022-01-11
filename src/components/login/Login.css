@@ -1,0 +1,11 @@
+form{
+    padding: 25px;
+    margin:25px;
+    border:none;
+}
+ button{
+    border-radius: 100px;
+ }
+ .forgot-password text-right{
+     margin: 30px;
+ }

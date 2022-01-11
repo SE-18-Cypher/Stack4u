@@ -1,9 +1,12 @@
 import './App.css';
+import Redirect from './components/presentationPage/Redirect';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
     <div>
-      <h1>DEBUGGER</h1>
+      <Redirect/>
     </div>
   );
 }

@@ -1,0 +1,33 @@
+
+.orgLogo{
+    position: static;
+	height: 30%;
+	width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.progressBar{
+	position: sticky;
+	margin-top: 10%;
+	width: 20%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.presentationPage{
+	border-color: blue;
+	display: block;
+	background-color: rgb(255, 255, 255);
+	padding: 10%;
+}
+
+.fill-window {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+	background-color: #5ab4f5;
+}
