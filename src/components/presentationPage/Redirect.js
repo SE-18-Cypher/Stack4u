@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
 import PresentationPage from './PresentationPage';
-import Login from '../login/Login';
+import Signup from '../signup/Signup';
+// import Signin from '../signin/Signin';
 
 export default function Redirect() {
     const [view, setView] = useState(0);
@@ -14,11 +15,11 @@ export default function Redirect() {
         if (view < 5) {
         return <PresentationPage/>
         }
-        return <Login/>
+        return <Signup/>
     }
     return (
         <div>      
-            <PresentationPage/>
+            <Signup/>
         </div>
     );
 }

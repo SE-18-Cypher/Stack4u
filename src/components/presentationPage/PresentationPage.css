@@ -1,33 +1,33 @@
+/* .border{
+	border: 2px solid rgb(0, 0, 0);
+	outline: 4px solid blue;
+	border-radius: 15px;
+	margin: 10px;
+	padding: 20px;
+	outline-offset: 0.2em;
+  }
+
+   */
 
 .orgLogo{
-    position: static;
+	position: static;
 	height: 30%;
 	width: 30%;
     margin-right: auto;
     margin-left: auto;
+	margin-top: 7%;
     display: block;
 }
-
 .progressBar{
 	position: sticky;
-	margin-top: 10%;
+	margin-top: 9%;
 	width: 20%;
 	margin-right: auto;
 	margin-left: auto;
 }
-
 .presentationPage{
-	border-color: blue;
 	display: block;
 	background-color: rgb(255, 255, 255);
 	padding: 10%;
-}
-
-.fill-window {
-    height: 100%;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-	background-color: #5ab4f5;
+	padding-bottom: 10%;
 }
