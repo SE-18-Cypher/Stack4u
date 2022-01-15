@@ -1,25 +1,28 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import PresentationPage from './PresentationPage';
 import Signup from '../signup/Signup';
-// import Signin from '../signin/Signin';
 
 export default function Redirect() {
     const [view, setView] = useState(0);
-    
-    setTimeout(function () {
-        setView(view + 1);
+        
+    const timer = setTimeout(function () {
+        if (view<3){
+            setView(view + 1);
+        }
     }, 1000);
 
     function Greeting() {
-        if (view < 5) {
-        return <PresentationPage/>
+        if (view<3) {
+            return <PresentationPage/>
         }
-        return <Signup/>
+        else {
+            return <Signup/>
+        }
     }
     return (
         <div>      
-            <Signup/>
+            <Greeting/>
         </div>
     );
 }
