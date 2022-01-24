@@ -1,12 +1,13 @@
 import React from 'react'
-import { useState , useEffect } from 'react';
+import { useState } from 'react';
 import PresentationPage from './PresentationPage';
-import Signup from '../signup/Signup';
+import Common from '../login/common/Common'
+
 
 export default function Redirect() {
     const [view, setView] = useState(0);
         
-    const timer = setTimeout(function () {
+    setTimeout(function () {
         if (view<3){
             setView(view + 1);
         }
@@ -17,7 +18,7 @@ export default function Redirect() {
             return <PresentationPage/>
         }
         else {
-            return <Signup/>
+            return <Common/>
         }
     }
     return (

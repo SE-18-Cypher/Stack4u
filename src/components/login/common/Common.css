@@ -1,0 +1,13 @@
+.body{
+    text-align: center;
+}
+.signButtons {
+    background-color: transparent;
+    border-color: transparent;
+  
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .divider {
+    margin-left: 40%;
+  }
