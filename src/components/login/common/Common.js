@@ -21,7 +21,7 @@ export default function Common() {
                     flexWrap: 'wrap',
                     '& > :not(style)': {
                         width: 450,
-                        height: 700,
+                        height: 600,
                         m:1,
                     },
                     }}
