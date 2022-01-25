@@ -4,7 +4,6 @@ import Signup from '../signup/Signup';
 import './Common.css';
 import TechInfoPage from '../../techInfoPage/TechInfoPage'
 
-import { Divider } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -43,9 +42,6 @@ export default function Common() {
                             <button className="signButtons" onClick={toggleView} disabled={!view}>
                                 <h2 className={!view ? "activeType":"notActiveType"}>Sign in</h2>
                             </button>
-                            <div className="divider">
-                                <Divider width={380} />
-                            </div>
                             {view && <Signup />}
                             {!view && <Signin />}
                         </div>
@@ -58,4 +54,3 @@ export default function Common() {
         </div>
     )
 }
-  
