@@ -1,5 +1,6 @@
 .body{
     text-align: center;
+    margin-top: 5%;
 }
 .signButtons {
     background-color: transparent;
@@ -9,5 +10,7 @@
     padding-right: 3%;
   }
   .divider {
-    margin-left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center
   }

@@ -4,6 +4,9 @@ import Signin from '../signin/Signin';
 import Signup from '../signup/Signup';
 import './Common.css';
 
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+
 export default function Common() {
 
     const [view, setView] = useState(true);
@@ -11,17 +14,34 @@ export default function Common() {
 
     return(
         <div className="body">
-            <button className="signButtons" onClick={toggleView} disabled={view}>
-                <h2>Sign up</h2>
-            </button>
-            <button className="signButtons" onClick={toggleView} disabled={!view}>
-                <h2>Sign in</h2>
-            </button>
-            <div className="divider">
-                <Divider width={274} />
-            </div>
-            {view && <Signup />}
-            {!view && <Signin />}
+            <div className="contentBody">
+                <Box
+                    sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    '& > :not(style)': {
+                        width: 350,
+                        height: 300,
+                        m:1,
+                    },
+                    }}
+                >
+                    <Paper elevation={24}>
+                        <button className="signButtons" onClick={toggleView} disabled={view}>
+                            <h2>Sign up</h2>
+                        </button>
+                        <button className="signButtons" onClick={toggleView} disabled={!view}>
+                            <h2>Sign in</h2>
+                        </button>
+                        <div className="divider">
+                            <Divider width={300} />
+                        </div>
+                        {view && <Signup />}
+                        {!view && <Signin />}
+                    </Paper>
+                </Box>
+            </div>      
         </div>
     )
 }
+  
