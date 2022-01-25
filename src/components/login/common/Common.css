@@ -1,0 +1,19 @@
+.body{
+    text-align: center;
+    margin-top: 5%;
+}
+.signButtons {
+    background-color: transparent;
+    border-color: transparent;
+  
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .divider {
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  .headerContent{
+    padding: 5%;
+  }
