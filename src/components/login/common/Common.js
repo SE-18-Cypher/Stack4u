@@ -1,16 +1,25 @@
-import { Divider } from '@mui/material';
 import React, { useState } from 'react';
 import Signin from '../signin/Signin';
 import Signup from '../signup/Signup';
 import './Common.css';
+import TechInfoPage from '../../techInfoPage/TechInfoPage'
 
+import { Divider } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 export default function Common() {
 
     const [view, setView] = useState(true);
     const toggleView = () => setView((view) => !view);
+
+    const [skipLogin, setSkipLogin] = useState(false);
+    const toggleSkip = () => setSkipLogin(true);
+
+    if (skipLogin){
+        return <TechInfoPage/>
+    }
 
     return(
         <div className="body">
@@ -29,10 +38,10 @@ export default function Common() {
                     <Paper elevation={24}>
                         <div className="headerContent">
                             <button className="signButtons" onClick={toggleView} disabled={view}>
-                                <h2>Sign up</h2>
+                                <h2 className={view ? "activeType":"notActiveType"}>Sign up</h2>
                             </button>
                             <button className="signButtons" onClick={toggleView} disabled={!view}>
-                                <h2>Sign in</h2>
+                                <h2 className={!view ? "activeType":"notActiveType"}>Sign in</h2>
                             </button>
                             <div className="divider">
                                 <Divider width={380} />
@@ -42,6 +51,9 @@ export default function Common() {
                         </div>
                     </Paper>
                 </Box>
+            </div>
+            <div>
+                <Button variant="contained" onClick={toggleSkip}>Skip</Button>
             </div>      
         </div>
     )

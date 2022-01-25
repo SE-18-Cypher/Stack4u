@@ -1,19 +1,24 @@
 .body{
-    text-align: center;
-    margin-top: 5%;
+  text-align: center;
+  margin-top: 5%;
 }
 .signButtons {
-    background-color: transparent;
-    border-color: transparent;
-  
-    padding-left: 10%;
-    padding-right: 10%;
-  }
-  .divider {
-    display: flex;
-    justify-content: center;
-    align-items: center
-  }
-  .headerContent{
-    padding: 5%;
-  }
+  background-color: transparent;
+  border-color: transparent;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.divider {
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.headerContent{
+  padding: 5%;
+}
+.activeType{
+  color: black;
+}
+.notActiveType{
+  color: grey;
+}
