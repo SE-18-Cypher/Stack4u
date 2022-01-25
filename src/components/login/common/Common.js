@@ -20,24 +20,26 @@ export default function Common() {
                     display: 'flex',
                     flexWrap: 'wrap',
                     '& > :not(style)': {
-                        width: 350,
-                        height: 300,
+                        width: 450,
+                        height: 700,
                         m:1,
                     },
                     }}
                 >
                     <Paper elevation={24}>
-                        <button className="signButtons" onClick={toggleView} disabled={view}>
-                            <h2>Sign up</h2>
-                        </button>
-                        <button className="signButtons" onClick={toggleView} disabled={!view}>
-                            <h2>Sign in</h2>
-                        </button>
-                        <div className="divider">
-                            <Divider width={300} />
+                        <div className="headerContent">
+                            <button className="signButtons" onClick={toggleView} disabled={view}>
+                                <h2>Sign up</h2>
+                            </button>
+                            <button className="signButtons" onClick={toggleView} disabled={!view}>
+                                <h2>Sign in</h2>
+                            </button>
+                            <div className="divider">
+                                <Divider width={380} />
+                            </div>
+                            {view && <Signup />}
+                            {!view && <Signin />}
                         </div>
-                        {view && <Signup />}
-                        {!view && <Signin />}
                     </Paper>
                 </Box>
             </div>      
