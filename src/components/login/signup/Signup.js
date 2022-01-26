@@ -20,6 +20,10 @@ const theme = createTheme();
     document.title = "stack4u/SignUp";
     
     const checkAuth = (data) => {
+        if (data.get('password').length < 7){
+            setValidPassword(false);
+            setPasswordHelperText("Password is weak");
+        }
         if(data.get('firstName') == ""){
             setValidFName(false);
             setFNameHelpertext("Field is empty");
@@ -51,10 +55,6 @@ const theme = createTheme();
         if (data.get('password') != ""){
             setValidPassword(true);
             setPasswordHelperText("");
-        }
-        if (data.get('password').length < 7){
-            setValidPassword(false);
-            setPasswordHelperText("Password is weak");
         }
     }
     const handleSubmit = (event) => {
