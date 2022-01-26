@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Common from '../login/common/Common'
 import Button from '@mui/material/Button';
-
+import './TechInfoPage.css'
 export default function TechInfoPage(){
 
   document.title="stack4u/TechnologyInformation";

@@ -1,4 +1,4 @@
-.body{
+.contentBody{
   text-align: center;
   margin-top: 2%;
 }
@@ -20,10 +20,39 @@
   color: grey;
 }
 .contentBody{
+  left: 60%;
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 49%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  right: 10%;
+}
+.logo{
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+.designComputerImage{
+  position: absolute;
+  bottom: 1%;
+  left: 15%;
+}
+.welcomeContent{
+  text-align: left;
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  font-size: 30px;
+}
+.body{
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+  background: linear-gradient(113.86deg, #FFFFFF 19.97%, rgba(28, 147, 234, 0.95) 106.91%);
+}
+.designCloudImage{
+  margin-left: 80%;
+  margin-top: 5%;
 }
