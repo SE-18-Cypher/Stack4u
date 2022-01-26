@@ -33,7 +33,7 @@ export default function Common() {
                     flexWrap: 'wrap',
                     '& > :not(style)': {
                         width: 450,
-                        height: 550,
+                        height: 580,
                         m:1,
                     },
                     }}

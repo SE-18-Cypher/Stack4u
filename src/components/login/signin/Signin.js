@@ -20,15 +20,39 @@ const theme = createTheme();
 export default function Signin() {
   document.title = "stack4u/SignIn";
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const checkAuth = (data) => {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+    if (data.get('email') == ""){
+      setValidEmail(false);
+      setEmailHelperText("Enter a valid email address");
+    }
+    if (data.get('password') == ""){
+      setValidPassword(false);
+      setPasswordHelperText("Enter a valid password");
+    }
+    if (data.get('email') != ""){
+      setValidEmail(true);
+      setEmailHelperText("");
+    }
+    if (data.get('password') != ""){
+      setValidPassword(true);
+      setPasswordHelperText("");
+    }
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    checkAuth(data);
   };
 
+  const [validEmail, setValidEmail] = React.useState(true);
+  const [emailHelperText, setEmailHelperText] = React.useState("");
+
+  const [validPassword, setValidPassword] = React.useState(true);
+  const [passwordHelperText, setPasswordHelperText] = React.useState("");
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -50,24 +74,27 @@ export default function Signin() {
             </Typography>
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
               <TextField
-                margin="normal"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                required={validEmail}
+                error={!validEmail}
+                helperText={emailHelperText}
               />
               <TextField
                 margin="normal"
-                required
+                required={validPassword}
+                error={!validPassword}
+                helperText={passwordHelperText}
                 fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="current-password"    
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
