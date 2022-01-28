@@ -16,6 +16,6 @@
 }
 .presentationPage{
 	display: block;
-	background-color: rgb(255, 255, 255);
 	padding: 10%;
+	background: linear-gradient(113.86deg, #FFFFFF 19.97%, rgba(28, 147, 234, 0.95) 106.91%);
 }

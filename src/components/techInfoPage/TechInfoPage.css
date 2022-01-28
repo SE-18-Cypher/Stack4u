@@ -1,3 +1,9 @@
 .backToLoginButton{
- 
+    position: fixed;
+    bottom: 10px;
+}
+.techContainer{
+    text-align: center;
+    border-color: black;
+    
 }
