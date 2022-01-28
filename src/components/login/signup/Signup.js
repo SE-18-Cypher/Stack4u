@@ -24,35 +24,35 @@ const theme = createTheme();
             setValidPassword(false);
             setPasswordHelperText("Password is weak");
         }
-        if(data.get('firstName') == ""){
+        if(data.get('firstName') === ""){
             setValidFName(false);
             setFNameHelpertext("Field is empty");
         }
-        if(data.get('firstName') != ""){
+        if(data.get('firstName') !== ""){
             setValidFName(true);
             setFNameHelpertext("");
         }
-        if(data.get('lastName') == ""){
+        if(data.get('lastName') === ""){
             setValidLName(false);
             setLNameHelpertext("Field is empty");
         }
-        if(data.get('lastName') != ""){
+        if(data.get('lastName') !== ""){
             setValidLName(true);
             setLNameHelpertext("");
         }
-        if (data.get('email') == ""){
+        if (data.get('email') === ""){
             setValidEmail(false);
             setEmailHelperText("Enter a valid email address");
         }
-        if (data.get('password') == ""){
+        if (data.get('password') === ""){
             setValidPassword(false);
             setPasswordHelperText("Enter a valid password");
         }
-        if (data.get('email') != ""){
+        if (data.get('email') !== ""){
             setValidEmail(true);
             setEmailHelperText("");
         }
-        if (data.get('password') != ""){
+        if (data.get('password') !== ""){
             setValidPassword(true);
             setPasswordHelperText("");
         }
