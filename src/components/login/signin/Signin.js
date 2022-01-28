@@ -25,19 +25,19 @@ export default function Signin() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    if (data.get('email') == ""){
+    if (data.get('email') === ""){
       setValidEmail(false);
       setEmailHelperText("Enter a valid email address");
     }
-    if (data.get('password') == ""){
+    if (data.get('password') === ""){
       setValidPassword(false);
       setPasswordHelperText("Enter a valid password");
     }
-    if (data.get('email') != ""){
+    if (data.get('email') !== ""){
       setValidEmail(true);
       setEmailHelperText("");
     }
-    if (data.get('password') != ""){
+    if (data.get('password') !== ""){
       setValidPassword(true);
       setPasswordHelperText("");
     }
