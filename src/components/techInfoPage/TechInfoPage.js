@@ -44,7 +44,7 @@ export default function TechInfoPage(){
       <div className="commonBg"></div>
       <div style={{position:'relative'}}>
         <div className='backToLoginButton'>
-          <Button variant="contained" onClick={() => navigate("../login/common/Common")}>BACK TO SIGN UP</Button>
+          <Button variant="contained" onClick={() => navigate("/login")}>BACK TO SIGN UP</Button>
         </div> 
         <h2 style={{textAlign: "center",marginTop:50}}> TECHNOLOGY INFORMATION</h2>
         <div style={{marginLeft:70,marginTop: 30}}>

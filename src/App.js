@@ -10,12 +10,12 @@ import ForgotPassword from './components/login/signin/ForgotPassword';
 function App() {
   return (
     <div>
-      {/* <Redirect/> */}
       <Router>
         <Routes>
           <Route path="/" element={<Redirect />} />
-          <Route path="/login/common/Common" element={<Common />} />
+          <Route path="/login" element={<Common />} />
           <Route path="/techInfoPage/TechInfoPage" element={<TechInfoPage />} />
+          <Route path="/techInfoPage" element={<TechInfoPage />} />
           <Route path="ForgotPassword" element={<ForgotPassword />} />
           <Route path="login/common/Common/ForgotPassword" element={<ForgotPassword />} />
         </Routes>
