@@ -13,13 +13,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { useNavigate } from "react-router";
 
 const theme = createTheme();
 
 export default function Signin() {
   document.title = "stack4u/SignIn";
-
+  const navigate = useNavigate();
   const checkAuth = (data) => {
     console.log({
       email: data.get('email'),
@@ -110,7 +110,7 @@ export default function Signin() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="" variant="body2" onClick={() => navigate("./ForgotPassword")}>
                     Forgot password?
                   </Link>
                 </Grid>

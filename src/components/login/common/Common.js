@@ -12,7 +12,10 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+import { useNavigate } from "react-router";
+
 export default function Common() {
+    const navigate = useNavigate();
 
     const [view, setView] = useState(true);
     const toggleView = () => setView((view) => !view);
@@ -57,9 +60,9 @@ export default function Common() {
             <div className="welcomeContent">
                 <h1> Hello, </h1>
                 <p>Sign up here to get a <br/> better experience </p>
-                <Button variant="contained" onClick={toggleSkip} sx={{pl:5,pr:5,bgcolor:'black'}}>Skip</Button>          
+                <Button variant="contained" onClick={() => navigate("../../techInfoPage/TechInfoPage")} sx={{pl:5,pr:5,bgcolor:'black'}}>Skip</Button>          
             </div> 
-            <img src={computerImage} className="designComputerImage" alt='computer image'/>     
+            <img src={computerImage} className="designComputerImage" alt='computer image'/>
         </div>
     )
 }
