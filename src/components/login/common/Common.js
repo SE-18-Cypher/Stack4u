@@ -21,7 +21,6 @@ export default function Common() {
     const toggleView = () => setView((view) => !view);
 
     const [skipLogin, setSkipLogin] = useState(false);
-    const toggleSkip = () => setSkipLogin(true);
 
     if (skipLogin){
         return <TechInfoPage/>
@@ -60,7 +59,7 @@ export default function Common() {
             <div className="welcomeContent">
                 <h1> Hello, </h1>
                 <p>Sign up here to get a <br/> better experience </p>
-                <Button variant="contained" onClick={() => navigate("../../techInfoPage/TechInfoPage")} sx={{pl:5,pr:5,bgcolor:'black'}}>Skip</Button>          
+                <Button variant="contained" onClick={() => navigate("/techInfoPage")} sx={{pl:5,pr:5,bgcolor:'black'}}>Skip</Button>          
             </div> 
             <img src={computerImage} className="designComputerImage" alt='computer image'/>
         </div>
