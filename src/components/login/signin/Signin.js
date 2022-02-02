@@ -28,18 +28,22 @@ export default function Signin() {
     if (data.get('email') === ""){
       setValidEmail(false);
       setEmailHelperText("Enter a valid email address");
+      setEmailLabelName("");
     }
     if (data.get('password') === ""){
       setValidPassword(false);
       setPasswordHelperText("Enter a valid password");
+      setPasswordLabelName("");
     }
     if (data.get('email') !== ""){
       setValidEmail(true);
       setEmailHelperText("");
+      setEmailLabelName("Email Address");
     }
     if (data.get('password') !== ""){
       setValidPassword(true);
       setPasswordHelperText("");
+      setPasswordLabelName("Password");
     }
   }
   const handleSubmit = (event) => {
@@ -53,6 +57,10 @@ export default function Signin() {
 
   const [validPassword, setValidPassword] = React.useState(true);
   const [passwordHelperText, setPasswordHelperText] = React.useState("");
+
+  const [emailLabelName, setEmailLabelName] = React.useState("EmailAddress");
+  const [passwordLabelName, setPasswordLabelName] = React.useState("Password");
+
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -76,22 +84,22 @@ export default function Signin() {
               <TextField
                 fullWidth
                 id="email"
-                label="Email Address"
+                label={emailLabelName}
                 name="email"
                 autoComplete="email"
                 autoFocus
                 required={validEmail}
                 error={!validEmail}
-                helperText={emailHelperText}
+                placeholder={emailHelperText}
               />
               <TextField
                 margin="normal"
                 required={validPassword}
                 error={!validPassword}
-                helperText={passwordHelperText}
+                placeholder={passwordHelperText}
                 fullWidth
                 name="password"
-                label="Password"
+                label={passwordLabelName}
                 type="password"
                 id="password"
                 autoComplete="current-password"    

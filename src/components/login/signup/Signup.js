@@ -23,38 +23,47 @@ const theme = createTheme();
         if (data.get('password').length < 7){
             setValidPassword(false);
             setPasswordHelperText("Password is weak");
+            setPasswordLabelName("");
         }
         if(data.get('firstName') === ""){
             setValidFName(false);
             setFNameHelpertext("Field is empty");
+            setFirstNameLabelName("");
         }
         if(data.get('firstName') !== ""){
             setValidFName(true);
             setFNameHelpertext("");
+            setFirstNameLabelName("First Name");
         }
         if(data.get('lastName') === ""){
             setValidLName(false);
             setLNameHelpertext("Field is empty");
+            setLastNameLabelName("");
         }
         if(data.get('lastName') !== ""){
             setValidLName(true);
             setLNameHelpertext("");
+            setLastNameLabelName("Last Name");
         }
         if (data.get('email') === ""){
             setValidEmail(false);
             setEmailHelperText("Enter a valid email address");
+            setEmailLabelName("");
         }
         if (data.get('password') === ""){
             setValidPassword(false);
             setPasswordHelperText("Enter a valid password");
+            setPasswordLabelName("");
         }
         if (data.get('email') !== ""){
             setValidEmail(true);
             setEmailHelperText("");
+            setEmailLabelName("Email Address");
         }
         if (data.get('password') !== ""){
             setValidPassword(true);
             setPasswordHelperText("");
+            setPasswordLabelName("Password");
         }
     }
     const handleSubmit = (event) => {
@@ -74,6 +83,12 @@ const theme = createTheme();
   
     const [validPassword, setValidPassword] = React.useState(true);
     const [passwordHelperText, setPasswordHelperText] = React.useState("");
+
+    const [firstNameLabelName, setFirstNameLabelName] = React.useState("FirstName");
+    const [lastNameLabelName, setLastNameLabelName] = React.useState("LastName");
+    const [emailLabelName, setEmailLabelName] = React.useState("EmailAddress");
+    const [passwordLabelName, setPasswordLabelName] = React.useState("Password");
+
     return (
         <div>
             <ThemeProvider theme={theme}>
@@ -101,10 +116,10 @@ const theme = createTheme();
                                 name="firstName"
                                 required={validFName}
                                 error={!validFName}
-                                helperText={fNameHelpertext}
+                                placeholder={fNameHelpertext}
                                 fullWidth
                                 id="firstName"
-                                label="First Name"
+                                label={firstNameLabelName}
                                 autoFocus
                                 />
                             </Grid>
@@ -112,10 +127,10 @@ const theme = createTheme();
                                 <TextField
                                 required={validLName}
                                 error={!validLName}
-                                helperText={lNameHelpertext}
+                                placeholder={lNameHelpertext}
                                 fullWidth
                                 id="lastName"
-                                label="Last Name"
+                                label={lastNameLabelName}
                                 name="lastName"
                                 autoComplete="family-name"
                                 />
@@ -124,10 +139,10 @@ const theme = createTheme();
                                 <TextField
                                 required={validEmail}
                                 error={!validEmail}
-                                helperText={emailHelperText}
+                                placeholder={emailHelperText}
                                 fullWidth
                                 id="email"
-                                label="Email Address"
+                                label={emailLabelName}
                                 name="email"
                                 autoComplete="email"
                                 />
@@ -136,10 +151,10 @@ const theme = createTheme();
                                 <TextField
                                 required={validPassword}
                                 error={!validPassword}
-                                helperText={passwordHelperText}
+                                placeholder={passwordHelperText}
                                 fullWidth
                                 name="password"
-                                label="Password"
+                                label={passwordLabelName}
                                 type="password"
                                 id="password"
                                 autoComplete="new-password"
