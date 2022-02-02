@@ -51,7 +51,7 @@ export default function TechInfoPage(){
           <Button variant="contained" onClick={switchBackward}> { '<< Switch'} </Button>
           <Button variant="contained" onClick={switchForward} style={{float:'right', marginRight:70}}> { 'Switch >>'} </Button>
         </div>
-        <div className='techContainer'> 
+        <div style={{marginLeft:60}}> 
           <SwitchPage/>
         </div>
       </div>
