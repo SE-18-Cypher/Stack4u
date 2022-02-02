@@ -44,14 +44,14 @@ export default function TechInfoPage(){
       <div className="commonBg"></div>
       <div style={{position:'relative'}}>
         <div className='backToLoginButton'>
-          <Button variant="contained" onClick={() => navigate("../login/common/Common")}>BACK TO SIGN UP</Button>
+          <Button variant="contained" onClick={() => navigate("/login")}>BACK TO SIGN UP</Button>
         </div> 
         <h2 style={{textAlign: "center",marginTop:50}}> TECHNOLOGY INFORMATION</h2>
         <div style={{marginLeft:70,marginTop: 30}}>
           <Button variant="contained" onClick={switchBackward}> { '<< Switch'} </Button>
           <Button variant="contained" onClick={switchForward} style={{float:'right', marginRight:70}}> { 'Switch >>'} </Button>
         </div>
-        <div className='techContainer'> 
+        <div style={{marginLeft:60}}> 
           <SwitchPage/>
         </div>
       </div>

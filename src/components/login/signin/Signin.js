@@ -110,7 +110,7 @@ export default function Signin() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="" variant="body2" onClick={() => navigate("./ForgotPassword")}>
+                  <Link href="" variant="body2" onClick={() => navigate("/forgotpassword")}>
                     Forgot password?
                   </Link>
                 </Grid>
