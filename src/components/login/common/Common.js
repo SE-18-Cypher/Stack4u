@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Signin from '../signin/Signin';
 import Signup from '../signup/Signup';
 import './Common.css';
-import TechInfoPage from '../../techInfoPage/TechInfoPage';
 
 import computerImage from '../../../resources/images/computerImage.png';
 import stack4uLOGO_OG_T from '../../../resources/images/stack4uLOGO_OG_T.png';
@@ -19,12 +18,6 @@ export default function Common() {
 
     const [view, setView] = useState(true);
     const toggleView = () => setView((view) => !view);
-
-    const [skipLogin, setSkipLogin] = useState(false);
-
-    if (skipLogin){
-        return <TechInfoPage/>
-    }
 
     return(
         <div className="body">
@@ -55,13 +48,13 @@ export default function Common() {
                 </Box>
             </div>
             <img src={stack4uLOGO_OG_T} className='logo' alt='stack4u logo' width={300}/> 
-            <img src={cloudImage} className="designCloudImage" alt='cloud image'/>   
+            <img src={cloudImage} className="designCloudImage" alt='cloud'/>   
             <div className="welcomeContent">
                 <h1> Hello, </h1>
                 <p>Sign up here to get a <br/> better experience </p>
                 <Button variant="contained" onClick={() => navigate("/techInfoPage")} sx={{pl:5,pr:5,bgcolor:'black'}}>Skip</Button>          
             </div> 
-            <img src={computerImage} className="designComputerImage" alt='computer image'/>
+            <img src={computerImage} className="designComputerImage" alt='computer'/>
             <button onClick={() => navigate("/home")} >Home button</button>
         </div>
     )
