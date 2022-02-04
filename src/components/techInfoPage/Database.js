@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { Paper } from '@mui/material';
+import { Paper, Skeleton } from '@mui/material';
 
 import mysqlLogo from './../../resources/images/techpage/database/mysql.png';
 import mongodbLogo from './../../resources/images/techpage/database/mongoDB.png';
@@ -25,6 +25,12 @@ export default function Database() {
 
     const [indexClicked, setIndexClicked] = React.useState(0);
 
+    const [loaded, setLoaded] = React.useState(false);
+
+    setTimeout(function () {
+        setLoaded(true);
+    }, 2000);
+
     function openDescription(index){
         toggleView();
         setIndexClicked(index);
@@ -42,7 +48,7 @@ export default function Database() {
         boxShadow: 24,
         p: 4,
     };
-
+  
     return (
         <div>
             <Modal
@@ -51,7 +57,7 @@ export default function Database() {
             >
                 <Box sx={style}>
                     <div class="clearfix">
-                        <img src={content[indexClicked][0]} alt='logo'  width={220} style={{float:'right'}}/>
+                        <img src={content[indexClicked][0]} alt='logo'  width={180} style={{float:'right',padding:20,paddingBottom:40}}/>
                         <p style={{fontWeight:'bold',fontSize:40}}> {content[indexClicked][1]} </p>
                         <p style={{textAlign:'justify'}}>{content[indexClicked][2]}</p> 
                         <a href={content[indexClicked][3]} target="_blank"  rel="noreferrer">Documentation</a>
@@ -64,58 +70,82 @@ export default function Database() {
             <tr>
                 <td>
                     <div style={{margin:50}}>
-                        <Paper elevation={24} onClick={() => openDescription(0)} className="eachTechContent"> 
+                        { loaded ? (
+                            <Paper elevation={24} onClick={() => openDescription(0)} className="eachTechContent"> 
                             <img src={content[0][0]} alt='logo' width={140} style={{marginTop:48,float:'left',marginLeft:30}} />
                             <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[0][1]} </h3> 
                             <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
-                        </Paper> 
+                            </Paper>
+                        ) : (
+                            <Skeleton variant="rectangular" width={330} height={180} />
+                        )}
                     </div>
                 </td>
                 <td>
                     <div style={{margin:50}}>
-                        <Paper elevation={24} onClick={() => openDescription(1)} className="eachTechContent"> 
-                            <img src={content[1][0]} alt='logo' width={150} style={{marginTop:10,float:'left',marginLeft:30}} />
-                            <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[1][1]} </h3> 
-                            <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
-                        </Paper>  
+                        { loaded ? (
+                            <Paper elevation={24} onClick={() => openDescription(1)} className="eachTechContent"> 
+                                <img src={content[1][0]} alt='logo' width={150} style={{marginTop:10,float:'left',marginLeft:30}} />
+                                <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[1][1]} </h3> 
+                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                             </Paper> 
+                        ) : (
+                            <Skeleton variant="rectangular" width={330} height={180} />
+                        )}
                     </div>
                 </td>
                 <td>
                     <div style={{margin:50}}>
-                        <Paper elevation={24} onClick={() => openDescription(2)} className="eachTechContent"> 
-                            <img src={content[2][0]} alt='logo' width={100} style={{marginTop:29,float:'left',marginLeft:30}} />
-                            <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[2][1]} </h3> 
-                            <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
-                        </Paper> 
+                        { loaded ? (
+                            <Paper elevation={24} onClick={() => openDescription(2)} className="eachTechContent"> 
+                                <img src={content[2][0]} alt='logo' width={100} style={{marginTop:29,float:'left',marginLeft:30}} />
+                                <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[2][1]} </h3> 
+                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                            </Paper>
+                        ) : (
+                            <Skeleton variant="rectangular" width={330} height={180} />
+                        )}    
                     </div>  
                 </td>
             </tr>
             <tr>
                 <td>
                     <div style={{margin:50}}>
-                        <Paper elevation={24} onClick={() => openDescription(3)} className="eachTechContent"> 
-                            <img src={content[3][0]} alt='logo' width={130} style={{marginTop:18,float:'left',marginLeft:30}} />
-                            <h3 style={{paddingTop: 60,fontWeight:'bold'}}> {content[3][1]} </h3> 
-                            <p style={{color:'blue', marginTop:59,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
-                        </Paper> 
+                        { loaded ? (
+                            <Paper elevation={24} onClick={() => openDescription(3)} className="eachTechContent"> 
+                                <img src={content[3][0]} alt='logo' width={130} style={{marginTop:18,float:'left',marginLeft:30}} />
+                                <h3 style={{paddingTop: 60,fontWeight:'bold'}}> {content[3][1]} </h3> 
+                                <p style={{color:'blue', marginTop:59,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                            </Paper>
+                        ) : (
+                            <Skeleton variant="rectangular" width={330} height={180} />
+                        )}                           
                     </div>
                 </td>
                 <td>
                     <div style={{margin:50}}>
-                        <Paper elevation={24} onClick={() => openDescription(4)} className="eachTechContent"> 
-                            <img src={content[4][0]} alt='logo' width={115} style={{marginTop:30,float:'left',marginLeft:30}} />
-                            <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[4][1]} </h3> 
-                            <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
-                        </Paper>  
+                        { loaded ? (
+                            <Paper elevation={24} onClick={() => openDescription(4)} className="eachTechContent"> 
+                                <img src={content[4][0]} alt='logo' width={115} style={{marginTop:30,float:'left',marginLeft:30}} />
+                                <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[4][1]} </h3> 
+                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                            </Paper> 
+                        ) : (
+                            <Skeleton variant="rectangular" width={330} height={180} />
+                        )}      
                     </div>
                 </td>
                 <td>
                     <div style={{margin:50}}>
-                        <Paper elevation={24} onClick={() => openDescription(5)} className="eachTechContent"> 
-                            <img src={content[5][0]} alt='logo' width={120} style={{marginTop:20,float:'left',marginLeft:30}} />
-                            <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[5][1]} </h3> 
-                            <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
-                        </Paper> 
+                        { loaded ? (
+                            <Paper elevation={24} onClick={() => openDescription(5)} className="eachTechContent"> 
+                                <img src={content[5][0]} alt='logo' width={120} style={{marginTop:20,float:'left',marginLeft:30}} />
+                                <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[5][1]} </h3> 
+                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                            </Paper> 
+                        ) : (
+                            <Skeleton variant="rectangular" width={330} height={180} />
+                        )}      
                     </div>  
                 </td>
             </tr>
