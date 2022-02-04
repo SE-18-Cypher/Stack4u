@@ -8,6 +8,7 @@ import Common from './components/login/common/Common';
 import ForgotPassword from './components/login/signin/ForgotPassword';
 import Home from './components/home/Home';
 import ErrorPage from './components/error page/ErrorPage';
+import Forum from './components/forum/Forum';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="login/common/Common/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/home" element={<Home/>}/>
           <Route path="/common" element={<Common/>}/>
+          <Route path="/forum" element={<Forum/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </Router>
