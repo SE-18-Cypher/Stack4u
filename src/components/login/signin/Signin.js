@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router";
+import {signInWithGoogle} from '../Firebase/Firebase.js';
 
 const theme = createTheme();
 
@@ -108,6 +109,11 @@ export default function Signin() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
+              <Grid item xs>
+                <Link href="" variant="body2" onClick={() => navigate("/forgotpassword")}>
+                  Forgot password?
+                </Link>
+              </Grid>
               <Button
                 type="submit"
                 fullWidth
@@ -117,14 +123,15 @@ export default function Signin() {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="" variant="body2" onClick={() => navigate("/forgotpassword")}>
-                    Forgot password?
-                  </Link>
+                <Grid>
+                  <Button class="login-with-google-btn" onClick={signInWithGoogle}>
+                    Sign in with Google
+                  </Button>
                 </Grid>
               </Grid>
             </Box>
           </Box>
+          
         </Container>
       </ThemeProvider>
     </div>
