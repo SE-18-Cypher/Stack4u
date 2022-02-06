@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {signInWithGoogle} from '../Firebase/Firebase.js';
   
 const theme = createTheme();
 
@@ -169,6 +170,13 @@ const theme = createTheme();
                         >
                         Sign Up
                         </Button>
+                        <Grid container>
+                            <Grid>
+                                <Button class="login-with-google-btn" onClick={signInWithGoogle}>
+                                    Sign up with Google
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Box>
                 </Container>
