@@ -4,22 +4,25 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {signInWithGoogle} from '../Firebase/Firebase.js';
+import { useNavigate } from "react-router";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import app from '../../../Firebase-config';
   
 const theme = createTheme();
 
   export default function Signup() {
+
+    const navigate = useNavigate();
     document.title = "stack4u/SignUp";
-    
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
     const checkAuth = (data) => {
         if (data.get('password').length < 7){
             setValidPassword(false);
@@ -72,6 +75,16 @@ const theme = createTheme();
         const data = new FormData(event.currentTarget);
         checkAuth(data);
     };
+
+    function signInWithGoogle(){
+        signInWithPopup(auth, provider)
+        .then((result) => {    
+          navigate("/home");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
 
     const [validFName, setValidFName] = React.useState(true);
     const [fNameHelpertext, setFNameHelpertext] = React.useState("");
@@ -172,7 +185,7 @@ const theme = createTheme();
                         </Button>
                         <Grid container>
                             <Grid>
-                                <Button class="login-with-google-btn" onClick={signInWithGoogle}>
+                                <Button class="login-with-google-btn" onClick={() => signInWithGoogle()}>
                                     Sign up with Google
                                 </Button>
                             </Grid>

@@ -14,13 +14,19 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router";
-import {signInWithGoogle} from '../Firebase/Firebase.js';
+
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import app from '../../../Firebase-config';
 
 const theme = createTheme();
 
 export default function Signin() {
   document.title = "stack4u/SignIn";
   const navigate = useNavigate();
+
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
   const checkAuth = (data) => {
     console.log({
       email: data.get('email'),
@@ -52,6 +58,16 @@ export default function Signin() {
     const data = new FormData(event.currentTarget);
     checkAuth(data);
   };
+
+  function signInWithGoogle(){
+    signInWithPopup(auth, provider)
+    .then((result) => {    
+      navigate("/home");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   const [validEmail, setValidEmail] = React.useState(true);
   const [emailHelperText, setEmailHelperText] = React.useState("");
@@ -124,7 +140,7 @@ export default function Signin() {
               </Button>
               <Grid container>
                 <Grid>
-                  <Button class="login-with-google-btn" onClick={signInWithGoogle}>
+                  <Button class="login-with-google-btn" onClick={() => signInWithGoogle()}>
                     Sign in with Google
                   </Button>
                 </Grid>
