@@ -26,7 +26,14 @@ export default function Forum() {
       likes:10,
       comments:20,
       profilePicture: img,
-      currentUserLiked: true
+      currentUserLiked: true,
+      allComments:[
+        {
+          name:'sadu',
+          profilePicture: img,
+          commentDescription:'hello',
+        }
+      ]
     },
     {
       id:2002,
@@ -35,7 +42,14 @@ export default function Forum() {
       likes:20,
       comments:15,
       profilePicture:img,
-      currentUserLiked: false
+      currentUserLiked: false,
+      allComments:[
+        {
+          name:'sadu',
+          profilePicture: img,
+          commentDescription:'hello',
+        }
+      ]
     }
   ]
   
@@ -55,7 +69,7 @@ export default function Forum() {
     boxShadow: 24,
     p: 4,
   };
- 
+
   return (
     <div>
         <h1 style={{textAlign:'center'}}>Forum</h1>
@@ -63,7 +77,7 @@ export default function Forum() {
         (
           <div className="eachQuery" key={index}>
             <Paper elevation={1} onClick={() => openDocument(eachContent)}>
-                <img src={eachContent.profilePicture} width={40} style={{float:'left'}}/>
+                <img src={eachContent.profilePicture} width={40} alt="profile figure" style={{float:'left'}}/>
                 <h3 style={{marginLeft:50}}> {eachContent.topic} </h3>
                 <br/>
                 <p> {eachContent.topic} </p>
@@ -78,11 +92,23 @@ export default function Forum() {
                 </div>
       
             </Paper>        
-        </div>
+          </div>
         ))}
         <Modal open={view} onClose={toggleView}>
           <Box sx={style}>
-            {docClicked.topic}
+            <img src={docClicked.profilePicture} width={40}  alt="profile figure" style={{float:'left'}}/>
+            <h3 style={{marginLeft:50}}> {docClicked.topic} </h3>
+            <br/>
+            <p> {docClicked.topic} </p>
+            <hr/>
+            {docClicked.allComments.map((eachComment,index)=>
+            (
+              <div key={index}>
+                <img src={eachComment.profilePicture} width={30}  alt="profile figure" style={{float:'left'}}/>
+                <h6 style={{marginLeft:50}}> {eachComment.name} </h6>
+                <p style={{marginLeft:50}}> {eachComment.commentDescription} </p>
+              </div>   
+            ))}
           </Box>
         </Modal>
     </div>
