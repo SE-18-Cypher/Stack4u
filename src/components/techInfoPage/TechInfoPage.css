@@ -1,6 +1,7 @@
 .backToLoginButton{
     position: fixed;
     bottom: 10px;
+    left: 10px;
 }
 .techContainer{
     text-align: center; 
@@ -14,4 +15,27 @@
     width: 100%;
     overflow: hidden;
     background-image: linear-gradient(113.86deg, #FFFFFF 19.97%, rgba(28, 147, 234, 0.95) 106.91%);
+}
+.activeType{
+    color: black;
+    text-decoration: underline solid rgb(17, 131, 214,1) 5px;
+    text-underline-offset: 40%;
+    background-color: transparent;
+}
+.notActiveType{
+    color: grey;
+    background-color: transparent;
+}
+.eachTechContent{
+    width:330px;
+    height: 180px;
+}
+.eachTechContent:hover{
+    opacity:0.5;
+    cursor:pointer;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }
