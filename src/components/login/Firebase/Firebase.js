@@ -7,12 +7,8 @@ const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
-    .then((result) => {
-      const name = result.user.displayName;
-      const email = result.user.email;
-      const profilePic = result.user.photoURL;
-      const navigate = useNavigate();
-      navigate('./home')
+    .then((result) => {    
+      console.log(result);
     })
     .catch((error) => {
       console.log(error);
