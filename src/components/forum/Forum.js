@@ -70,6 +70,16 @@ export default function Forum() {
   const [commentAuthName, setCommentAuthName] = React.useState("Default");
   const [commentDescription, setCommentDescription] = React.useState("");
 
+  function checkComment(){
+    if(commentDescription === ""){
+      alert("Please enter a comment");
+    }
+    else{
+      submitComment();
+      setCommentDescription('');
+    }
+  }
+
   const submitComment = async () => {
     const subRef = collection(database, "Forum/" + docClicked + "/comment");
     await addDoc(subRef, {
@@ -83,13 +93,24 @@ export default function Forum() {
   const [newQueryName, setNewQueryName] = React.useState("");
   const [newQueryDesc, setNewQueryDesc] = React.useState("");
 
+  function checkQuery(){
+    if(newQueryName === ""){
+      alert("Please enter a topic name");
+    }
+    else if(newQueryDesc === ""){
+      alert("Please enter a description");
+    }
+    else{
+      submitQuery();
+      setNewQueryDesc('');
+      setNewQueryName('');
+    }
+  }
   const submitQuery = async () => {
     await addDoc(ref, {
       topicname: newQueryName, 
       topicdesc: newQueryDesc
     });
-    setNewQueryDesc('');
-    setNewQueryName('');
   };
 
   function addComment() {
@@ -124,7 +145,7 @@ export default function Forum() {
 
   return (
     <div>
-      <div className="commonBg"/>
+      <div className="commonOppBg"/>
       <div style={{ position: 'relative' }}>
         <h1 style={{ textAlign: 'center' }}>Forum</h1>
         {allForumQueries.forumData && allForumQueries.forumData.map((eachContent, index) =>
@@ -200,7 +221,7 @@ export default function Forum() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 style={{ float: 'right' }}
-                onClick={() => { submitComment() }}
+                onClick={() => { checkComment() }}
               >
                 SUBMIT
               </Button>
@@ -208,7 +229,7 @@ export default function Forum() {
           </Modal>
         )} 
       </div>
-      <div style={{ top: 100, marginLeft:900, width:400,position:'fixed' }}>
+      <div className='createPost'>
           <h4 style={{marginBottom:20}}>Create a post</h4>
           <h5 style={{marginBottom:20}}>
             Enter a name
@@ -241,7 +262,9 @@ export default function Forum() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             style={{ float: 'right' }}
-            onClick={() => { submitQuery() }}
+            onClick={() => {
+              checkQuery();
+            }}
           >
             SUBMIT
           </Button>
