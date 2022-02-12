@@ -12,7 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import './Forum.css';
 import app from './../../Firebase-config';
 import { getFirestore } from "@firebase/firestore";
-import { addDoc, collection, doc, getDoc, onSnapshot, query } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, onSnapshot, query, updateDoc } from "firebase/firestore";
 
 export default function Forum() {
 
@@ -20,7 +20,7 @@ export default function Forum() {
 
   const [view, setView] = React.useState(false);                                  //hook to view the comments on each query
   const toggleView = () => setView((view) => !view);                              //switch the view
- 
+
   const [allForumQueries, setAllForumQueries] = React.useState([]);               //hook to hold the forum content
 
   const ref = collection(database, "Forum");    //reference to the firestore 
@@ -69,55 +69,76 @@ export default function Forum() {
 
   const [commentAuthName, setCommentAuthName] = React.useState("Default");
   const [commentDescription, setCommentDescription] = React.useState("");
+  const [commentCount, setCommentCount] = React.useState();
+  React.useEffect(() => {}, [commentCount]);
 
-  function checkComment(){
-    if(commentDescription === ""){
-      alert("Please enter a comment");
+  function checkComment() {          //commenting in a query 
+    if (commentDescription === "") {        //checking if the comment is valid 
+      alert("Please enter a comment");    //alerting user to enter a comment 
     }
-    else{
-      submitComment();
-      setCommentDescription('');
+    else {
+      submitComment();                  //updating the database with new comment 
+      setCommentDescription('');        //resetting the values after submitting the comment 
     }
   }
 
   const submitComment = async () => {
-    const subRef = collection(database, "Forum/" + docClicked + "/comment");
+    const subRef = collection(database, "Forum/" + docClicked + "/comment");    //documnet reference to add the comment 
     await addDoc(subRef, {
-      name: commentAuthName , // name: authName
+      name: commentAuthName, // name: authName
       desc: commentDescription
     });
-    setCommentDescription('');
-    toggleViewCommentQuery();
+    toggleViewCommentQuery();   //closing the add comment view modal 
+    updateComment(docClicked,commentCount);
   };
 
-  const [newQueryName, setNewQueryName] = React.useState("");
-  const [newQueryDesc, setNewQueryDesc] = React.useState("");
+  const updateComment = async (id, com) => {
+    const docs = doc(database, "Forum", id);
+    const re = { com: com + 1 };
+    await updateDoc(docs, re);
+  };
 
-  function checkQuery(){
-    if(newQueryName === ""){
+  const [newQueryName, setNewQueryName] = React.useState("");     //the new query name 
+  const [newQueryDesc, setNewQueryDesc] = React.useState("");     //the new query description 
+
+  function checkQuery() {
+    if (newQueryName === "") {        //checking valid query 
       alert("Please enter a topic name");
     }
-    else if(newQueryDesc === ""){
+    else if (newQueryDesc === "") {    //check valid query description 
       alert("Please enter a description");
     }
-    else{
-      submitQuery();
-      setNewQueryDesc('');
-      setNewQueryName('');
+    else {
+      submitQuery();        //updating the database with the new query 
+      setNewQueryDesc('');  //reseting values 
+      setNewQueryName('');  //reseting values 
     }
   }
   const submitQuery = async () => {
     await addDoc(ref, {
-      topicname: newQueryName, 
+      topicname: newQueryName,
       topicdesc: newQueryDesc
     });
   };
 
   function addComment() {
-    toggleViewCommentQuery();
+    toggleViewCommentQuery();   //switch the view to add comment 
   }
 
-  const style = {
+  
+  
+  const updateLike = async (id, likes, userLiked) => {
+    const docs = doc(database, "Forum", id);
+    if (!userLiked) {
+      const re = { likes: likes + 1 , currentuserliked: true };
+      await updateDoc(docs, re);
+    } else if (userLiked) {
+      const re = { likes: likes - 1 , currentuserliked: false };
+      await updateDoc(docs, re);
+    }
+  };
+
+  const style = {       //style setting for query comments modal
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -126,12 +147,12 @@ export default function Forum() {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    overflow:'scroll',
-    height:500,
+    overflow: 'scroll',
+    height: 500,
     p: 4,
   };
 
-  const style2 = {
+  const style2 = {    //style setting for add comment for query modal 
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -145,13 +166,13 @@ export default function Forum() {
 
   return (
     <div>
-      <div className="commonOppBg"/>
+      <div className="commonOppBg" />
       <div style={{ position: 'relative' }}>
         <h1 style={{ textAlign: 'center' }}>Forum</h1>
         {allForumQueries.forumData && allForumQueries.forumData.map((eachContent, index) =>
         (
           <div className="eachQuery" key={index}>
-            <Paper elevation={1} 
+            <Paper elevation={1}
               onClick={() => {
                 setDocClicked(eachContent.id);
                 expandView(eachContent.id);
@@ -159,9 +180,9 @@ export default function Forum() {
               }}
             >
               {/* <img src={eachContent.profilePicture} width={40} alt="profile figure" style={{float:'left'}}/> */}
-              <h3 style={{ marginLeft: 50 }}> {eachContent.topicname} </h3>
+              <h3 style={{ marginLeft: 50, wordWrap: 'break-word' }} > {eachContent.topicname} </h3>
               <br />
-              <p> {eachContent.topicdesc} </p>
+              <p style={{ wordWrap: 'break-word' }}> {eachContent.topicdesc} </p>
               <div>
                 {eachContent.currentuserliked ? (
                   <Button> <FavoriteIcon /> {eachContent.likes} </Button>
@@ -176,25 +197,37 @@ export default function Forum() {
         {!viewCommentQuery && (
           <Modal open={view} onClose={toggleView}>
             <Box sx={style}>
-            <CloseIcon onClick={toggleView} style={{ float: 'right' }} />
+              <CloseIcon onClick={toggleView} style={{ float: 'right' }} />
               {/* <img src={docClicked.profilePicture} width={40}  alt="profile figure" style={{float:'left'}}/> */}
-              <h3 style={{ marginLeft: 50 }}> {clickedQuery.topicname} </h3>
+              <h3 style={{ marginLeft: 50, wordWrap: 'break-word' }}> {clickedQuery.topicname} </h3>
               <br />
-              <p> {clickedQuery.topicdesc} </p>
+              <p style={{ wordWrap: 'break-word' }}> {clickedQuery.topicdesc} </p>
               <div>
-                {clickedQuery.currentuserliked ? (
-                  <Button> <FavoriteIcon /> {clickedQuery.likes} </Button>
-                ) : (
-                  <Button> <FavoriteBorderIcon /> {clickedQuery.likes} </Button>
-                )}
-                <Button onClick={addComment}> <CommentIcon /> {clickedQuery.com} </Button>
+                <Button
+                  onClick={() => {
+                    updateLike(docClicked, clickedQuery.likes, clickedQuery.currentuserliked);
+                  }}
+                >
+                  {clickedQuery.currentuserliked ? (
+                    <FavoriteIcon />
+                  ) : (
+                    <FavoriteBorderIcon />
+                  )}
+                  {clickedQuery.likes}
+                </Button>
+                <Button 
+                  onClick={() => {
+                    addComment();
+                    setCommentCount(clickedQuery.com);
+                  }}
+                > <CommentIcon /> {clickedQuery.com} </Button>
               </div>
               {eachQueryComments.allQueryArray && eachQueryComments.allQueryArray.map((eachQuery, index) =>
               (
                 <div key={index}>
                   {/* <img src={eachComment.profilePicture} width={30}  alt="profile figure" style={{float:'left'}}/> */}
-                  <h6 style={{ marginLeft: 50 }}> {eachQuery.name} </h6>
-                  <p style={{ marginLeft: 50 }}> {eachQuery.desc} </p>
+                  <h6 style={{ marginLeft: 50, wordWrap: 'break-word' }}> {eachQuery.name} </h6>
+                  <p style={{ marginLeft: 50, wordWrap: 'break-word' }}> {eachQuery.desc} </p>
                   <hr />
                 </div>
               ))}
@@ -227,48 +260,48 @@ export default function Forum() {
               </Button>
             </Box>
           </Modal>
-        )} 
+        )}
       </div>
       <div className='createPost'>
-          <h4 style={{marginBottom:20}}>Create a post</h4>
-          <h5 style={{marginBottom:20}}>
-            Enter a name
-          </h5>
-          <TextField
-            label="Topic"
-            variant="filled"
-            fullWidth
-            style={{marginBottom:20}}
-            value={newQueryName}
-            onChange={e => setNewQueryName(e.target.value)}
-          />
-          <br/>
-          <h5 style={{marginBottom:20}}>
-            Enter a description
-          </h5>
-          <TextField
-            label="Description"
-            multiline
-            maxRows={5}
-            variant="filled"
-            fullWidth
-            style={{marginBottom:20}}
-            value={newQueryDesc}
-            onChange={e => setNewQueryDesc(e.target.value)}
-          />
-          <br/>
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            style={{ float: 'right' }}
-            onClick={() => {
-              checkQuery();
-            }}
-          >
-            SUBMIT
-          </Button>
-        </div>
+        <h4 style={{ marginBottom: 20 }}>Create a post</h4>
+        <h5 style={{ marginBottom: 20 }}>
+          Enter a name
+        </h5>
+        <TextField
+          label="Topic"
+          variant="filled"
+          fullWidth
+          style={{ marginBottom: 20 }}
+          value={newQueryName}
+          onChange={e => setNewQueryName(e.target.value)}
+        />
+        <br />
+        <h5 style={{ marginBottom: 20 }}>
+          Enter a description
+        </h5>
+        <TextField
+          label="Description"
+          multiline
+          maxRows={5}
+          variant="filled"
+          fullWidth
+          style={{ marginBottom: 20 }}
+          value={newQueryDesc}
+          onChange={e => setNewQueryDesc(e.target.value)}
+        />
+        <br />
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+          style={{ float: 'right' }}
+          onClick={() => {
+            checkQuery();
+          }}
+        >
+          SUBMIT
+        </Button>
+      </div>
     </div>
   );
 }
