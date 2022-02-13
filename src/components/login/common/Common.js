@@ -33,7 +33,7 @@ export default function Common() {
                     },
                     }}
                 >
-                    <Paper elevation={24}>
+                    <Paper elevation={2}>
                         <div className="headerContent">
                             <button className="signButtons" onClick={toggleView} disabled={view}>
                                 <h2 className={view ? "activeType":"notActiveType"}>Sign up</h2>

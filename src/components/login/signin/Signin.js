@@ -140,7 +140,7 @@ export default function Signin() {
               </Button>
               <Grid container>
                 <Grid>
-                  <Button class="login-with-google-btn" onClick={() => signInWithGoogle()}>
+                  <Button className="login-with-google-btn" onClick={() => signInWithGoogle()}>
                     Sign in with Google
                   </Button>
                 </Grid>
