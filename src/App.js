@@ -7,7 +7,7 @@ import TechInfoPage from './components/techInfoPage/TechInfoPage';
 import Common from './components/login/common/Common';
 import ForgotPassword from './components/login/signin/ForgotPassword';
 import Home from './components/home/Home';
-import {Profile} from './components/profile/profile';
+import CommonProfile from './components/profile/commonProfile/commonProfile';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Forum from './components/forum/Forum';
 
@@ -27,9 +27,8 @@ function App() {
           <Route path="/home" element={<Home/>}/>
           <Route path="/common" element={<Common/>}/>
           <Route path="/forum" element={<Forum/>}/>
-          <Route path="/home/profile" element={<Profile/>}/>
-          <Route path = "*" element ={<ErrorPage/>}/>
-
+          <Route path="/home/profile" element={<CommonProfile/>}/>
+          <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </Router>
     </div>
