@@ -1,5 +1,32 @@
 .eachQuery{
-    width: 65%;
-    margin: auto;
+    width: 50%;
     padding-bottom: 2%;
+    margin-left:7%;
+    margin-top: 2%;
+}
+.createPost{
+    position: fixed;
+    width: 30%;
+    top: 10%;
+    right: 3%;
+}
+.commonOppBg{
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(113.22deg, rgba(28, 147, 234, 0.95) -17.22%, #FFFFFF 90.6%);
+}
+.loading{
+    opacity: 0.5;
+    pointer-events: none;
+}
+.loadingCircle{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

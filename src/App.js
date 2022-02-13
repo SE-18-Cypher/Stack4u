@@ -8,8 +8,9 @@ import Common from './components/login/common/Common';
 import ForgotPassword from './components/login/signin/ForgotPassword';
 import Home from './components/home/Home';
 import CommonProfile from './components/profile/commonProfile/commonProfile';
-import ErrorPage from './components/error page/ErrorPage';
+import ErrorPage from './components/errorPage/ErrorPage';
 import Forum from './components/forum/Forum';
+
 
 function App() {
   return (

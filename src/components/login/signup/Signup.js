@@ -185,7 +185,7 @@ const theme = createTheme();
                         </Button>
                         <Grid container>
                             <Grid>
-                                <Button class="login-with-google-btn" onClick={() => signInWithGoogle()}>
+                                <Button className="login-with-google-btn" onClick={() => signInWithGoogle()}>
                                     Sign up with Google
                                 </Button>
                             </Grid>
