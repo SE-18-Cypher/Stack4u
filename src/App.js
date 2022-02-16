@@ -10,6 +10,7 @@ import Home from './components/home/Home';
 import CommonProfile from './components/profile/commonProfile/commonProfile';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Forum from './components/forum/Forum';
+import HomePage from './components/homePage/HomePage';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/common" element={<Common/>}/>
           <Route path="/forum" element={<Forum/>}/>
           <Route path="/home/profile" element={<CommonProfile/>}/>
+          <Route path="/homepage" element={<HomePage/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </Router>

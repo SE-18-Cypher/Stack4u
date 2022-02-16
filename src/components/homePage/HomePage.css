@@ -1,0 +1,48 @@
+.commonbg{
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(58deg, rgba(17, 138, 225, 0.43) 13.78%, rgba(22, 142, 229, 0.687012) 89.33%, rgba(28, 147, 234, 0.95) 107.25%);
+    /* background-image: linear-gradient(113.86deg, #FFFFFF 19.97%, rgba(28, 147, 234, 0.95) 106.91%); */
+}
+.mainPageContent{
+    position: relative;
+}
+.dragAndDropOutsideContainer{
+    position: relative;
+    width: 50%;
+    min-height: 800px;
+    border-radius: 5%;
+    background-color: #FFFFFF;
+    margin: auto;
+    margin-top: 5%;
+}
+.dragAndDropContainer{
+    background: #F9F7F7F2;
+    width: 60%;
+    border-radius:5%;
+    border: 2px dashed #037ED7;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.decorationComputerImage{
+    position: absolute;
+    width: 50%;
+    bottom: 0;
+    margin-bottom: -5%;
+    margin-left: -25%;
+}
+.uploader{
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+}
+.decoContent{
+    position: absolute;
+    margin-top: -55%;
+    margin-left: 28%;
+}
