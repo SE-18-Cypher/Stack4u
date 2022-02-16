@@ -126,7 +126,7 @@ export default function Signin() {
                 label="Remember me"
               />
               <Grid item xs>
-                <Link href="" variant="body2" onClick={() => navigate("/forgotpassword")}>
+                <Link href="" style= {{color: "rgb(1, 103, 176, 0.88)"}} variant="body2" onClick={() => navigate("/forgotpassword")}>
                   Forgot password?
                 </Link>
               </Grid>
@@ -140,9 +140,9 @@ export default function Signin() {
               </Button>
               <Grid container>
                 <Grid>
-                  <Button className="login-with-google-btn" onClick={() => signInWithGoogle()}>
+                  <button className = "login-with-google-btn" onClick={() => signInWithGoogle()}>
                     Sign in with Google
-                  </Button>
+                  </button>
                 </Grid>
               </Grid>
             </Box>

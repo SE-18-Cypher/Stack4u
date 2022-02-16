@@ -1,13 +1,13 @@
 import { Button, Grid, Typography } from '@mui/material';
 import './profile.css';
-import { firestore } from '../../../components/login/Firebase/Firebase';
 import { useEffect, useState } from 'react';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { Firestore, getFirestore} from "firebase/firestore";
+import app from '../../../Firebase-config'
 
 export const Profile = () =>{
 
-    const firestore = getFirestore();
+    const firestore = getFirestore(app);
 
     const createUserDocument = async (user, additionalData) => {
         if (!user)
