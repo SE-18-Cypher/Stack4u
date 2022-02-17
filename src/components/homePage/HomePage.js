@@ -15,17 +15,50 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 import Home from './../home/Home';
 
+import app from './../../Firebase-config';
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { getStorage } from "firebase/storage";
+
 const fileTypes = ["JPEG", "PDF"];
 
 export default function HomePage() {
 
-    const [file, setFile] = React.useState(null);
+    const navigate = useNavigate();
+
+    const [file, setFile] = React.useState('');
     const handleChange = (file) => {
         setFile(file);
     };
     console.log(file);
 
-    const navigate = useNavigate();
+    const storage = getStorage(app);
+    
+    React.useEffect(() => {
+      uploadFiles();
+    }, [file])
+    
+    const uploadFiles = () => {
+        console.log("Works")
+        if (!file) return;
+        const sotrageRef = ref(storage, `files/${file.name}`);
+        const uploadTask = uploadBytesResumable(sotrageRef, file);
+    
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const prog = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+          },
+          (error) => console.log(error),
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log("File available at", downloadURL);
+            });
+          }
+        );
+      };
+
     return (
         <div>
             <div className='commonbg' />
@@ -62,7 +95,7 @@ export default function HomePage() {
                     <div style={{ backgroundColor: '#045794C9' }}>
                         <img src={mainpageFooter} alt='decoration - circuitboard' className='footerImage' />
                     </div>
-                    <div class="footerContent-left">
+                    <div className="footerContent-left">
                         <img src={mainpageFooterStack4uLogo} alt='stack4u logo' />
                         <h6 >We present a web based technology stack <br /> recommendation system</h6>
                         <br />
@@ -74,7 +107,7 @@ export default function HomePage() {
                             <TwitterIcon />
                         </div>
                     </div>
-                    <div class="footerContent-right">
+                    <div className="footerContent-right">
                         <h3> Contact us</h3> <br />
                         <h6> Phone : +94 77 559 5632</h6>
                         <h6> Email : cypherstack4u@gmail.com</h6>
