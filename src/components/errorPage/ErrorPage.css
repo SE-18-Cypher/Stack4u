@@ -26,8 +26,7 @@
     color: white;
     position: relative;
     overflow: hidden;
-    
-  }
+}
 
   .button1:hover{
       background-color:#1c93ea;

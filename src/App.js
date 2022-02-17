@@ -11,7 +11,8 @@ import CommonProfile from './components/profile/commonProfile/commonProfile';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Forum from './components/forum/Forum';
 import HomePage from './components/homePage/HomePage';
-
+import TextInputPage from './components/homePage/textInputPage/TextInputPage';
+import ContactusPage from './components/contactUs/ContactusPage';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Redirect />} />
           <Route path="/login" element={<Common />} />
+          <Route path="/contactus" element={<ContactusPage />} />
+          <Route path="/manualinput" element={<TextInputPage />} />
           <Route path="/techInfoPage/TechInfoPage" element={<TechInfoPage />} />
           <Route path="/techInfoPage" element={<TechInfoPage />} />
           <Route path="/login/forgotpassword" element={<ForgotPassword />} />
