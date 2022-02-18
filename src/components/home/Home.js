@@ -12,17 +12,24 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './Home.css';
+import Logo from '../../resources/images/stack4uLOGO_OG_T.png';
+
+import { useNavigate } from "react-router";
+import { Pages } from '@mui/icons-material';
+
 
 const pages = ['Home', 'Tech info', 'Forum', 'About us'];
-const settings = ['Profile', 'Account', 'Logout'];
+const settings = ['Account', 'Logout'];
+
 
 const Home = () => {
+    const navigate = useNavigate();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+    // const handleOpenNavMenu = (event) => {
+    //     setAnchorElNav(event.currentTarget);
+    // };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -35,20 +42,18 @@ const Home = () => {
         setAnchorElUser(null);
     };
 
+    
+    
     return (
-        <AppBar position="static">
-            <Container maxWidth="xl">
+    
+        <AppBar style={{backgroundColor:'white', height:'74px' ,boxShadow:'0px 0px'}} position="static" >
+        
+            <Container maxWidth="xL">
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-                    >
-                        Stack4u
-                    </Typography>
+                   
+                    <img src={Logo} alt="logo" style={{ height: '11%', width: '12%', marginLeft:'80px', marginTop:'4px'}} />
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -83,35 +88,49 @@ const Home = () => {
                                 </MenuItem>
                             ))}
                         </Menu>
-                    </Box>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                    >
-                        LOGO
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                    </Box> */}
+                    
+                    <Box sx={{ paddingLeft:'12%', flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
+                        
+                        
+                            <Button                                
+                                onClick={() => navigate("/home")}
+                                sx={{ paddingInline:'6.1%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'82px' }}
                             >
-                                {page}
+                             {pages[0]}   
                             </Button>
-                        ))}
+
+                            <Button             
+                                onClick={() => navigate("/techInfoPage")}                                
+                                sx={{ paddingInline:'6.1%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'82px' }}
+                            >
+                             {pages[1]}   
+                            </Button>
+
+                            <Button                                 
+                                onClick={() => navigate("/forum")}                               
+                                sx={{ paddingInline:'6.1%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'82px' }}
+                            >
+                             {pages[2]}   
+                            </Button>
+
+                            <Button                                 
+                                onClick={() => navigate("/techInfoPage")}                                
+                                sx={{ paddingInline:'6.1%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'82px' }}
+                            >
+                             {pages[3]}   
+                            </Button>
+                               
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <Tooltip title="Settings">
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginRight:'90px' }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip>
                         <Menu
-                            sx={{ mt: '45px' }}
+                            sx={{ mt: '50px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
                             anchorOrigin={{
@@ -126,17 +145,24 @@ const Home = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                            
+                                <MenuItem  onClick={() => navigate("/home/profile")} >
+                                    <Typography textAlign="center"> {settings[0]} </Typography>
+                                    
                                 </MenuItem>
-                            ))}
+
+                                <MenuItem  onClick={() => navigate("/login")} >
+                                    <Typography textAlign="center"> {settings[1]} </Typography>
+                                </MenuItem>
+                            
                         </Menu>
                     </Box>
                 </Toolbar>
             </Container>
         </AppBar>
+     
     );
+  
 };
 export default Home;
 
