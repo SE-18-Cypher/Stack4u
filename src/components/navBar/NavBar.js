@@ -5,26 +5,26 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import './Home.css';
+import './NavBar.css';
 import Logo from '../../resources/images/stack4uLOGO_OG_T.png';
 
 import { useNavigate } from "react-router";
-import { Pages } from '@mui/icons-material';
+// import { Pages } from '@mui/icons-material';
 
 
 const pages = ['Home', 'Tech info', 'Forum', 'About us'];
 const settings = ['Account', 'Logout'];
 
 
-const Home = () => {
+const NavBar = () => {
     const navigate = useNavigate();
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    // const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     // const handleOpenNavMenu = (event) => {
@@ -34,9 +34,9 @@ const Home = () => {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
+    // const handleCloseNavMenu = () => {
+    //     setAnchorElNav(null);
+    // };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
@@ -46,7 +46,7 @@ const Home = () => {
     
     return (
     
-        <AppBar style={{backgroundColor:'white', height:'74px' ,boxShadow:'0px 0px'}} position="static" >
+        <AppBar style={{backgroundColor:'white', height:'90px' ,boxShadow:'0px 0px'}} position="static" >
         
             <Container maxWidth="xL">
                 <Toolbar disableGutters>
@@ -164,5 +164,5 @@ const Home = () => {
     );
   
 };
-export default Home;
+export default NavBar;
 

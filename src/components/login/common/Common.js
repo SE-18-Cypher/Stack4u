@@ -55,7 +55,6 @@ export default function Common() {
                 <Button variant="contained" onClick={() => navigate("/techInfoPage")} sx={{pl:5,pr:5,bgcolor:'black'}}>Skip</Button>          
             </div> 
             <img src={computerImage} className="designComputerImage" alt='computer'/>
-            <button onClick={() => navigate("/home")} >Home button</button>
         </div>
     )
 }

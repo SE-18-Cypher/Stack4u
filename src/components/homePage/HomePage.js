@@ -13,7 +13,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-import Home from './../home/Home';
+import NavBar from './../navBar/NavBar';
 
 import app from './../../Firebase-config';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
@@ -63,7 +63,7 @@ export default function HomePage() {
         <div>
             <div className='commonbg' />
             <div className='mainPageContent'>
-                <Home />
+                <NavBar />
                 <div className='dragAndDropOutsideContainer'>
                     <br />
                     <div className='dragAndDropContainer'>
