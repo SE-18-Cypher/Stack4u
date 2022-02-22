@@ -78,31 +78,7 @@ export default function Signup() {
         const data = new FormData(event.currentTarget);
         checkAuth(data);
     };
-
-    // const signUpWithEmail = e => {
-    //     // e.preventDefault();
-    //     firebase.auth.createUserWithEmailAndPassword(
-    //         emailRef.current.value, passwordRef.current.value
-    //     ).then(user => {
-    //         console.log(user)
-    //         navigate("/home");
-    //     }).catch(err => {
-    //         console.log(err)
-    //     })
-    // }
-    // function signUpWithEmail () {
-    //     const auth = getAuth(app);
-    //     // e.preventDefault();
-    //     console.log("email: ",email," password: ",password)
-    //     createUserWithEmailAndPassword(
-    //         auth, email, password
-    //     ).then(user => {
-    //         console.log(user)
-    //         navigate("/home");
-    //     }).catch(error => {
-    //         console.log(error)
-    //     })
-    // }
+    
     function signUpWithEmail() {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
