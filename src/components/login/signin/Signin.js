@@ -25,7 +25,6 @@ export default function Signin() {
   document.title = "stack4u/SignIn";
   const navigate = useNavigate();
 
-  const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
   const [email, setEmail] = React.useState('');
@@ -64,22 +63,24 @@ export default function Signin() {
   };
 
 
-  function signUpWithEmail() {
+  function signInWithEmail() {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
         // const user = userCredential.user;
+        // ...
         navigate("/home");
       })
       .catch((error) => {
         // const errorCode = error.code;
         // const errorMessage = error.message;
-        console.log(error);
+        console.log("error");
       });
   }
 
   function signInWithGoogle(){
+    const auth = getAuth();
     signInWithPopup(auth, provider)
     .then((result) => {    
       navigate("/home");
