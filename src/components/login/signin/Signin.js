@@ -1,5 +1,6 @@
 import './Signin.css';
 import * as React from 'react';
+import {useRef } from 'react' ; 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,7 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router";
 
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../../../Firebase-config';
 
 const theme = createTheme();
@@ -26,6 +27,9 @@ export default function Signin() {
 
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const checkAuth = (data) => {
     console.log({
@@ -58,6 +62,22 @@ export default function Signin() {
     const data = new FormData(event.currentTarget);
     checkAuth(data);
   };
+
+
+  function signUpWithEmail() {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        // const user = userCredential.user;
+        navigate("/home");
+      })
+      .catch((error) => {
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        console.log(error);
+      });
+  }
 
   function signInWithGoogle(){
     signInWithPopup(auth, provider)
@@ -108,6 +128,7 @@ export default function Signin() {
                 required={validEmail}
                 error={!validEmail}
                 placeholder={emailHelperText}
+                onChange={event => setEmail(event.target.value)}
               />
               <TextField
                 margin="normal"
@@ -119,7 +140,8 @@ export default function Signin() {
                 label={passwordLabelName}
                 type="password"
                 id="password"
-                autoComplete="current-password"    
+                autoComplete="current-password"  
+                onChange={event => setPassword(event.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -135,6 +157,7 @@ export default function Signin() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={signInWithEmail}
               >
                 Sign In
               </Button>
