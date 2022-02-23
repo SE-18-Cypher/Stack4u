@@ -21,6 +21,7 @@ import NavBar from './../navBar/NavBar';
 import app from './../../Firebase-config';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
+import Feedback from '../feedback/Feedback';
 
 const fileTypes = ["JPEG", "PDF"];
 
@@ -70,6 +71,7 @@ export default function HomePage() {
             <div className='commonbg' />
             <div className='mainPageContent'>
                 <NavBar />
+                
                 <div style={{ color: 'white' }}>
                     <img src={mainpageBackground} alt='decoration background' className='mainPageBackground' />
                     <div className="content-left">
@@ -142,6 +144,7 @@ export default function HomePage() {
                 </div>
                 <p className='copyrightText'> Copyright © All rights reserved </p>
             </div>
+            <Feedback/>
         </div>
     )
 }

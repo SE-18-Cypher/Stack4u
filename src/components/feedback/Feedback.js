@@ -4,11 +4,13 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import Rating from '@mui/material/Rating';
+import FeedbackIcon from '@mui/icons-material/Feedback';
 
 import app from './../../Firebase-config';
 import { getFirestore } from "@firebase/firestore";
 import { addDoc, collection } from "firebase/firestore";
 import { TextField } from '@mui/material';
+import './Feedback.css';
 
 const style = {
     position: 'absolute',
@@ -50,6 +52,7 @@ export default function Feedback() {
             setUserName('');
             setUserEmail('');
             setUserFeedback('');
+            handleClose();
         }
     }
     const submitQuery = async () => {
@@ -63,13 +66,15 @@ export default function Feedback() {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Open modal</Button>
-            <div className='animate'>
+            <div className='feedbackButton'>
+                <Button variant='contained' onClick={handleOpen}>Feedback<FeedbackIcon style={{marginLeft:11}}/> </Button>
+            </div>
+            <div>
                 <Modal
                     open={open}
                 >
                     <Box sx={style}>
-                        <h3 style={{ textAlign: 'center' }}> Feedback </h3>
+                        <h3 className='feedbackTopic'> Feedback </h3>
                         <Button onClick={handleClose} style={{ float: 'right', marginTop: -40 }}> <CloseIcon style={{ color: 'red' }} /> </Button>
 
                         <form>
