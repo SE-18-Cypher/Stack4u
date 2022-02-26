@@ -1,0 +1,14 @@
+.feedbackButton{
+    position: fixed;
+    margin-right: 0;
+    margin-left: 94%;
+    right: 0;
+    top: 40%;
+    transform: rotate(-90deg);
+    transform-origin: right bottom;
+}
+.feedbackTopic{
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+}
