@@ -50,9 +50,10 @@ export default function Common() {
             <img src={stack4uLOGO_OG_T} className='logo' alt='stack4u logo' width={300}/> 
             <img src={cloudImage} className="designCloudImage" alt='cloud'/>   
             <div className="welcomeContent">
-                <h1> Hello, </h1>
-                <p>Sign up here to get a <br/> better experience </p>
-                <Button variant="contained" onClick={() => navigate("/techInfoPage")} sx={{pl:5,pr:5,bgcolor:'black'}}>Skip</Button>          
+                <h1 style={{ textAlign: 'left',fontSize:60, paddingBottom:'9px',fontFamily:'Arial'}}> Hello, </h1>
+                <h3 style={{ textAlign: 'left',fontSize:40,fontFamily:'Arial', paddingBottom:'7px' }}>Sign up here to get a <br/> better experience </h3>
+                <Button variant="contained" onClick={() => navigate("/techInfoPage")} sx={{top:'40px',pl:5,pr:5,bgcolor:'black',height:37}}>Skip</Button>  
+                        
             </div> 
             <img src={computerImage} className="designComputerImage" alt='computer'/>
         </div>

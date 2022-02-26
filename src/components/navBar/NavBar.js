@@ -18,7 +18,7 @@ import { useNavigate } from "react-router";
 // import { Pages } from '@mui/icons-material';
 
 
-const pages = ['Home', 'Tech info', 'Forum','About us','Contact us'];
+const pages = ['Home', 'Tech info', 'Forum','About ','Contact '];
 const settings = ['Account', 'Logout'];
 
 
@@ -51,7 +51,7 @@ const NavBar = () => {
             <Container maxWidth="xL">
                 <Toolbar disableGutters>
                    
-                    <img src={Logo} alt="logo" style={{ height: '11%', width: '12%', marginLeft:'80px', marginTop:'1px'}} />
+                    <img src={Logo} alt="logo" style={{ height: '11%', width: '12%', marginLeft:'105px', marginTop:'1px'}} />
 
                     {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -90,7 +90,7 @@ const NavBar = () => {
                         </Menu>
                     </Box> */}
                     
-                    <Box sx={{ paddingLeft:'5%', flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
+                    <Box sx={{ paddingLeft:'15%', flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
                         
                         
                             <Button                                
@@ -122,7 +122,7 @@ const NavBar = () => {
                             </Button>
                                
                             <Button                                 
-                                onClick={() => navigate("/techInfoPage")}                                
+                                onClick={() => navigate("/contactus")}                                
                                 sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
                             >
                              {pages[4]}   
@@ -139,7 +139,7 @@ const NavBar = () => {
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginRight:'90px' }}>
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginRight:'130px' }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip>
