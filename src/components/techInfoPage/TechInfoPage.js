@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router";
+import NavBar from './../navBar/NavBar';
 
 import './TechInfoPage.css';
 import Backend from './Backend';
@@ -35,7 +36,9 @@ export default function TechInfoPage(){
 
   return (
     <div>
+      <NavBar/>
       <div className="commonBg"/>
+      
       <h2 style={{textAlign: "center",marginTop:50, position:'relative'}}> TECHNOLOGY INFORMATION</h2>
    
       <div style={{float:'right',margin:10}}>

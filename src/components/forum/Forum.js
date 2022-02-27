@@ -9,6 +9,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/Comment';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
+import NavBar from './../navBar/NavBar';
 
 import './Forum.css';
 import app from './../../Firebase-config';
@@ -178,8 +179,10 @@ export default function Forum() {
   };
 
   return (
+    
     <div>
       <div className={loadingView ? "loading":"loaded"}>
+      <NavBar/>
         <div className="commonOppBg" />
         <div style={{ position: 'relative' }}>
           <h1 style={{ textAlign: 'center' }}>Forum</h1>

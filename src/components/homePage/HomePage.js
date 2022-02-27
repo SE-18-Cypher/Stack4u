@@ -17,11 +17,14 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 import NavBar from './../navBar/NavBar';
-
+import fblogo from '../../resources/images/facebook.png';
 import app from './../../Firebase-config';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
-import Feedback from '../feedback/Feedback';
+
+import { padding, width } from '@mui/system';
+import Facebook from '@mui/icons-material/Facebook';
+
 
 const fileTypes = ["JPEG", "PDF"];
 
@@ -67,10 +70,14 @@ export default function HomePage() {
     const testRef = React.useRef(null);
     const scrollToElement = () => testRef.current.scrollIntoView();
     return (
-        <div>
-            <div className='commonbg' />
+        
+        <div className='bk'>
+            <NavBar />
+            {/* <div className='commonbg' /> */}
+            
             <div className='mainPageContent'>
-                <NavBar />
+
+
                 
                 <div style={{ color: 'white' }}>
                     <img src={mainpageBackground} alt='decoration background' className='mainPageBackground' />
@@ -80,17 +87,19 @@ export default function HomePage() {
                             We present an online technology stack recommendation
                             system to recommend the most suitable technology stack
                             according to your given requiments.
-                            Upload the software requiment specification document
+                            <br/>
+                            Upload the software requirement specification document
                             or input the details manually, click on submit and get the
                             recommended technology stack.
                         </p>
                         <div className='mainPageGetStartedButton'>
-                            <Button variant='contained' onClick={scrollToElement}> < span style={{ fontSize: 25 }}> Get Started</span> </Button>
+                            <Button variant='contained' onClick={scrollToElement}> < span style={{ fontSize: 16 }}> Get Started</span> </Button>
                         </div>
                     </div>
                     <div className="content-right2">
-                        <img src={mainpageLaptop} alt='decoration background' />
+                        <img src={mainpageLaptop } width="400px" alt='decoration background' />
                     </div>
+            
                 </div>
                 <br ref={testRef}/>
                 <div className='dragAndDropOutsideContainer'>
@@ -103,48 +112,63 @@ export default function HomePage() {
                             types={fileTypes}
                             classes='uploader'
                         >
-                            <div style={{ marginTop: 180 }}>
+                            <div style={{ marginTop: 115 }}>
                                 <img src={mainPageImageIcon} alt='decoration - icon' width={80} style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }} />
-                                <h4 style={{ textAlign: 'center', color: '#043B63' }}> Upload your .pdf or .jpeg here</h4>
+                                <h4 style={{ textAlign: 'center', color: '#043B63',fontSize:22,paddingTop:'6%' }}> Upload your .pdf or .jpeg here</h4>
                             </div>
                         </FileUploader>
                     </div>
                     <img src={mainPageComputer} alt='decoration - computer' className='decorationComputerImage' />
                     <div className='textInputContainer'>
-                        <h4> OR </h4>
-                        <br />
-                        <Button variant='contained' onClick={() => navigate("/manualinput")}> Enter requirement specification manually </Button>
+                        <h4 style={{ textAlign: 'center',fontSize:20  }}> OR </h4>
+                        <br/>
+                        
+                        <Button variant='contained' onClick={() => navigate("/manualinput")}> < span style={{ fontSize: 17 }}> Enter requirement specification manually </span> </Button>
+                        
                     </div>
                 </div>
                 <hr className='lineBreak' />
                 <div className='recommendationProcessImage'>
                     <img src={mainpageRecommendationProcess} alt='recommendation process' />
                 </div>
-                <div className='footerMainPage'>
+               
+            </div>
+            <div className='footerMainPage'>
                     <div style={{ backgroundColor: '#045794C9' }}>
                         <img src={mainpageFooter} alt='decoration - circuitboard' className='footerImage' />
                     </div>
-                    <div className="content-left">
+                    <div className="content-left2">
+                        <a href="/home">
                         <img src={mainpageFooterStack4uLogo} alt='stack4u logo' />
+                        </a>
                         <h6 >We present a web based technology stack <br /> recommendation system</h6>
                         <br />
-                        <Button variant='contained' onClick={() => navigate("/contactus")}> Contact us</Button>
-                        <br />
-                        <div style={{ marginTop: 25 }}>
-                            <FacebookIcon />
-                            <InstagramIcon />
-                            <TwitterIcon />
-                        </div>
+                        {/* <Button variant='contained' onClick={() => navigate("/contactus")}> Contact </Button>
+                        <br /> */}
+                        <a href="https://www.facebook.com/Stack4u-111840144770759">
+                        <img src={fblogo} alt="fblogo" style={{ height: '5%', width: '5%'}} />
+                        </a>
                     </div>
                     <div className="content-right">
-                        <h3> Contact us</h3> <br />
-                        <h6> Phone : +94 77 559 5632</h6>
-                        <h6> Email : cypherstack4u@gmail.com</h6>
+                        
+                        <a href="techinfoPage"> About us</a>
+                        <br/>
+                        <a href="contactus"> Contact us </a>
+                        {/* <h6> Email : cypherstack4u@gmail.com</h6> */}
+                        <br/>
+                        <br/>
+                        <p className='copy'> Copyright © All rights reserved </p>
                     </div>
                 </div>
+
+                
+            
+
                 <p className='copyrightText'> Copyright © All rights reserved </p>
             </div>
             <Feedback/>
+
         </div>
+        
     )
 }

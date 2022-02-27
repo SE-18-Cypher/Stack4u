@@ -18,7 +18,7 @@ import { useNavigate } from "react-router";
 // import { Pages } from '@mui/icons-material';
 
 
-const pages = ['Home', 'Tech info', 'Forum', 'About us'];
+const pages = ['Home', 'Tech info', 'Forum','About ','Contact '];
 const settings = ['Account', 'Logout'];
 
 
@@ -46,12 +46,12 @@ const NavBar = () => {
     
     return (
     
-        <AppBar style={{backgroundColor:'white', height:'90px' ,boxShadow:'0px 0px'}} position="static" >
+        <AppBar style={{backgroundColor:'white', height:'77px' ,boxShadow:'0px 0px', marginTop:'0px'}} position="static" >
         
             <Container maxWidth="xL">
                 <Toolbar disableGutters>
                    
-                    <img src={Logo} alt="logo" style={{ height: '11%', width: '12%', marginLeft:'80px', marginTop:'4px'}} />
+                    <img src={Logo} alt="logo" style={{ height: '11%', width: '12%', marginLeft:'105px', marginTop:'1px'}} />
 
                     {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -90,42 +90,56 @@ const NavBar = () => {
                         </Menu>
                     </Box> */}
                     
-                    <Box sx={{ paddingLeft:'12%', flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
+                    <Box sx={{ paddingLeft:'15%', flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
                         
                         
                             <Button                                
                                 onClick={() => navigate("/home")}
-                                sx={{ paddingInline:'6.1%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'82px' }}
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
                             >
                              {pages[0]}   
                             </Button>
 
                             <Button             
                                 onClick={() => navigate("/techInfoPage")}                                
-                                sx={{ paddingInline:'6.1%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'82px' }}
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
                             >
                              {pages[1]}   
                             </Button>
 
                             <Button                                 
                                 onClick={() => navigate("/forum")}                               
-                                sx={{ paddingInline:'6.1%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'82px' }}
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
                             >
                              {pages[2]}   
                             </Button>
 
                             <Button                                 
                                 onClick={() => navigate("/techInfoPage")}                                
-                                sx={{ paddingInline:'6.1%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'82px' }}
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
                             >
                              {pages[3]}   
                             </Button>
                                
+                            <Button                                 
+                                onClick={() => navigate("/contactus")}                                
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
+                            >
+                             {pages[4]}   
+                            </Button>
+
+
+
+
+
+
+
+
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginRight:'90px' }}>
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginRight:'130px' }}>
                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip>

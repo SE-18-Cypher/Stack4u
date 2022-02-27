@@ -6,11 +6,13 @@ import { LinearProgress } from "@mui/material";
 export default function PresentationPage() {
     document.title = "Welcome";
     return (
+        <div className='border'>
         <div className='presentationPage'>    
             <img src={orgLogo} className='orgLogo' alt='stack4u Logo'/>
             <div className="progressBar">
                 <LinearProgress/>
-            </div>     
+            </div> 
+            </div>    
         </div>
     )
 }
