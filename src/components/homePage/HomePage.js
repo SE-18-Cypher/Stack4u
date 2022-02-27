@@ -21,8 +21,10 @@ import fblogo from '../../resources/images/facebook.png';
 import app from './../../Firebase-config';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
+
 import { padding, width } from '@mui/system';
 import Facebook from '@mui/icons-material/Facebook';
+
 
 const fileTypes = ["JPEG", "PDF"];
 
@@ -74,6 +76,8 @@ export default function HomePage() {
             {/* <div className='commonbg' /> */}
             
             <div className='mainPageContent'>
+
+
                 
                 <div style={{ color: 'white' }}>
                     <img src={mainpageBackground} alt='decoration background' className='mainPageBackground' />
@@ -156,8 +160,14 @@ export default function HomePage() {
                         <p className='copy'> Copyright © All rights reserved </p>
                     </div>
                 </div>
+
                 
             
+
+                <p className='copyrightText'> Copyright © All rights reserved </p>
+            </div>
+            <Feedback/>
+
         </div>
         
     )
