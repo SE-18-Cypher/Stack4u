@@ -51,7 +51,7 @@ export default function Common() {
             <img src={cloudImage} className="designCloudImage" alt='cloud'/>   
             <div className="welcomeContent">
                 <h1 style={{ textAlign: 'left',fontSize:60, paddingBottom:'9px',fontFamily:'Arial'}}> Hello, </h1>
-                <h3 style={{ textAlign: 'left',fontSize:40,fontFamily:'Arial', paddingBottom:'7px' }}>Sign up here to get a <br/> better experience </h3>
+                <h3 style={{ textAlign: 'left',fontSize:40,fontFamily:'Arial', paddingBottom:'7px' }}>Sign up get a  better <br/> experience </h3>
                 <Button variant="contained" onClick={() => navigate("/techInfoPage")} sx={{top:'40px',pl:5,pr:5,bgcolor:'black',height:37}}>Skip</Button>  
                         
             </div> 

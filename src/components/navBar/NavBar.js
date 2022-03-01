@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-// import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,17 +12,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './NavBar.css';
 import Logo from '../../resources/images/stack4uLOGO_OG_T.png';
-
+import b from '../../resources/images/Bupani.jpeg';
 import { useNavigate } from "react-router";
-// import { Pages } from '@mui/icons-material';
-
 
 const pages = ['Home', 'Tech info', 'Forum','About ','Contact '];
 const settings = ['Account', 'Logout'];
 
 
 const NavBar = () => {
+    
     const navigate = useNavigate();
+
+  
     // const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -42,8 +42,6 @@ const NavBar = () => {
         setAnchorElUser(null);
     };
 
-    
-    
     return (
     
         <AppBar style={{backgroundColor:'white', height:'77px' ,boxShadow:'0px 0px', marginTop:'0px'}} position="static" >
@@ -115,7 +113,7 @@ const NavBar = () => {
                             </Button>
 
                             <Button                                 
-                                onClick={() => navigate("/techInfoPage")}                                
+                                onClick={() => navigate("/aboutus")}                                
                                 sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
                             >
                              {pages[3]}   
@@ -127,20 +125,12 @@ const NavBar = () => {
                             >
                              {pages[4]}   
                             </Button>
-
-
-
-
-
-
-
-
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginRight:'130px' }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Debugger" src={b} />
                             </IconButton>
                         </Tooltip>
                         <Menu
