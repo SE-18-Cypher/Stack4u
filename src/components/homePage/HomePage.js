@@ -18,7 +18,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 import NavBar from './../navBar/NavBar';
 import Feedback from './../feedback/Feedback';
-import fblogo from '../../resources/images/facebook.png';
+import fblogo from '../../resources/images/Facebook.jpeg';
 import app from './../../Firebase-config';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
