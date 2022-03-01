@@ -36,10 +36,10 @@ export default function Common() {
                     <Paper elevation={2}>
                         <div className="headerContent">
                             <button className="signButtons" onClick={toggleView} disabled={view}>
-                                <h2 className={view ? "activeType":"notActiveType"}>Sign up</h2>
+                                <h2 className={view ? "activeType1":"notActiveType1"}>Sign up</h2>
                             </button>
                             <button className="signButtons" onClick={toggleView} disabled={!view}>
-                                <h2 className={!view ? "activeType":"notActiveType"}>Sign in</h2>
+                                <h2 className={!view ? "activeType1":"notActiveType1"}>Sign in</h2>
                             </button>
                             {view && <Signup />}
                             {!view && <Signin />}

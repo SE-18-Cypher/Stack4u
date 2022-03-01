@@ -23,7 +23,7 @@ export default function AboutusPage() {
         if (window.scrollY <= 350 ){
             setViewMembers(false)
         }
-        else if (window.scrollY <= 430) {
+        else if (window.scrollY >= 430) {
             setViewMembers(true)
         }
     };
@@ -34,14 +34,14 @@ export default function AboutusPage() {
 
     return (
 
-        <div id="contentBody" className='bk'>
+        <div id="contentBody" className='bgr'>
         <NavBar/>
             <div className={viewMembers ? "text":"Activetext"} >
                 <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
-                    <h2 style={{fontWeight:'bold', fontFamily: 'calibri', color: 'white'}}>About Us</h2>
+                    <h2 className="aboutUsTopic" style={{fontWeight:'bold', fontFamily: 'calibri', color: 'white'}}>About Us</h2>
                 </div>
                 <div className='Ourstory'>
-                    <div className='container1'><h3>Our Story</h3>
+                    <div className='container1'><h3 className="aboutUsContent">Our Story</h3>
                         <p>We are a group of 2nd-year undergraduates who are currently following the  BEng(Hons) Software Engineering degree at the informatics
                             Institute of Technology. As our second-year Software Development Group Project, We were asked to come up with an innovative solution
                             to solve real-world problems, covering the aspects of Data Science, Blockchain, Gaming, Cyber Security, Identity, and access
@@ -51,7 +51,7 @@ export default function AboutusPage() {
                         </p>
                     </div>
 
-                    <div className='container2'> <h3>About our Project</h3>
+                    <div className='container2'> <h3 className="aboutUsContent">About our Project</h3>
                         <p>In the software development industry, it's common to have new technologies, standards, and common practices change from time to time.
                             Sometimes it can be a bit harsh on new developers. When a new developer enters the industry it would be really helpful to have a tool
                             to generate a technology stack according to a specific requirement. And it also considers user preferences when generating
