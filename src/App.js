@@ -13,6 +13,7 @@ import HomePage from './components/homePage/HomePage';
 import TextInputPage from './components/homePage/textInputPage/TextInputPage';
 import ContactusPage from './components/contactUs/ContactusPage';
 import Feedback from './components/feedback/Feedback';
+import AboutusPage from './components/aboutUs/AboutusPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/forum" element={<Forum/>}/>
           <Route path="/home/profile" element={<CommonProfile/>}/>
           <Route path="/home" element={<HomePage/>}/>
+          <Route path="/aboutus" element={<AboutusPage/>}/>
           <Route path="/feedback" element={<Feedback/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
