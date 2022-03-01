@@ -10,5 +10,10 @@
 .feedbackTopic{
     text-align: center;
     font-weight: bold;
-    font-style: italic;
+    padding-top: 15px;
+    font-family: calibri;
+    color: rgb(17, 131, 214,1);
+    
+    
 }
+
