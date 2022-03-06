@@ -1,7 +1,6 @@
 import React from 'react';
 import { FileUploader } from "react-drag-drop-files";
 import Button from '@mui/material/Button';
-
 import './HomePage.css';
 import mainPageComputer from './../../resources/images/mainPage/mainpageComputer.png';
 import mainPageImageIcon from './../../resources/images/mainPage/mainpageImageIcon.png';
@@ -10,21 +9,14 @@ import mainpageFooter from './../../resources/images/mainPage/mainpageFooter.png
 import mainpageFooterStack4uLogo from './../../resources/images/mainPage/mainpageFooterStack4uLogo.png';
 import mainpageBackground from './../../resources/images/mainPage/mainpageBackground.png';
 import mainpageLaptop from './../../resources/images/mainPage/mainPageLaptop.png';
-
 import { useNavigate } from "react-router";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-
 import NavBar from './../navBar/NavBar';
 import Feedback from './../feedback/Feedback';
-import fblogo from '../../resources/images/Facebook.jpeg';
+import fblogo from '../../resources/images/facebook.png';
 import app from './../../Firebase-config';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 
-import { padding, width } from '@mui/system';
-import Facebook from '@mui/icons-material/Facebook';
 
 const fileTypes = ["JPEG", "PDF"];
 

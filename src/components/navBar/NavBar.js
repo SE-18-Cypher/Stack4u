@@ -115,7 +115,7 @@ const NavBar = () => {
                             </Button>
 
                             <Button                                 
-                                onClick={() => navigate("/techInfoPage")}                                
+                                onClick={() => navigate("/aboutus")}                                
                                 sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
                             >
                              {pages[3]}   
