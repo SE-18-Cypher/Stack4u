@@ -84,7 +84,7 @@ export default function Signup() {
             .then((userCredential) => {
                 // Signed in 
                 // const user = userCredential.user;
-                navigate("/home");
+                navigate("/techinput");
             })
             .catch((error) => {
                 // const errorCode = error.code;
@@ -97,7 +97,7 @@ export default function Signup() {
         const auth = getAuth(app);
         signInWithPopup(auth, provider)
             .then((result) => {
-                navigate("/home");
+                navigate("/techinput");
             })
             .catch((error) => {
                 console.log(error);
