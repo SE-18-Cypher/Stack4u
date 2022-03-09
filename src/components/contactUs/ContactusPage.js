@@ -7,10 +7,12 @@ import Swal from 'sweetalert2';
 
 export default function ContactusPage() {
 
+  //emailjs reference variables
   const SERVICE_ID = "service_10mf3il";
   const TEMPLATE_ID = "template_2u15ydb";
   const USER_ID = "9TYdl_FYY55wxYM69";
 
+  //Handle the submission of the form
   const handleOnSubmit = (e) =>{
       e.preventDefault();
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, USER_ID)
@@ -19,14 +21,14 @@ export default function ContactusPage() {
         Swal.fire({
           confirmButtonColor: "#2389eb",
           icon: 'success',
-          title: 'Message Sent Successfully'
+          title: 'Message Sent Successfully' //success message
         })
       }, (error) => {
         console.log(error.text);
         Swal.fire({
           confirmButtonColor: "#2389eb",
           icon: 'error',
-          title: 'Ooops, something went wrong',
+          title: 'Ooops, something went wrong', //error message
           text: error.text,
         })
       });
@@ -45,9 +47,10 @@ export default function ContactusPage() {
 
         <Grid>
 
-          <Card style={{ maxWidth: 950, padding: "0px 5px", margin: "0 auto"}}>
+          <Card style={{ maxWidth: 950, maxHeight: 580, padding: "0px 5px", margin: "0 auto"}}>
             <CardContent>
               
+              {/* Form that needs to be filled by the user */}
               <form onSubmit={handleOnSubmit}>
                 <Typography variant="h5">
                   Any question or remarks? Just write us a message!
