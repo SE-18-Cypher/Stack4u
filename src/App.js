@@ -13,8 +13,12 @@ import HomePage from './components/homePage/HomePage';
 import TextInputPage from './components/homePage/textInputPage/TextInputPage';
 import ContactusPage from './components/contactUs/ContactusPage';
 import Feedback from './components/feedback/Feedback';
+
+import ConstructionPage from './components/constructionPage/ConstructionPage';
+
 import AboutusPage from './components/aboutUs/AboutusPage';
 import TechInput from './components/userTechInput/TechInput';
+
 
 function App() {
   return (
@@ -38,6 +42,8 @@ function App() {
           <Route path="/feedback" element={<Feedback/>}/>
           <Route path="/techinput" element={<TechInput/>}/>
           <Route path="*" element={<ErrorPage/>}/>
+          <Route path="/constructionPage" element={<ConstructionPage/>}/>
+
         </Routes>
       </Router>
     </div>
