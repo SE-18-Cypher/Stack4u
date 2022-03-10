@@ -17,11 +17,10 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '25%',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    width: '50%',
+    bgcolor: 'white',
     boxShadow: 24,
-    p: 4,
+    p: 2,
 };
 
 export default function Feedback() {
@@ -29,7 +28,7 @@ export default function Feedback() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(0);
     const database = getFirestore(app);
     const ref = collection(database, "Feedback");
 
@@ -38,13 +37,13 @@ export default function Feedback() {
     const [userFeedback, setUserFeedback] = React.useState('');
 
     function checkQuery() {
-        if(userName == ""){
+        if(userName === ""){
             alert("Name Field is empty");
         }
-        else if (userEmail == ""){
+        else if (userEmail === ""){
             alert("Email Field is empty");
         }
-        else if (userFeedback == ""){
+        else if (userFeedback === ""){
             alert("Feedback Field is empty");
         }
         else{
@@ -69,33 +68,34 @@ export default function Feedback() {
             <div className='feedbackButton'>
                 <Button variant='contained' onClick={handleOpen}>Feedback<FeedbackIcon style={{marginLeft:11}}/> </Button>
             </div>
-            <div>
+            <div >
                 <Modal
                     open={open}
                 >
                     <Box sx={style}>
                         <h3 className='feedbackTopic'> Feedback </h3>
-                        <Button onClick={handleClose} style={{ float: 'right', marginTop: -40 }}> <CloseIcon style={{ color: 'red' }} /> </Button>
+                        <Button onClick={handleClose} style={{ float: 'right', marginTop: -40 }}> <CloseIcon style={{ color: 'black' }} /> </Button>
 
                         <form>
-                            <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: 300 }} value={userName} onChange={e => setUserName(e.target.value)} />
+                            <TextField id="outlined-basic" label="Name" variant="outlined"  style={{ width: 630 }} value={userName} onChange={e => setUserName(e.target.value)} />
                             <br />
                             <br />
-                            <TextField id="outlined-basic" label="Email" variant="outlined" style={{ width: 300 }} value={userEmail} onChange={e => setUserEmail(e.target.value)}/>
+                            <TextField id="outlined-basic" label="Email" variant="outlined" style={{ width: 630 }} value={userEmail} onChange={e => setUserEmail(e.target.value)}/>
                             <br />
                             <br />
                             <TextField
                                 id="standard-multiline-static"
                                 label="Feedback"
+                                position="absolute"
                                 multiline
                                 rows={10}
-                                style={{ width: 300 }}
+                                style={{ width: 630 }}
                                 value={userFeedback} 
                                 onChange={e => setUserFeedback(e.target.value)}
                             />
                             <br />
                             <br />
-                            <div style={{ marginLeft: 60}}>
+                            <div style={{ marginLeft: 246}}>
                                 <Rating
                                     name="size-large"
                                     size='large'

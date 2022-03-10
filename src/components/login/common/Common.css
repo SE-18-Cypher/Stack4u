@@ -11,12 +11,12 @@
 .headerContent{
   padding: 5%;
 }
-.activeType{
+.activeType1{
   color: black;
   text-decoration: underline solid rgb(17, 131, 214,1) 5px;
   text-underline-offset: 40%;
 }
-.notActiveType{
+.notActiveType1{
   color: grey;
 }
 .contentBody{
