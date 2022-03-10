@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import './NavBar.css';
 import Logo from '../../resources/images/stack4uLOGO_OG_T.png';
 import b from '../../resources/images/Bupani.jpeg';
+import eLearningLogo from '../../resources/images/elearningLogo.png';
 import { useNavigate } from "react-router";
 
 const pages = ['Home', 'Tech info', 'Forum','About ','Contact '];
@@ -133,6 +134,7 @@ const NavBar = () => {
                                 <Avatar alt="Debugger" src={b} />
                             </IconButton>
                         </Tooltip>
+                        <Button style={{float:'right'}} > <img src={eLearningLogo} width={34}/> </Button>
                         <Menu
                             sx={{ mt: '50px' }}
                             id="menu-appbar"
