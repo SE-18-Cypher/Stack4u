@@ -13,6 +13,7 @@ import HomePage from './components/homePage/HomePage';
 import TextInputPage from './components/homePage/textInputPage/TextInputPage';
 import ContactusPage from './components/contactUs/ContactusPage';
 import Feedback from './components/feedback/Feedback';
+import ConstructionPage from './components/constructionPage/ConstructionPage';
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
           <Route path="/home" element={<HomePage/>}/>
           <Route path="/feedback" element={<Feedback/>}/>
           <Route path="*" element={<ErrorPage/>}/>
+          <Route path="/constructionPage" element={<ConstructionPage/>}/>
+
         </Routes>
       </Router>
     </div>
