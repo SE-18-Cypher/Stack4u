@@ -134,7 +134,7 @@ const NavBar = () => {
                                 <Avatar alt="Debugger" src={b} />
                             </IconButton>
                         </Tooltip>
-                        <Button style={{float:'right'}} > <img src={eLearningLogo} width={34}/> </Button>
+                        <Button style={{float:'right'}}  onClick={() => navigate("/constructionPage")}> <img src={eLearningLogo} width={34}/> </Button>
                         <Menu
                             sx={{ mt: '50px' }}
                             id="menu-appbar"
