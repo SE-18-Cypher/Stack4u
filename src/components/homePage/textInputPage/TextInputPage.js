@@ -1,9 +1,10 @@
 import React from 'react'
+import ConstructionPage from './../../constructionPage/ConstructionPage';
 
 export default function TextInputPage() {
   return (
     <div>
-        This is the text input page
+        <ConstructionPage/>
     </div>
   )
 }
