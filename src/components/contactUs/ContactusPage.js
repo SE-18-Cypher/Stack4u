@@ -6,4 +6,4 @@ export default function ContactusPage() {
         This is the contact us page
     </div>
   )
-}
+  }

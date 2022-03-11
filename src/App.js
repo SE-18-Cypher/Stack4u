@@ -14,6 +14,7 @@ import TextInputPage from './components/homePage/textInputPage/TextInputPage';
 import ContactusPage from './components/contactUs/ContactusPage';
 import Feedback from './components/feedback/Feedback';
 import AboutusPage from './components/aboutUs/AboutusPage';
+import Output from './components/outputpage/output';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/home/profile" element={<CommonProfile/>}/>
           <Route path="/home" element={<HomePage/>}/>
           <Route path="/aboutus" element={<AboutusPage/>}/>
+          <Route path="/outputpage" element={<Output/>}/>
           <Route path="/feedback" element={<Feedback/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
