@@ -16,23 +16,29 @@
 .selectedContainer{
     float: right;
     position: relative;
-    border: #000000;
-    border-style: solid;
+    /* border: #000000; */
+    /* border-style: solid; */
+    border-radius: 3%;
     width: 40%;
     margin-top: 2%;
     margin-right: 3%;
     height: 550px;
     text-align: center;
+    box-shadow: 0 16px 16px 0 rgba(0,0,0,0.2);
+    background-color: #FFFFFF;
 }
 .chooseTechnologiesContainer{
     float: left;  
     position: relative;
-    border: #000000;
-    border-style: solid;
+    /* border: #000000; */
+    /* border-style: solid; */
+    border-radius: 3%;
     width: 45%;
     margin-top: 2%;
     margin-left: 3%;
     height: 550px;
+    box-shadow: 0 16px 16px 0 rgba(0,0,0,0.2);
+    background-color: #FFFFFF;
 }
 .techSelectedContainerSelectedTechName{
     float: right;

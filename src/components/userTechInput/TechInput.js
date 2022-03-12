@@ -168,7 +168,7 @@ export default function TechInput() {
                         <Button style={{ marginLeft: 10, marginRight: 10 }} onClick={switchFrontend}> <p className={frontendView ? "activeType" : "notActiveType"}> WEB FRONTEND </p> </Button>
                         <Button style={{ marginLeft: 10, marginRight: 10 }} onClick={switchMobileFrontend}> <p className={mobileFrontendView ? "activeType" : "notActiveType"}> MOBILE FRONTEND </p> </Button>
                         <Button style={{ marginLeft: 10, marginRight: 10 }} onClick={switchBackend} > <p className={backendView ? "activeType" : "notActiveType"}> BACKEND  </p> </Button>
-                        <Button style={{ marginLeft: 10 }} onClick={switchDatabase}> <p className={databaseView ? "activeType" : "notActiveType"}> DATABASE </p> </Button>
+                        <Button style={{ marginLeft: 10, marginRight: 10 }} onClick={switchDatabase}> <p className={databaseView ? "activeType" : "notActiveType"}> DATABASE </p> </Button>
                     </div>
                     <br />
                     <br />
@@ -288,7 +288,7 @@ export default function TechInput() {
                                 </tr>
                                 <tr>
                                     <td style={{ padding: 30 }}>
-                                        <button onClick={() => setSelectedDatabaseTech(3)} className={selectedDatabaseTech === 3 ? "selectedTech" : "notSelectedTech"}> <img src={databaseTech[3][0]} width={125} alt={databaseTech[3][2]}/> </button>
+                                        <button onClick={() => setSelectedDatabaseTech(3)} className={selectedDatabaseTech === 3 ? "selectedTech" : "notSelectedTech"}> <img src={databaseTech[3][0]} width={100} alt={databaseTech[3][2]}/> </button>
                                         <p>{databaseTech[3][1]}</p>
                                     </td>
                                     <td style={{ padding: 30 }}>
