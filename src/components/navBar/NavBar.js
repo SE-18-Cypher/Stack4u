@@ -106,35 +106,35 @@ const NavBar = (props) => {
 
 
                         <Button
-                            onClick={() => navigate("/home")}
+                            onClick={() => navigate("/home",{ state: { id: props.uidValue }})}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[0]}
                         </Button>
 
                         <Button
-                            onClick={() => navigate("/techInfoPage")}
+                            onClick={() => navigate("/techInfoPage",{ state: { id: props.uidValue }})}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[1]}
                         </Button>
 
                         <Button
-                            onClick={() => navigate("/forum")}
+                            onClick={() => navigate("/forum" ,{ state: { id: props.uidValue }})}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[2]}
                         </Button>
 
                         <Button
-                            onClick={() => navigate("/aboutus")}
+                            onClick={() => navigate("/aboutus",{ state: { id: props.uidValue }})}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[3]}
                         </Button>
 
                         <Button
-                            onClick={() => navigate("/contactus")}
+                            onClick={() => navigate("/contactus",{ state: { id: props.uidValue }})}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[4]}
@@ -144,10 +144,10 @@ const NavBar = (props) => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginRight: '130px' }}>
-                                <Avatar alt="Debugger"><img id='myimg' src={b} width={50}/>  </Avatar>
+                                <Avatar><img id='myimg' src={b} width={50} alt='profile-avatar'/>  </Avatar>
                             </IconButton>
                         </Tooltip>
-                        <Button onClick={() => navigate("/constructionPage")} style={{ float: 'right' }} > <img src={eLearningLogo} width={34} /> </Button>
+                        <Button onClick={() => navigate("/constructionPage")} style={{ float: 'right' }} > <img src={eLearningLogo} width={34} alt='elearning site- logo' /> </Button>
                         <Menu
                             sx={{ mt: '50px' }}
                             id="menu-appbar"
