@@ -60,7 +60,7 @@ export default function Database() {
                         <img src={content[indexClicked][0]} alt='logo'  width={180} style={{float:'right',padding:20,paddingBottom:40}}/>
                         <p style={{fontWeight:'bold',fontSize:40}}> {content[indexClicked][1]} </p>
                         <p style={{textAlign:'justify'}}>{content[indexClicked][2]}</p> 
-                        <a href={content[indexClicked][3]} target="_blank"  rel="noreferrer">Documentation</a>
+                        <a href={content[indexClicked][3]} target="_blank"  rel="noreferrer" style={{color:'blue',textDecorationLine:'underline'}}>Documentation</a>
                     </div>    
                 </Box>
             </Modal>
