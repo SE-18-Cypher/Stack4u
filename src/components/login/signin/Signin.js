@@ -66,10 +66,7 @@ export default function Signin() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
-        // const user = userCredential.user;
-        // ...
-        navigate("/home");
+        navigate("/home",{ state: { id: userCredential.user.uid }});
       })
       .catch((error) => {
         // const errorCode = error.code;
