@@ -9,7 +9,7 @@ import mainpageFooter from './../../resources/images/mainPage/mainpageFooter.png
 import mainpageFooterStack4uLogo from './../../resources/images/mainPage/mainpageFooterStack4uLogo.png';
 import mainpageBackground from './../../resources/images/mainPage/mainpageBackground.png';
 import mainpageLaptop from './../../resources/images/mainPage/mainPageLaptop.png';
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import NavBar from './../navBar/NavBar';
 import Feedback from './../feedback/Feedback';
 import fblogo from '../../resources/images/facebook.png';
@@ -21,17 +21,14 @@ import { getStorage } from "firebase/storage";
 const fileTypes = ["JPEG", "PDF"];
 
 export default function HomePage() {
-
+    const user = localStorage.getItem("user");
     const navigate = useNavigate();
-    const {state} = useLocation();
-    const {id} = state; 
-
-    console.log(id)
+  
     const [file, setFile] = React.useState('');
     const handleChange = (file) => {
         setFile(file);
     };
-    console.log(file);
+    console.log("W " + user);
 
     const storage = getStorage(app);
 
@@ -67,7 +64,7 @@ export default function HomePage() {
     return (
 
         <div className='bk'>
-            <NavBar uidValue={id}/>
+            <NavBar uidValue={user}/>
             {/* <div className='commonbg' /> */}
 
             <div className='mainPageContent'>

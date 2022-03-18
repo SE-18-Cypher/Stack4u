@@ -12,12 +12,9 @@ import { Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import NavBar from './../navBar/NavBar';
-import { useLocation } from 'react-router';
-
 
 export default function AboutusPage() {
-    const {state} = useLocation();
-    const {id} = state; 
+    const user = localStorage.getItem("user");
     const [viewMembers, setViewMembers] = React.useState(false)
 
     window.onscroll = function (e) {
@@ -37,7 +34,7 @@ export default function AboutusPage() {
     return (
 
         <div id="contentBody" className='bgr'>
-            <NavBar uidValue={id}/>
+            <NavBar uidValue={user}/>
             <div className={viewMembers ? "text" : "Activetext"} >
                 <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
                     <h2 className="aboutUsTopic" style={{ fontWeight: 'bold', fontFamily: 'calibri', color: 'white' }}>About Us</h2>

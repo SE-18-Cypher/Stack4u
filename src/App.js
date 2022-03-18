@@ -43,7 +43,6 @@ function App() {
           <Route path="/techinput" element={<TechInput/>}/>
           <Route path="*" element={<ErrorPage/>}/>
           <Route path="/constructionPage" element={<ConstructionPage/>}/>
-
         </Routes>
       </Router>
     </div>

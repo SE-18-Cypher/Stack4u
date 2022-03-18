@@ -4,11 +4,9 @@ import './ContactUsPage.css'
 import { Button, TextField, Grid, Card, CardContent, Typography } from '@mui/material';
 import emailjs from 'emailjs-com';
 import Swal from 'sweetalert2';
-import { useLocation } from 'react-router';
 
 export default function ContactusPage() {
-  const {state} = useLocation();
-  const {id} = state; 
+  const user = localStorage.getItem("user");
   //emailjs reference variables
   const SERVICE_ID = "service_10mf3il";
   const TEMPLATE_ID = "template_2u15ydb";
@@ -39,7 +37,7 @@ export default function ContactusPage() {
 
   return (
     <div>
-      <NavBar uidValue={id}/>
+      <NavBar uidValue={user}/>
 
       <div className='contactUsBackground'>
 

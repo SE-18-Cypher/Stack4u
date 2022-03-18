@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { useLocation, useNavigate } from "react-router";
+import {useNavigate } from "react-router";
 import NavBar from './../navBar/NavBar';
 
 import './TechInfoPage.css';
@@ -12,16 +12,16 @@ export default function TechInfoPage() {
   const navigate = useNavigate();
   document.title = "stack4u-TechnologyInformation";
 
-  const { state } = useLocation();
-  const { id } = state;
+  const user = localStorage.getItem("user");
 
   const [loggedIn, setLoggedIn] = useState(false);
-  React.useEffect(() => {
-    if (id !== 0) {
-      setLoggedIn(true)
-    }
-  }, [id])
+  const toggleLogin = () => setLoggedIn((loggedIn) => !loggedIn);  
 
+  React.useEffect(() => {
+    if (user !== '0') {
+      toggleLogin();
+    }
+  },)
 
   const [frontendView, setFrontendView] = useState(true);
   const [backendView, setBackendView] = useState(false);
@@ -48,7 +48,7 @@ export default function TechInfoPage() {
   return (
     <div>
       {loggedIn && (
-        <NavBar uidValue={id} />
+        <NavBar uidValue={user} />
       )}
       <div className="commonBg" />
       <div>

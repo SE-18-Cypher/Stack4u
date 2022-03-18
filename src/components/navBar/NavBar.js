@@ -25,18 +25,19 @@ const NavBar = (props) => {
 
     const navigate = useNavigate();
     const storage = getStorage();
-    const profilePic = b;
-    const profilePictureRef = ref(storage, 'users/' + props.uidValue);
-    console.log(profilePictureRef)
     getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
     .then((url) => {
       const img = document.getElementById('myimg');
       img.setAttribute('src', url);
-      profilePic = url;
     })
     .catch((error) => {
       console.log(error)
     });
+
+    function logout(){
+        localStorage.setItem("user", 0);
+        navigate('/login')
+    }
 
     // const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -106,35 +107,35 @@ const NavBar = (props) => {
 
 
                         <Button
-                            onClick={() => navigate("/home",{ state: { id: props.uidValue }})}
+                            onClick={() => navigate("/home")}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[0]}
                         </Button>
 
                         <Button
-                            onClick={() => navigate("/techInfoPage",{ state: { id: props.uidValue }})}
+                            onClick={() => navigate("/techInfoPage")}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[1]}
                         </Button>
 
                         <Button
-                            onClick={() => navigate("/forum" ,{ state: { id: props.uidValue }})}
+                            onClick={() => navigate("/forum")}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[2]}
                         </Button>
 
                         <Button
-                            onClick={() => navigate("/aboutus",{ state: { id: props.uidValue }})}
+                            onClick={() => navigate("/aboutus")}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[3]}
                         </Button>
 
                         <Button
-                            onClick={() => navigate("/contactus",{ state: { id: props.uidValue }})}
+                            onClick={() => navigate("/contactus")}
                             sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
                         >
                             {pages[4]}
@@ -170,7 +171,7 @@ const NavBar = (props) => {
 
                             </MenuItem>
 
-                            <MenuItem onClick={() => navigate("/login")} >
+                            <MenuItem onClick={() =>logout()} >
                                 <Typography textAlign="center"> {settings[1]} </Typography>
                             </MenuItem>
 
