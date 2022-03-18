@@ -17,18 +17,22 @@ import app from './../../Firebase-config';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 
-
 const fileTypes = ["JPEG", "PDF"];
 
 export default function HomePage() {
     const user = localStorage.getItem("user");
     const navigate = useNavigate();
-  
+
+    React.useEffect(() => {
+        if (user === '0') {
+            navigate('/access_error')
+        }
+    }, [])
+
     const [file, setFile] = React.useState('');
     const handleChange = (file) => {
         setFile(file);
     };
-    console.log("W " + user);
 
     const storage = getStorage(app);
 
@@ -37,7 +41,6 @@ export default function HomePage() {
     }, [file])
 
     const uploadFiles = () => {
-        console.log("Works")
         if (!file) return;
         const sotrageRef = ref(storage, `files/${file.name}`);
         const uploadTask = uploadBytesResumable(sotrageRef, file);
@@ -64,7 +67,7 @@ export default function HomePage() {
     return (
 
         <div className='bk'>
-            <NavBar uidValue={user}/>
+            <NavBar uidValue={user} />
             {/* <div className='commonbg' /> */}
 
             <div className='mainPageContent'>
@@ -149,7 +152,7 @@ export default function HomePage() {
                     <p className='copy'> Copyright © All rights reserved </p>
                 </div>
             </div>
-            <Feedback/>
+            <Feedback />
         </div>
 
     )

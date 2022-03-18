@@ -12,9 +12,19 @@ import { Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import NavBar from './../navBar/NavBar';
+import { useNavigate } from 'react-router';
 
 export default function AboutusPage() {
     const user = localStorage.getItem("user");
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (user === '0') {
+            navigate('/access_error')
+        }
+    }, [])
+
+
     const [viewMembers, setViewMembers] = React.useState(false)
 
     window.onscroll = function (e) {

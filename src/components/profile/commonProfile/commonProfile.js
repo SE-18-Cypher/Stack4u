@@ -3,8 +3,17 @@ import './commonProfile.css';
 import { Avatar} from '@mui/material';
 import NavBar from '../../navBar/NavBar';
 import EditIcon from '@mui/icons-material/Edit';
+import { useNavigate } from 'react-router';
 
 export default function CommonProfile() {
+    const user = localStorage.getItem("user");
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (user === '0') {
+            navigate('/access_error')
+        }
+    }, [])
 
     return (
         <div>

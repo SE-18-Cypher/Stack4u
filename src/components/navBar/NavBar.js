@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './NavBar.css';
 import Logo from '../../resources/images/stack4uLOGO_OG_T.png';
-import b from '../../resources/images/Construct2.jfif';
+import b from '../../resources/images/logoW.png';
 import eLearningLogo from '../../resources/images/elearningLogo.png';
 import { useNavigate } from "react-router";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";

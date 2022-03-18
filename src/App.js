@@ -18,9 +18,10 @@ import ConstructionPage from './components/constructionPage/ConstructionPage';
 
 import AboutusPage from './components/aboutUs/AboutusPage';
 import TechInput from './components/userTechInput/TechInput';
-
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
+  const user = localStorage.getItem("user");
   return (
     <div>
       <Router>
@@ -29,20 +30,17 @@ function App() {
           <Route path="/login" element={<Common />} />
           <Route path="/contactus" element={<ContactusPage />} />
           <Route path="/manualinput" element={<TextInputPage />} />
-          <Route path="/techInfoPage/TechInfoPage" element={<TechInfoPage />} />
           <Route path="/techInfoPage" element={<TechInfoPage />} />
-          <Route path="/login/forgotpassword" element={<ForgotPassword />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route path="login/common/Common/ForgotPassword" element={<ForgotPassword />} />
-          <Route path="/common" element={<Common/>}/>
-          <Route path="/forum" element={<Forum/>}/>
-          <Route path="/home/profile" element={<CommonProfile/>}/>
-          <Route path="/home" element={<HomePage/>}/>
-          <Route path="/aboutus" element={<AboutusPage/>}/>
-          <Route path="/feedback" element={<Feedback/>}/>
-          <Route path="/techinput" element={<TechInput/>}/>
-          <Route path="*" element={<ErrorPage/>}/>
-          <Route path="/constructionPage" element={<ConstructionPage/>}/>
+          <Route path="/common" element={<Common />} />
+          <Route path="/forum" element={<Forum />} />
+          <Route path="/home/profile" element={<CommonProfile />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/aboutus" element={<AboutusPage />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/techinput" element={<TechInput />} />
+          <Route path="/constructionPage" element={<ConstructionPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </div>

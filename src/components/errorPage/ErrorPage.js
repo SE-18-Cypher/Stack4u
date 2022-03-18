@@ -11,12 +11,12 @@ export default function ErrorPage() {
       <div >
         <img className="errorlogo" src={errorlogo} alt="Error Logo" />
         <h1><b>404</b></h1>
-        <p><h4>UH, OH! You are lost.</h4></p>
+        <h4>UH, OH! You are lost.</h4>
         <p>The page you are looking for does not exist. How you got here is a mistery. But you can click the button
           below to go back to the sign in page ヅ
         </p>
         <div className="homebutton">
-          <button type="button" class="button1">
+          <button type="button" className="button1">
             <NavLink to="/login"> Sign in </NavLink>
           </button>
         </div>

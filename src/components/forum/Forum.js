@@ -15,12 +15,18 @@ import './Forum.css';
 import app from './../../Firebase-config';
 import { getFirestore } from "@firebase/firestore";
 import { addDoc, collection, doc, getDoc, onSnapshot, query, updateDoc } from "firebase/firestore";
+import { useNavigate } from 'react-router';
 
 export default function Forum() {
-
-  const database = getFirestore(app);
   const user = localStorage.getItem("user");
-
+  const navigate = useNavigate();
+  React.useEffect(() => {
+      if (user === '0') {
+          navigate('/access_error')
+      }
+  }, [])
+  const database = getFirestore(app);
+  
   const [view, setView] = React.useState(false);                                  //hook to view the comments on each query
   const toggleView = () => setView((view) => !view);                              //switch the view
 

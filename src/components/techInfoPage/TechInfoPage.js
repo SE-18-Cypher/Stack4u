@@ -19,7 +19,7 @@ export default function TechInfoPage() {
 
   React.useEffect(() => {
     if (user !== '0') {
-      toggleLogin();
+      setLoggedIn(true)
     }
   },)
 
