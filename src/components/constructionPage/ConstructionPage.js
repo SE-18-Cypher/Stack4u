@@ -12,7 +12,7 @@ export default function ErrorPage() {
       if (user === '0') {
           navigate('/access_error')
       }
-  }, [])
+  },)
   return (
 
     <div className='Construction'>

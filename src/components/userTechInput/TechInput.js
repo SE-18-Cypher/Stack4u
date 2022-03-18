@@ -43,7 +43,7 @@ export default function TechInput() {
         if (user === '0') {
             navigate('/access_error')
         }
-    }, [])
+    },)
 
 
     const frontendTech = [

@@ -10,7 +10,7 @@ export default function TextInputPage() {
         if (user === '0') {
             navigate('/access_error')
         }
-    }, [])
+    },)
   return (
     <div>
         <ConstructionPage/>

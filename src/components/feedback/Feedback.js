@@ -32,7 +32,7 @@ export default function Feedback() {
         if (user === '0') {
             navigate('/access_error')
         }
-    }, [])
+    },)
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

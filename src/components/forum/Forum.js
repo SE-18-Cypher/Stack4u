@@ -24,7 +24,7 @@ export default function Forum() {
       if (user === '0') {
           navigate('/access_error')
       }
-  }, [])
+  },)
   const database = getFirestore(app);
   
   const [view, setView] = React.useState(false);                                  //hook to view the comments on each query
