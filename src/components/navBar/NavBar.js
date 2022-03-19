@@ -102,7 +102,6 @@ const NavBar = (props) => {
                             ))}
                         </Menu>
                     </Box> */}
-
                     <Box sx={{ paddingLeft: '15%', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
 
