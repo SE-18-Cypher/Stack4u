@@ -37,13 +37,13 @@ export default function Feedback() {
     const [userFeedback, setUserFeedback] = React.useState('');
 
     function checkQuery() {
-        if(userName == ""){
+        if(userName === ""){
             alert("Name Field is empty");
         }
-        else if (userEmail == ""){
+        else if (userEmail === ""){
             alert("Email Field is empty");
         }
-        else if (userFeedback == ""){
+        else if (userFeedback === ""){
             alert("Feedback Field is empty");
         }
         else{

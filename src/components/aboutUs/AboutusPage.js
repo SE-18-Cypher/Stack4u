@@ -1,6 +1,6 @@
 import React from 'react';
 
-import bg from "./../../resources/images/bg.jpeg";
+import bg from "./../../resources/images/image.png";
 import "./AboutusPage.css";
 import Sadurshan from "./../../resources/images/Sadurshan.jpeg";
 import madusha from "./../../resources/images/madusha.jpeg";
@@ -12,15 +12,17 @@ import { Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import NavBar from './../navBar/NavBar';
+import { useLocation } from 'react-router';
 
 
 export default function AboutusPage() {
-
-    const [viewMembers , setViewMembers] = React.useState(false)
+    const {state} = useLocation();
+    const {id} = state; 
+    const [viewMembers, setViewMembers] = React.useState(false)
 
     window.onscroll = function (e) {
-        
-        if (window.scrollY <= 350 ){
+
+        if (window.scrollY <= 350) {
             setViewMembers(false)
         }
         else if (window.scrollY >= 430) {
@@ -29,16 +31,16 @@ export default function AboutusPage() {
     };
 
     console.log(viewMembers)
-    
-    
+
+
 
     return (
 
         <div id="contentBody" className='bgr'>
-        <NavBar/>
-            <div className={viewMembers ? "text":"Activetext"} >
+            <NavBar uidValue={id}/>
+            <div className={viewMembers ? "text" : "Activetext"} >
                 <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
-                    <h2 className="aboutUsTopic" style={{fontWeight:'bold', fontFamily: 'calibri', color: 'white'}}>About Us</h2>
+                    <h2 className="aboutUsTopic" style={{ fontWeight: 'bold', fontFamily: 'calibri', color: 'white' }}>About Us</h2>
                 </div>
                 <div className='Ourstory'>
                     <div className='container1'><h3 className="aboutUsContent">Our Story</h3>
@@ -64,14 +66,14 @@ export default function AboutusPage() {
                             nowadays constantly want to evolve and learn new technologies.
                         </p>
 
-                        <h5 style={{textAlign:'center', paddingTop:70}}>Scroll down {'>>>>>>'}</h5>
+                        <h5 style={{ textAlign: 'center', paddingTop: 70 }}>Scroll down {'>>>>>>'}</h5>
                     </div>
                 </div>
             </div>
             <div className='profiles'>
 
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage":"Image"} src={Thisaru} alt="Error Logo" />
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Thisaru} alt="Error Logo" />
                     <h6 className='name'><b>THISARU WIKRAMASEKARA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
@@ -109,7 +111,7 @@ export default function AboutusPage() {
                     > <LinkedInIcon color="primary" /></Button>
                 </div>
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage":"Image"} src={Bupani} alt="Error Logo" />
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Bupani} alt="Error Logo" />
                     <h6 className='name'><b>BUPANIE THALAGALA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
@@ -118,7 +120,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.instagram.com/_bups_c/','_blank')
+                            window.open('https://www.instagram.com/_bups_c/', '_blank')
 
                         }}
 
@@ -129,7 +131,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.facebook.com/bupanie.thalagala','_blank')
+                            window.open('https://www.facebook.com/bupanie.thalagala', '_blank')
 
                         }}
 
@@ -140,7 +142,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.linkedin.com/in/bupanie-chamathka-thalagala-041674207/','_blank')
+                            window.open('https://www.linkedin.com/in/bupanie-chamathka-thalagala-041674207/', '_blank')
 
                         }}
 
@@ -149,7 +151,7 @@ export default function AboutusPage() {
                     <p></p>
                 </div>
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage":"Image"} src={madusha} alt="Error Logo" />
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={madusha} alt="Error Logo" />
                     <h6 className='name'><b>MADUSHA THUMBOWITA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
@@ -158,7 +160,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.instagram.com/madushathumbowita/','_blank')
+                            window.open('https://www.instagram.com/madushathumbowita/', '_blank')
 
                         }}
 
@@ -169,7 +171,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.facebook.com/madusha.thumbowita.77','_blank')
+                            window.open('https://www.facebook.com/madusha.thumbowita.77', '_blank')
 
                         }}
 
@@ -180,7 +182,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.linkedin.com/in/madusha-thumbowita-28a28b1b9/','_blank')
+                            window.open('https://www.linkedin.com/in/madusha-thumbowita-28a28b1b9/', '_blank')
 
                         }}
 
@@ -189,7 +191,7 @@ export default function AboutusPage() {
                     <p></p>
                 </div>
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage":"Image"} src={chami} alt="Error Logo" />
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={chami} alt="Error Logo" />
                     <h6 className='name'><b>CHAMIDI PERERA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
@@ -198,7 +200,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.instagram.com/_.chami.iii/','_blank')
+                            window.open('https://www.instagram.com/_.chami.iii/', '_blank')
 
                         }}
 
@@ -209,18 +211,18 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.facebook.com/chamidi.perera.39','_blank')
+                            window.open('https://www.facebook.com/chamidi.perera.39', '_blank')
 
                         }}
 
-                    > <FacebookIcon color="primary" id="bottom"/></Button>
+                    > <FacebookIcon color="primary" id="bottom" /></Button>
                     <Button
 
                         onClick={(e) => {
 
                             e.preventDefault();
 
-                            window.open('','_blank')
+                            window.open('', '_blank')
 
                         }}
 
@@ -228,7 +230,7 @@ export default function AboutusPage() {
 
                 </div>
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage":"Image"} src={Sadurshan} alt="Error Logo" />
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Sadurshan} alt="Error Logo" />
                     <h6 className='name'><b>SADURSHAN RAVINDRAN</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
@@ -237,7 +239,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.instagram.com/sadurshan_ravindran/','_blank')
+                            window.open('https://www.instagram.com/sadurshan_ravindran/', '_blank')
 
                         }}
 
@@ -248,7 +250,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.facebook.com/sadu.ravi.1000','_blank')
+                            window.open('https://www.facebook.com/sadu.ravi.1000', '_blank')
 
                         }}
 
@@ -259,27 +261,27 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.linkedin.com/in/sadurshan-ravindran-811540113/','_blank')
+                            window.open('https://www.linkedin.com/in/sadurshan-ravindran-811540113/', '_blank')
 
                         }}
 
                     > <LinkedInIcon color="primary" /></Button>
-                
-                                
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                
+
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
 
 
                 </div>

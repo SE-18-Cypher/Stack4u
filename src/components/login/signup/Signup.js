@@ -1,6 +1,5 @@
 import "./Signup.css";
 import * as React from 'react';
-import { useRef } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -85,7 +84,7 @@ export default function Signup() {
             .then((userCredential) => {
                 // Signed in 
                 // const user = userCredential.user;
-                navigate("/home");
+                navigate("/techinput");
             })
             .catch((error) => {
                 // const errorCode = error.code;
@@ -98,7 +97,7 @@ export default function Signup() {
         const auth = getAuth(app);
         signInWithPopup(auth, provider)
             .then((result) => {
-                navigate("/home");
+                navigate("/techinput");
             })
             .catch((error) => {
                 console.log(error);

@@ -10,7 +10,7 @@
 .commonBg{
     height: 100%;
     position: absolute;
-    padding-top: 5;
+    padding-top: -50%;
     left: 0;
     width: 100%;
     overflow: hidden;

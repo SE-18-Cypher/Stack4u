@@ -15,10 +15,13 @@ import './Forum.css';
 import app from './../../Firebase-config';
 import { getFirestore } from "@firebase/firestore";
 import { addDoc, collection, doc, getDoc, onSnapshot, query, updateDoc } from "firebase/firestore";
+import { useLocation } from 'react-router';
 
 export default function Forum() {
 
   const database = getFirestore(app);
+  const {state} = useLocation();
+  const {id} = state; 
 
   const [view, setView] = React.useState(false);                                  //hook to view the comments on each query
   const toggleView = () => setView((view) => !view);                              //switch the view
@@ -182,7 +185,7 @@ export default function Forum() {
     
     <div>
       <div className={loadingView ? "loading":"loaded"}>
-      <NavBar/>
+      <NavBar uidValue={id} />
         <div className="commonOppBg" />
         <div style={{ position: 'relative' }}>
           <h1 style={{ textAlign: 'center' }}>Forum</h1>

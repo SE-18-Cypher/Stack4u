@@ -1,6 +1,6 @@
 import './Signin.css';
 import * as React from 'react';
-import {useRef } from 'react' ; 
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,7 +17,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
-import app from '../../../Firebase-config';
 
 const theme = createTheme();
 
@@ -67,10 +66,7 @@ export default function Signin() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in 
-        // const user = userCredential.user;
-        // ...
-        navigate("/home");
+        navigate("/home",{ state: { id: userCredential.user.uid }});
       })
       .catch((error) => {
         // const errorCode = error.code;

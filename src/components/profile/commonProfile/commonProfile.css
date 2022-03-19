@@ -1,33 +1,3 @@
-.contentBody{
-  text-align: center;
-  margin-top: 2%;
-}
-.profileButtons {
-  background-color: transparent;
-  border-color: transparent;
-  padding-left: 10%;
-  padding-right: 10%;
-}
-.headerContent{
-  padding: 5%;
-}
-.activeType{
-  color: black;
-  text-decoration: underline solid rgb(17, 131, 214,1) 5px;
-  text-underline-offset: 40%;
-}
-.notActiveType{
-  color: grey;
-}
-.contentBody{
-  left: 60%;
-  margin: 0;
-  position: absolute;
-  top: 49%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
 .profilePage{
   position: fixed;
   min-width: 100%;
@@ -36,14 +6,9 @@
   display: inline-block;
 }
 
-.profilePicContainer{
-  float: left;
-  margin-top: 5%;
-  margin-left: 10%;
-}
-
-.profileInfoContainer{
-  margin-left: 30%;
+.commonProfileHeader{
   margin-top: 10%;
-  width: 50%;
+  margin-left: 5%;
+  margin-right: 5%;
+  display: block;    
 }
