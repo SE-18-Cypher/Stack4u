@@ -101,44 +101,44 @@ const NavBar = (props) => {
                             ))}
                         </Menu>
                     </Box> */}
+                    
+                    <Box sx={{ paddingLeft:'15%', flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
+                        
+                        
+                            <Button                                
+                                onClick={() => navigate("/home")}
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
+                            >
+                             {pages[0]}   
+                            </Button>
 
-                    <Box sx={{ paddingLeft: '15%', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <Button             
+                                onClick={() => navigate("/techInfoPage")}                                
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
+                            >
+                             {pages[1]}   
+                            </Button>
 
+                            <Button                                 
+                                onClick={() => navigate("/forum")}                               
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
+                            >
+                             {pages[2]}   
+                            </Button>
 
-                        <Button
-                            onClick={() => navigate("/home",{ state: { id: props.uidValue }})}
-                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
-                        >
-                            {pages[0]}
-                        </Button>
-
-                        <Button
-                            onClick={() => navigate("/techInfoPage",{ state: { id: props.uidValue }})}
-                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
-                        >
-                            {pages[1]}
-                        </Button>
-
-                        <Button
-                            onClick={() => navigate("/forum" ,{ state: { id: props.uidValue }})}
-                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
-                        >
-                            {pages[2]}
-                        </Button>
-
-                        <Button
-                            onClick={() => navigate("/aboutus",{ state: { id: props.uidValue }})}
-                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
-                        >
-                            {pages[3]}
-                        </Button>
-
-                        <Button
-                            onClick={() => navigate("/contactus",{ state: { id: props.uidValue }})}
-                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
-                        >
-                            {pages[4]}
-                        </Button>
+                            <Button                                 
+                                onClick={() => navigate("/aboutus")}                                
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
+                            >
+                             {pages[3]}   
+                            </Button>
+                               
+                            <Button                                 
+                                onClick={() => navigate("/contactUs")}                                
+                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
+                            >
+                             {pages[4]}   
+                            </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>

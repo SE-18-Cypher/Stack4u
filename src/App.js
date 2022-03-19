@@ -17,6 +17,7 @@ import Feedback from './components/feedback/Feedback';
 import ConstructionPage from './components/constructionPage/ConstructionPage';
 
 import AboutusPage from './components/aboutUs/AboutusPage';
+import Output from './components/outputpage/output';
 import TechInput from './components/userTechInput/TechInput';
 
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/home/profile" element={<CommonProfile/>}/>
           <Route path="/home" element={<HomePage/>}/>
           <Route path="/aboutus" element={<AboutusPage/>}/>
+          <Route path="/outputpage" element={<Output/>}/>
           <Route path="/feedback" element={<Feedback/>}/>
           <Route path="/techinput" element={<TechInput/>}/>
           <Route path="*" element={<ErrorPage/>}/>
