@@ -22,7 +22,7 @@ export default function AboutusPage() {
         if (user === '0') {
             navigate('/access_error')
         }
-    }, [])
+    }, )
 
 
     const [viewMembers, setViewMembers] = React.useState(false)

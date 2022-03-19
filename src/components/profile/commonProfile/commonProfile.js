@@ -13,7 +13,7 @@ export default function CommonProfile() {
         if (user === '0') {
             navigate('/access_error')
         }
-    }, [])
+    },)
 
     return (
         <div>

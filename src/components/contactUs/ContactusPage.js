@@ -14,7 +14,7 @@ export default function ContactusPage() {
     if (user === '0') {
       navigate('/access_error')
     }
-  }, [])
+  },)
   //emailjs reference variables
   const SERVICE_ID = "service_10mf3il";
   const TEMPLATE_ID = "template_2u15ydb";

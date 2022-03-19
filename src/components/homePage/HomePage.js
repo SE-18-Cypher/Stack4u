@@ -27,7 +27,7 @@ export default function HomePage() {
         if (user === '0') {
             navigate('/access_error')
         }
-    }, [])
+    },)
 
     const [file, setFile] = React.useState('');
     const handleChange = (file) => {

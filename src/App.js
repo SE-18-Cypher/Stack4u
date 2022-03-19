@@ -19,10 +19,8 @@ import ConstructionPage from './components/constructionPage/ConstructionPage';
 import AboutusPage from './components/aboutUs/AboutusPage';
 import Output from './components/outputpage/output';
 import TechInput from './components/userTechInput/TechInput';
-import ProtectedRoute from './ProtectedRoute';
 
 function App() {
-  const user = localStorage.getItem("user");
   return (
     <div>
       <Router>
@@ -40,6 +38,7 @@ function App() {
           <Route path="/aboutus" element={<AboutusPage />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/techinput" element={<TechInput />} />
+          <Route path="/output" element={<Output />} />
           <Route path="/constructionPage" element={<ConstructionPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
