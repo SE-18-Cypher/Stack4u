@@ -188,8 +188,8 @@ export default function Forum() {
   return (
     
     <div>
-      <div className={loadingView ? "loading":"loaded"}>
       <NavBar uidValue={user} />
+      <div className={loadingView ? "loading":"loaded"}>
         <div className="commonOppBg" />
         <div style={{ position: 'relative' }}>
           <h1 style={{ textAlign: 'center' }}>Forum</h1>

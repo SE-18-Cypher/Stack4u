@@ -10,25 +10,25 @@ export default function Redirect() {
     const loggedInUser = localStorage.getItem("user");
 
     setTimeout(function () {
-        if (view<3){
+        if (view < 3) {
             setView(view + 1);
         }
     }, 1000);
 
     function Greeting() {
-        if (view<3) {
-            return <PresentationPage/>
+        if (view < 3) {
+            return <PresentationPage />
         }
-        if (loggedInUser === '0'){
-            return <Common/>
+        else if (loggedInUser === 'null' || loggedInUser === null) {
+            return <Common />
         }
-        if (loggedInUser !== '0'){
-            return <Home/>
+        else {
+            return <Home />
         }
     }
     return (
-        <div>      
-            <Greeting/>
+        <div>
+            <Greeting />
         </div>
     );
 }

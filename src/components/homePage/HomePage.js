@@ -21,14 +21,32 @@ const fileTypes = ["JPEG", "PDF"];
 
 export default function HomePage() {
     const user = localStorage.getItem("user");
-    
+
     const navigate = useNavigate();
 
     React.useEffect(() => {
         if (user === '0') {
             navigate('/access_error')
         }
-    },)
+    })
+    const [rememberMe, setRememberMe] = React.useState(true);
+    const remember = localStorage.getItem("userRememberMe");
+    React.useEffect(() => {
+        if (remember === 'false') {
+            setRememberMe(false)
+        }
+        console.log(rememberMe)
+    },[rememberMe])
+
+    window.onbeforeunload = closingCode;
+    function closingCode() {
+        if (!rememberMe) {
+            localStorage.setItem("user", null);
+            localStorage.setItem("guser", null);
+            localStorage.setItem("guserFirstName", null);
+            localStorage.setItem("guserSecondName", null);
+        }
+    }
 
     const [file, setFile] = React.useState('');
     const handleChange = (file) => {

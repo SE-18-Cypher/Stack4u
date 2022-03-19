@@ -1,5 +1,7 @@
 import './Signin.css';
 import * as React from 'react';
+import { useNavigate } from "react-router";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,9 +16,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from "react-router";
-
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 
 const theme = createTheme();
 
@@ -30,6 +29,7 @@ export default function Signin() {
   const [password, setPassword] = React.useState('');
 
   const checkAuth = (data) => {
+    console.log(rememberMe)
     if (data.get('email') === "") {
       setValidEmail(false);
       setEmailHelperText("Enter a valid email address");
@@ -63,10 +63,11 @@ export default function Signin() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         localStorage.setItem("user", userCredential.user.uid);
+        localStorage.setItem("userRememberMe", rememberMe);
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
+          alert(error.message)
       });
   }
 
@@ -74,17 +75,17 @@ export default function Signin() {
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result)
         localStorage.setItem("user", result.user.uid);
         localStorage.setItem("guser", result.user.photoURL);
         let text = result.user.displayName;
         const myArray = text.split(" ");
         localStorage.setItem("guserFirstName", myArray[0]);
         localStorage.setItem("guserSecondName", myArray[1]);
+        localStorage.setItem("userRememberMe", rememberMe);
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.message)
       });
   }
 
@@ -94,9 +95,12 @@ export default function Signin() {
   const [validPassword, setValidPassword] = React.useState(true);
   const [passwordHelperText, setPasswordHelperText] = React.useState("");
 
-  const [emailLabelName, setEmailLabelName] = React.useState("EmailAddress");
+  const [emailLabelName, setEmailLabelName] = React.useState("Email Address");
   const [passwordLabelName, setPasswordLabelName] = React.useState("Password");
 
+  const [rememberMe, setRememberMe] = React.useState(false);                          
+  const toggleRememberMe = () => setRememberMe((rememberMe) => !rememberMe);
+  
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -145,6 +149,7 @@ export default function Signin() {
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
+                onClick={() => toggleRememberMe()}
               />
               <Grid item xs>
                 <Link href="" style={{ color: "rgb(1, 103, 176, 0.88)" }} variant="body2" onClick={() => navigate("/forgotpassword")}>

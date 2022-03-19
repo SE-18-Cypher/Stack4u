@@ -128,7 +128,7 @@ export default function TechInput() {
     const [selectedDatabaseTech, setSelectedDatabaseTech] = React.useState(6);
  
     React.useEffect(() => {
-        if (selectedFrontendTech !== 5 && selectedMobileFrontendTech !== 6 && selectedBackendTech !== 7 && selectedDatabaseTech !== 6){
+        if (selectedFrontendTech === 5 || selectedMobileFrontendTech === 6 || selectedBackendTech === 7 || selectedDatabaseTech === 6){
             toggleConfirm();
         }
     }, [selectedFrontendTech,selectedMobileFrontendTech,selectedBackendTech,selectedDatabaseTech])
