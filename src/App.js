@@ -38,6 +38,7 @@ function App() {
           <Route path="/aboutus" element={<AboutusPage />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/techinput" element={<TechInput />} />
+          <Route path="/output" element={<Output />} />
           <Route path="/constructionPage" element={<ConstructionPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
