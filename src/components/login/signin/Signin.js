@@ -23,33 +23,29 @@ const theme = createTheme();
 export default function Signin() {
   document.title = "stack4u/SignIn";
   const navigate = useNavigate();
-  
+
   const provider = new GoogleAuthProvider();
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const checkAuth = (data) => {
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    if (data.get('email') === ""){
+    if (data.get('email') === "") {
       setValidEmail(false);
       setEmailHelperText("Enter a valid email address");
       setEmailLabelName("");
     }
-    if (data.get('password') === ""){
+    if (data.get('password') === "") {
       setValidPassword(false);
       setPasswordHelperText("Enter a valid password");
       setPasswordLabelName("");
     }
-    if (data.get('email') !== ""){
+    if (data.get('email') !== "") {
       setValidEmail(true);
       setEmailHelperText("");
       setEmailLabelName("Email Address");
     }
-    if (data.get('password') !== ""){
+    if (data.get('password') !== "") {
       setValidPassword(true);
       setPasswordHelperText("");
       setPasswordLabelName("Password");
@@ -70,21 +66,26 @@ export default function Signin() {
         navigate("/home");
       })
       .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
         console.log(error);
       });
   }
 
-  function signInWithGoogle(){
+  function signInWithGoogle() {
     const auth = getAuth();
     signInWithPopup(auth, provider)
-    .then((result) => {    
-      navigate("/home");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((result) => {
+        console.log(result)
+        localStorage.setItem("user", result.user.uid);
+        localStorage.setItem("guser", result.user.photoURL);
+        let text = result.user.displayName;
+        const myArray = text.split(" ");
+        localStorage.setItem("guserFirstName", myArray[0]);
+        localStorage.setItem("guserSecondName", myArray[1]);
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   const [validEmail, setValidEmail] = React.useState(true);
@@ -109,7 +110,7 @@ export default function Signin() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'rgb(17, 131, 214,1)' }}>   
+            <Avatar sx={{ m: 1, bgcolor: 'rgb(17, 131, 214,1)' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
@@ -138,7 +139,7 @@ export default function Signin() {
                 label={passwordLabelName}
                 type="password"
                 id="password"
-                autoComplete="current-password"  
+                autoComplete="current-password"
                 onChange={event => setPassword(event.target.value)}
               />
               <FormControlLabel
@@ -146,7 +147,7 @@ export default function Signin() {
                 label="Remember me"
               />
               <Grid item xs>
-                <Link href="" style= {{color: "rgb(1, 103, 176, 0.88)"}} variant="body2" onClick={() => navigate("/forgotpassword")}>
+                <Link href="" style={{ color: "rgb(1, 103, 176, 0.88)" }} variant="body2" onClick={() => navigate("/forgotpassword")}>
                   Forgot password?
                 </Link>
               </Grid>
@@ -161,14 +162,14 @@ export default function Signin() {
               </Button>
               <Grid container>
                 <Grid>
-                  <button className = "login-with-google-btn" onClick={() => signInWithGoogle()}>
+                  <button className="login-with-google-btn" onClick={() => signInWithGoogle()}>
                     Sign in with Google
                   </button>
                 </Grid>
               </Grid>
             </Box>
           </Box>
-          
+
         </Container>
       </ThemeProvider>
     </div>

@@ -87,8 +87,6 @@ export default function Signup() {
                 navigate("/techinput");
             })
             .catch((error) => {
-                // const errorCode = error.code;
-                // const errorMessage = error.message;
                 console.log(error);
             });
     }
@@ -97,6 +95,9 @@ export default function Signup() {
         const auth = getAuth(app);
         signInWithPopup(auth, provider)
             .then((result) => {
+                localStorage.setItem("user", result.user.uid);
+                localStorage.setItem("guser", result.user.photoURL);
+                console.log(result.user.photoURL)
                 navigate("/techinput");
             })
             .catch((error) => {

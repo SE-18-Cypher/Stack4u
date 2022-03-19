@@ -21,6 +21,7 @@ const fileTypes = ["JPEG", "PDF"];
 
 export default function HomePage() {
     const user = localStorage.getItem("user");
+    
     const navigate = useNavigate();
 
     React.useEffect(() => {
