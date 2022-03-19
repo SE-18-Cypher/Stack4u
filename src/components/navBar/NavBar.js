@@ -23,19 +23,33 @@ const settings = ['Account', 'Logout'];
 
 const NavBar = (props) => {
 
+    var user2 = localStorage.getItem("guser");
+
+    React.useEffect(() => {
+        if (user2 !== null) {
+            const img = document.getElementById('myimg');
+            img.setAttribute('src', user2);
+        }
+        else {
+            getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
+                .then((url) => {
+                    const img = document.getElementById('myimg');
+                    img.setAttribute('src', url);
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+        }
+    }, [])
+
     const navigate = useNavigate();
     const storage = getStorage();
-    getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
-    .then((url) => {
-      const img = document.getElementById('myimg');
-      img.setAttribute('src', url);
-    })
-    .catch((error) => {
-      console.log(error)
-    });
 
-    function logout(){
+    function logout() {
         localStorage.setItem("user", 0);
+        localStorage.setItem("guser", null);
+        localStorage.setItem("guserFirstName", null);
+        localStorage.setItem("guserSecondName", null);
         navigate('/login')
     }
 
@@ -144,7 +158,7 @@ const NavBar = (props) => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, marginRight: '130px' }}>
-                                <Avatar><img id='myimg' src={b} width={50} alt='profile-avatar'/>  </Avatar>
+                                <Avatar><img id='myimg' src={b} width={50} alt='profile-avatar' />  </Avatar>
                             </IconButton>
                         </Tooltip>
                         <Button onClick={() => navigate("/constructionPage")} style={{ float: 'right' }} > <img src={eLearningLogo} width={34} alt='elearning site- logo' /> </Button>
@@ -170,7 +184,7 @@ const NavBar = (props) => {
 
                             </MenuItem>
 
-                            <MenuItem onClick={() =>logout()} >
+                            <MenuItem onClick={() => logout()} >
                                 <Typography textAlign="center"> {settings[1]} </Typography>
                             </MenuItem>
 
