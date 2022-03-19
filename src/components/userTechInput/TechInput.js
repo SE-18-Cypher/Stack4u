@@ -36,7 +36,15 @@ import { useNavigate } from 'react-router';
 
 export default function TechInput() {
 
+    const user = localStorage.getItem("user");
     const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (user === '0') {
+            navigate('/access_error')
+        }
+    }, [])
+
 
     const frontendTech = [
         [reactLogo, 'ReactJs','reactLogo'],

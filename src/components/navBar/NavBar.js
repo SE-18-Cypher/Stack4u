@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './NavBar.css';
 import Logo from '../../resources/images/stack4uLOGO_OG_T.png';
-import b from '../../resources/images/Construct2.jfif';
+import b from '../../resources/images/logoW.png';
 import eLearningLogo from '../../resources/images/elearningLogo.png';
 import { useNavigate } from "react-router";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
@@ -25,18 +25,19 @@ const NavBar = (props) => {
 
     const navigate = useNavigate();
     const storage = getStorage();
-    const profilePic = b;
-    const profilePictureRef = ref(storage, 'users/' + props.uidValue);
-    console.log(profilePictureRef)
     getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
     .then((url) => {
       const img = document.getElementById('myimg');
       img.setAttribute('src', url);
-      profilePic = url;
     })
     .catch((error) => {
       console.log(error)
     });
+
+    function logout(){
+        localStorage.setItem("user", 0);
+        navigate('/login')
+    }
 
     // const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -101,44 +102,43 @@ const NavBar = (props) => {
                             ))}
                         </Menu>
                     </Box> */}
-                    
-                    <Box sx={{ paddingLeft:'15%', flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
-                        
-                        
-                            <Button                                
-                                onClick={() => navigate("/home")}
-                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
-                            >
-                             {pages[0]}   
-                            </Button>
+                    <Box sx={{ paddingLeft: '15%', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
-                            <Button             
-                                onClick={() => navigate("/techInfoPage")}                                
-                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
-                            >
-                             {pages[1]}   
-                            </Button>
 
-                            <Button                                 
-                                onClick={() => navigate("/forum")}                               
-                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
-                            >
-                             {pages[2]}   
-                            </Button>
+                        <Button
+                            onClick={() => navigate("/home")}
+                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
+                        >
+                            {pages[0]}
+                        </Button>
 
-                            <Button                                 
-                                onClick={() => navigate("/aboutus")}                                
-                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
-                            >
-                             {pages[3]}   
-                            </Button>
-                               
-                            <Button                                 
-                                onClick={() => navigate("/contactUs")}                                
-                                sx={{ paddingInline:'5%', color: '0167B0', fontSize:'19px',fontWeight:"580", fontFamily:'Calibri', height:'76px' }}
-                            >
-                             {pages[4]}   
-                            </Button>
+                        <Button
+                            onClick={() => navigate("/techInfoPage")}
+                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
+                        >
+                            {pages[1]}
+                        </Button>
+
+                        <Button
+                            onClick={() => navigate("/forum")}
+                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
+                        >
+                            {pages[2]}
+                        </Button>
+
+                        <Button
+                            onClick={() => navigate("/aboutus")}
+                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
+                        >
+                            {pages[3]}
+                        </Button>
+
+                        <Button
+                            onClick={() => navigate("/contactus")}
+                            sx={{ paddingInline: '5%', color: '0167B0', fontSize: '19px', fontWeight: "580", fontFamily: 'Calibri', height: '76px' }}
+                        >
+                            {pages[4]}
+                        </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
@@ -170,7 +170,7 @@ const NavBar = (props) => {
 
                             </MenuItem>
 
-                            <MenuItem onClick={() => navigate("/login")} >
+                            <MenuItem onClick={() =>logout()} >
                                 <Typography textAlign="center"> {settings[1]} </Typography>
                             </MenuItem>
 

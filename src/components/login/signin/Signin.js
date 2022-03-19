@@ -23,7 +23,7 @@ const theme = createTheme();
 export default function Signin() {
   document.title = "stack4u/SignIn";
   const navigate = useNavigate();
-
+  
   const provider = new GoogleAuthProvider();
 
   const [email, setEmail] = React.useState('');
@@ -66,12 +66,13 @@ export default function Signin() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        navigate("/home",{ state: { id: userCredential.user.uid }});
+        localStorage.setItem("user", userCredential.user.uid);
+        navigate("/home");
       })
       .catch((error) => {
         // const errorCode = error.code;
         // const errorMessage = error.message;
-        console.log("error");
+        console.log(error);
       });
   }
 

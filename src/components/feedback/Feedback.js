@@ -11,6 +11,7 @@ import { getFirestore } from "@firebase/firestore";
 import { addDoc, collection } from "firebase/firestore";
 import { TextField } from '@mui/material';
 import './Feedback.css';
+import { useNavigate } from 'react-router';
 
 const style = {
     position: 'absolute',
@@ -24,6 +25,15 @@ const style = {
 };
 
 export default function Feedback() {
+    const user = localStorage.getItem("user");
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (user === '0') {
+            navigate('/access_error')
+        }
+    }, [])
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

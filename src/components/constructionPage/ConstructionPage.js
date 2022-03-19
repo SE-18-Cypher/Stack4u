@@ -2,9 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import errorlogo from "./../../resources/images/construct.jpg";
 import "./ConstructionPage.css";
+import { useNavigate } from "react-router";
 
 export default function ErrorPage() {
+  const user = localStorage.getItem("user");
+  const navigate = useNavigate();
 
+  React.useEffect(() => {
+      if (user === '0') {
+          navigate('/access_error')
+      }
+  }, [])
   return (
 
     <div className='Construction'>
