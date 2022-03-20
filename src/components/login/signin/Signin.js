@@ -64,6 +64,7 @@ export default function Signin() {
       .then((userCredential) => {
         sessionStorage.setItem("user", userCredential.user.uid);
         sessionStorage.setItem("rememberMe", rememberMe);
+        console.log(sessionStorage.getItem("guser"))
         navigate("/home");
       })
       .catch((error) => {

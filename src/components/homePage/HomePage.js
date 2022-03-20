@@ -51,6 +51,12 @@ export default function HomePage() {
             localStorage.setItem("guserFirstName", guserFN);
             localStorage.setItem("guserSecondName", guserLN);
         }
+        // else{
+        //     sessionStorage.setItem("user", null);
+        //     sessionStorage.setItem("guser", null);
+        //     sessionStorage.setItem("guserFirstName", null);
+        //     sessionStorage.setItem("guserSecondName", null);
+        // }
     }
 
     const [file, setFile] = React.useState('');
@@ -95,7 +101,7 @@ export default function HomePage() {
             {/* <div className='commonbg' /> */}
 
             <div className='mainPageContent'>
-                <div style={{ color: 'white' }}>
+                <div className='mainPageImage'>
                     <img src={mainpageBackground} alt='decoration background' className='mainPageBackground' />
                     <div className="content-left">
                         <p className='mainPageBackgroundHeader'>Technology Stack <br /> Recommender</p>
