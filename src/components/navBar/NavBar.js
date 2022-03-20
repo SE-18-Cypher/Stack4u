@@ -26,7 +26,7 @@ const NavBar = (props) => {
     var user2 = localStorage.getItem("guser");
 
     React.useEffect(() => {
-        if (user2 !== null) {
+        if (user2 !== 'null') {
             const img = document.getElementById('myimg');
             img.setAttribute('src', user2);
         }
@@ -46,7 +46,7 @@ const NavBar = (props) => {
     const storage = getStorage();
 
     function logout() {
-        localStorage.setItem("user", 0);
+        localStorage.setItem("user", null);
         localStorage.setItem("guser", null);
         localStorage.setItem("guserFirstName", null);
         localStorage.setItem("guserSecondName", null);

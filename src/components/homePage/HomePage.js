@@ -30,6 +30,25 @@ export default function HomePage() {
         }
     },)
 
+    const [rememberMe, setRememberMe] = React.useState(true);
+    const remember = localStorage.getItem("rememberMe");
+    React.useEffect(() => {
+        if (remember === 'false') {
+            setRememberMe(false)
+        }
+        console.log(rememberMe)
+    },[rememberMe])
+
+    window.onbeforeunload = closingCode;
+    function closingCode() {
+        if (!rememberMe) {
+            localStorage.setItem("user", null);
+            localStorage.setItem("guser", null);
+            localStorage.setItem("guserFirstName", null);
+            localStorage.setItem("guserSecondName", null);
+        }
+    }
+
     const [file, setFile] = React.useState('');
     const handleChange = (file) => {
         setFile(file);

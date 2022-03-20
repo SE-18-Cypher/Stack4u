@@ -63,10 +63,11 @@ export default function Signin() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         localStorage.setItem("user", userCredential.user.uid);
+        localStorage.setItem("rememberMe", rememberMe);
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
       });
   }
 
@@ -81,10 +82,11 @@ export default function Signin() {
         const myArray = text.split(" ");
         localStorage.setItem("guserFirstName", myArray[0]);
         localStorage.setItem("guserSecondName", myArray[1]);
+        localStorage.setItem("rememberMe", rememberMe);
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
       });
   }
 
@@ -97,6 +99,8 @@ export default function Signin() {
   const [emailLabelName, setEmailLabelName] = React.useState("EmailAddress");
   const [passwordLabelName, setPasswordLabelName] = React.useState("Password");
 
+  const [rememberMe, setRememberMe] = React.useState(false);
+  const toggleRememberMe = () => setRememberMe((rememberMe) => !rememberMe);
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -145,6 +149,7 @@ export default function Signin() {
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
+                onClick={() => toggleRememberMe()}
               />
               <Grid item xs>
                 <Link href="" style={{ color: "rgb(1, 103, 176, 0.88)" }} variant="body2" onClick={() => navigate("/forgotpassword")}>
