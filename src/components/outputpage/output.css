@@ -47,7 +47,13 @@
 
 }
 
+.bkimage {
+    margin-top: -460px;
+    margin-bottom: 10px;
+    position: relative;
+    margin-left: 510px;
 
+}
 
 
 
@@ -91,8 +97,7 @@
     top: 6%;
     left: 3%;
     margin-left: 105px;
-    
-      
+          
 }
 
 
