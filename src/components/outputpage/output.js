@@ -21,10 +21,10 @@ import mainpageFooterStack4uLogo from './../../resources/images/mainPage/mainpag
 import mainpageBackground from './../../resources/images/mainPage/mainpageBackground.png';
 import mainpageLaptop from './../../resources/images/mainPage/mainPageLaptop.png';
 import { useNavigate } from "react-router";
-import NavBar from './../navBar/NavBar';
-import Feedback from './../feedback/Feedback';
+import NavBar from '../navBar/NavBar';
+import Feedback from '../feedback/Feedback';
 import fblogo from '../../resources/images/facebook.png';
-import app from './../../Firebase-config';
+import app from '../../Firebase-config';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 
