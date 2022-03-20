@@ -15,7 +15,7 @@ import ContactusPage from './components/contactUs/ContactusPage';
 import Feedback from './components/feedback/Feedback';
 import ConstructionPage from './components/constructionPage/ConstructionPage';
 import AboutusPage from './components/aboutUs/AboutusPage';
-import Output from './components/outputpage/output';
+import Output from './components/outputpage/Output';
 import TechInput from './components/userTechInput/TechInput';
 
 function App() {
