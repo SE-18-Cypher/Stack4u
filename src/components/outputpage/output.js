@@ -5,7 +5,7 @@ import mainpageFooterStack4uLogo from './../../resources/images/mainPage/mainpag
 import NavBar from './../navBar/NavBar';
 import fblogo from '../../resources/images/facebook.png';
 import Feedback from './../feedback/Feedback';
-
+import output from './../../resources/images/output.png'; 
 
 
 export default function Output() {
@@ -27,6 +27,12 @@ export default function Output() {
                             </div>
                         </div>                        
                     </div>
+
+                    <div className='bkimage'>
+                            <img src={output} width="450px" />
+                        </div>
+
+
                                                        
 
             <div className='footerMainPage2'>
