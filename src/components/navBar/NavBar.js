@@ -24,7 +24,7 @@ const settings = ['Account', 'Logout'];
 const NavBar = (props) => {
 
     var user2 = sessionStorage.getItem("guser");
-
+    console.log(user2)
     React.useEffect(() => {
         if (user2 !== 'null') {
             const img = document.getElementById('myimg');
@@ -46,11 +46,17 @@ const NavBar = (props) => {
     const storage = getStorage();
 
     function logout() {
+        sessionStorage.setItem("user", null);
+        sessionStorage.setItem("guser", null);
+        sessionStorage.setItem("guserFirstName", null);
+        sessionStorage.setItem("guserSecondName", null);
         localStorage.setItem("user", null);
         localStorage.setItem("guser", null);
         localStorage.setItem("guserFirstName", null);
         localStorage.setItem("guserSecondName", null);
+        console.log(localStorage.getItem("user"));
         navigate('/login')
+        window.location.reload()
     }
 
     // const [anchorElNav, setAnchorElNav] = React.useState(null);

@@ -7,7 +7,8 @@ import Home from './../homePage/HomePage';
 export default function Redirect() {
     const [view, setView] = useState(0);
     const loggedInUser = localStorage.getItem("user");
-
+    console.log(loggedInUser)
+    
     setTimeout(function () {
         if (view<3){
             setView(view + 1);

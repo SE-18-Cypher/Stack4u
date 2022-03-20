@@ -22,6 +22,7 @@ const fileTypes = ["JPEG", "PDF"];
 export default function HomePage() {
     const user = sessionStorage.getItem("user");
     const guser = sessionStorage.getItem("guser");
+    console.log(guser)
     const guserFN = sessionStorage.getItem("guserFirstName");
     const guserLN = sessionStorage.getItem("guserSecondName");
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function HomePage() {
         if (user === '0') {
             navigate('/access_error')
         }
-    },)
+    })
 
     const [rememberMe, setRememberMe] = React.useState(true);
     const remember = sessionStorage.getItem("rememberMe");
@@ -39,11 +40,12 @@ export default function HomePage() {
             setRememberMe(false)
         }
         console.log(rememberMe)
-    },[rememberMe])
+    }, [rememberMe])
 
     window.onbeforeunload = closingCode;
     function closingCode() {
         if (rememberMe) {
+            console.log("Storing the values")
             localStorage.setItem("user", user);
             localStorage.setItem("guser", guser);
             localStorage.setItem("guserFirstName", guserFN);
@@ -156,7 +158,7 @@ export default function HomePage() {
                         <img src={mainpageFooterStack4uLogo} alt='stack4u logo' />
                     </a>
                     <h6 >We present a web based technology stack <br /> recommendation system</h6>
-                    <br />                   
+                    <br />
                     <a href="https://www.facebook.com/Stack4u-111840144770759">
                         <img src={fblogo} alt="fblogo" style={{ height: '5%', width: '5%' }} />
                     </a>
@@ -165,7 +167,7 @@ export default function HomePage() {
 
                     <a href="aboutus"> About us</a>
                     <br />
-                    <a href="Contactus"> Contact us </a>                    
+                    <a href="Contactus"> Contact us </a>
                     <br />
                     <br />
                     <p className='copy'> Copyright © All rights reserved </p>
