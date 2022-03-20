@@ -43,8 +43,8 @@ export default function Frontend() {
         width: 700,
         height:300,
         bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
+        border: '0',
+        boxShadow: 10,
         p: 4,
     };
 
@@ -56,10 +56,10 @@ export default function Frontend() {
             >
                 <Box sx={style}>
                     <div class="clearfix">
-                        <img src={content[indexClicked][0]} alt='logo'  width={220} style={{float:'right'}}/>
-                        <p style={{fontWeight:'bold',fontSize:40}}> {content[indexClicked][1]} </p>
+                        <img src={content[indexClicked][0]} alt='logo'  width={200} style={{float:'right',paddingLeft:'15px'}}/>
+                        <p style={{fontWeight:'bold',fontSize:35}}> {content[indexClicked][1]} </p>
                         <p style={{textAlign:'justify'}}>{content[indexClicked][2]}</p> 
-                        <a href={content[indexClicked][3]} target="_blank"  rel="noreferrer" style={{color:'blue',textDecorationLine:'underline'}} >Documentation</a>
+                        <a href={content[indexClicked][3]} target="_blank" rel="noreferrer" style={{fontFamily:'calibri', color:'#037ED7',fontSize:'17px'}} >Documentation</a>
                     </div>    
                 </Box>
             </Modal>
@@ -71,9 +71,9 @@ export default function Frontend() {
                     <div style={{margin:50}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(0)} className="eachTechContent"> 
-                                <img src={content[0][0]} alt='logo' width={150} style={{marginTop:18,float:'left',marginLeft:30}} />
+                                <img src={content[0][0]} alt='logo' width={150} style={{marginTop:18,float:'left',marginLeft:33}} />
                                 <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[0][1]} </h3> 
-                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                                {/* <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>    */}
                             </Paper> 
                         ) : (
                             <Skeleton variant="rectangular" width={330} height={180} />
@@ -86,7 +86,7 @@ export default function Frontend() {
                             <Paper elevation={24} onClick={() => openDescription(1)} className="eachTechContent"> 
                                 <img src={content[1][0]} alt='logo' width={150} style={{marginTop:30,float:'left',marginLeft:30}} />
                                 <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[1][1]} </h3> 
-                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                                {/* <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>    */}
                             </Paper> 
                         ) : (
                             <Skeleton variant="rectangular" width={330} height={180} />
@@ -99,7 +99,7 @@ export default function Frontend() {
                             <Paper elevation={24} onClick={() => openDescription(2)} className="eachTechContent"> 
                                 <img src={content[2][0]} alt='logo' width={140} style={{marginTop:29,float:'left',marginLeft:30}} />
                                 <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[2][1]} </h3> 
-                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                                {/* <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>    */}
                             </Paper> 
                         ) : (
                             <Skeleton variant="rectangular" width={330} height={180} />
@@ -112,9 +112,9 @@ export default function Frontend() {
                     <div style={{margin:50}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(3)} className="eachTechContent"> 
-                                <img src={content[3][0]} alt='logo' width={150} style={{marginTop:20,float:'left',marginLeft:30}} />
+                                <img src={content[3][0]} alt='logo' width={135} style={{marginTop:20,float:'left',marginLeft:30}} />
                                 <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[3][1]} </h3> 
-                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                                {/* <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>    */}
                             </Paper>    
                         ) : (
                             <Skeleton variant="rectangular" width={330} height={180} />
@@ -127,7 +127,7 @@ export default function Frontend() {
                              <Paper elevation={24} onClick={() => openDescription(4)} className="eachTechContent"> 
                                 <img src={content[4][0]} alt='logo' width={125} style={{marginTop:30,float:'left',marginLeft:30}} />
                                 <h3 style={{paddingTop: 70,fontWeight:'bold'}}> {content[4][1]} </h3> 
-                                <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                                {/* <p style={{color:'blue', marginTop:48,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>    */}
                             </Paper>  
                         ) : (
                             <Skeleton variant="rectangular" width={330} height={180} />
@@ -140,7 +140,7 @@ export default function Frontend() {
                             <Paper elevation={24} onClick={() => openDescription(5)} className="eachTechContent"> 
                                 <img src={content[5][0]} alt='logo' width={150} style={{marginTop:18,float:'left',marginLeft:30}} />
                                 <h3 style={{paddingTop: 60,fontWeight:'bold'}}> {content[5][1]} </h3> 
-                                <p style={{color:'blue', marginTop:25,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>   
+                                {/* <p style={{color:'blue', marginTop:25,float:'right',textDecoration:'underline',textDecorationColor:'blue'}}>Click to view {'->'}</p>    */}
                             </Paper> 
                         ) : (
                             <Skeleton variant="rectangular" width={330} height={180} />

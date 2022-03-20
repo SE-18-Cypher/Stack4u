@@ -135,19 +135,16 @@ export default function HomePage() {
                         <img src={mainpageFooterStack4uLogo} alt='stack4u logo' />
                     </a>
                     <h6 >We present a web based technology stack <br /> recommendation system</h6>
-                    <br />
-                    {/* <Button variant='contained' onClick={() => navigate("/contactus")}> Contact </Button>
-                        <br /> */}
+                    <br />                   
                     <a href="https://www.facebook.com/Stack4u-111840144770759">
                         <img src={fblogo} alt="fblogo" style={{ height: '5%', width: '5%' }} />
                     </a>
                 </div>
                 <div className="content-right">
 
-                    <a href="techinfoPage"> About us</a>
+                    <a href="aboutus"> About us</a>
                     <br />
-                    <a href="contactus"> Contact us </a>
-                    {/* <h6> Email : cypherstack4u@gmail.com</h6> */}
+                    <a href="Contactus"> Contact us </a>                    
                     <br />
                     <br />
                     <p className='copy'> Copyright © All rights reserved </p>

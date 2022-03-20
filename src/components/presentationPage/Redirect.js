@@ -19,10 +19,10 @@ export default function Redirect() {
         if (view<3) {
             return <PresentationPage/>
         }
-        if (loggedInUser === '0'){
+        else if (loggedInUser === null ){
             return <Common/>
         }
-        if (loggedInUser !== '0'){
+        else if (loggedInUser !== '0'){
             return <Home/>
         }
     }

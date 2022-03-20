@@ -45,27 +45,30 @@ export default function ContactusPage() {
 
   return (
     <div>
+      
       <NavBar uidValue={user} />
 
       <div className='contactUsBackground'>
 
         <div className='contactUsHeader'>
-          <h2 style={{ fontWeight: 'bold', fontFamily: 'calibri', color: 'black' }}>Contact Us</h2>
+          <h2 style={{ paddingTop:'10px',fontSize:'30px', color: 'black' }}>Contact Us</h2>
         </div>
-
+        
         <Grid>
 
-          <Card style={{ maxWidth: 950, maxHeight: 580, padding: "0px 5px", margin: "0 auto" }}>
+          <Card style={{ maxWidth: 950, maxHeight: 560, padding: "0px 5px", margin: "0 auto" }}>
             <CardContent>
 
               {/* Form that needs to be filled by the user */}
               <form onSubmit={handleOnSubmit}>
+                <div className='Cardwords'>
                 <Typography variant="h5">
                   Any question or remarks? Just write us a message!
                 </Typography>
-                <Typography variant="h6" color="textSecondary" component="h6" gutterBottom>
+                <Typography variant="h7" color="textSecondary" component="h6" gutterBottom>
                   Fill up the form and our team will get back to you.
                 </Typography>
+                <br/>
 
                 <Grid container spacing={2}>
 
@@ -90,12 +93,15 @@ export default function ContactusPage() {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary" fullWidth>Submit</Button>
+                    <div className='submitbutton'>
+                    <Button type="submit" variant="contained" color="primary" >Submit</Button>
+                    </div>
                   </Grid>
 
                 </Grid>
+                </div>
               </form>
-
+              
             </CardContent>
           </Card>
 
