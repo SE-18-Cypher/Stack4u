@@ -18,7 +18,7 @@ import { addDoc, collection, doc, getDoc, onSnapshot, query, updateDoc } from "f
 import { useNavigate } from 'react-router';
 
 export default function Forum() {
-  const user = localStorage.getItem("user");
+  const user = sessionStorage.getItem("user");
   const navigate = useNavigate();
   React.useEffect(() => {
       if (user === '0') {

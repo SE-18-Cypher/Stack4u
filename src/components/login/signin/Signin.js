@@ -62,8 +62,8 @@ export default function Signin() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        localStorage.setItem("user", userCredential.user.uid);
-        localStorage.setItem("rememberMe", rememberMe);
+        sessionStorage.setItem("user", userCredential.user.uid);
+        sessionStorage.setItem("rememberMe", rememberMe);
         navigate("/home");
       })
       .catch((error) => {
@@ -76,13 +76,13 @@ export default function Signin() {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log(result)
-        localStorage.setItem("user", result.user.uid);
-        localStorage.setItem("guser", result.user.photoURL);
+        sessionStorage.setItem("user", result.user.uid);
+        sessionStorage.setItem("guser", result.user.photoURL);
         let text = result.user.displayName;
         const myArray = text.split(" ");
-        localStorage.setItem("guserFirstName", myArray[0]);
-        localStorage.setItem("guserSecondName", myArray[1]);
-        localStorage.setItem("rememberMe", rememberMe);
+        sessionStorage.setItem("guserFirstName", myArray[0]);
+        sessionStorage.setItem("guserSecondName", myArray[1]);
+        sessionStorage.setItem("rememberMe", rememberMe);
         navigate("/home");
       })
       .catch((error) => {

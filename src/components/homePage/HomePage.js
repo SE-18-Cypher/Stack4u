@@ -20,8 +20,10 @@ import { getStorage } from "firebase/storage";
 const fileTypes = ["JPEG", "PDF"];
 
 export default function HomePage() {
-    const user = localStorage.getItem("user");
-    
+    const user = sessionStorage.getItem("user");
+    const guser = sessionStorage.getItem("guser");
+    const guserFN = sessionStorage.getItem("guserFirstName");
+    const guserLN = sessionStorage.getItem("guserSecondName");
     const navigate = useNavigate();
 
     React.useEffect(() => {
@@ -31,7 +33,7 @@ export default function HomePage() {
     },)
 
     const [rememberMe, setRememberMe] = React.useState(true);
-    const remember = localStorage.getItem("rememberMe");
+    const remember = sessionStorage.getItem("rememberMe");
     React.useEffect(() => {
         if (remember === 'false') {
             setRememberMe(false)
@@ -41,11 +43,11 @@ export default function HomePage() {
 
     window.onbeforeunload = closingCode;
     function closingCode() {
-        if (!rememberMe) {
-            localStorage.setItem("user", null);
-            localStorage.setItem("guser", null);
-            localStorage.setItem("guserFirstName", null);
-            localStorage.setItem("guserSecondName", null);
+        if (rememberMe) {
+            localStorage.setItem("user", user);
+            localStorage.setItem("guser", guser);
+            localStorage.setItem("guserFirstName", guserFN);
+            localStorage.setItem("guserSecondName", guserLN);
         }
     }
 

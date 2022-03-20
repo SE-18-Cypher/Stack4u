@@ -23,7 +23,7 @@ const settings = ['Account', 'Logout'];
 
 const NavBar = (props) => {
 
-    var user2 = localStorage.getItem("guser");
+    var user2 = sessionStorage.getItem("guser");
 
     React.useEffect(() => {
         if (user2 !== 'null') {
