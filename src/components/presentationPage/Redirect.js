@@ -4,7 +4,6 @@ import PresentationPage from './PresentationPage';
 import Common from '../login/common/Common';
 import Home from './../homePage/HomePage';
 
-
 export default function Redirect() {
     const [view, setView] = useState(0);
     const loggedInUser = localStorage.getItem("user");
@@ -19,10 +18,10 @@ export default function Redirect() {
         if (view<3) {
             return <PresentationPage/>
         }
-        else if (loggedInUser === null ){
+        else if (loggedInUser ===  'null' || loggedInUser === null ){
             return <Common/>
         }
-        else if (loggedInUser !== '0'){
+        else {
             return <Home/>
         }
     }

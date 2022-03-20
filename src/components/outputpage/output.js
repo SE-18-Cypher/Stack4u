@@ -2,9 +2,9 @@ import React from 'react';
 import './Output.css';
 import mainpageFooter from './../../resources/images/mainPage/mainpageFooter.png';
 import mainpageFooterStack4uLogo from './../../resources/images/mainPage/mainpageFooterStack4uLogo.png';
-import NavBar from './../navBar/NavBar';
+import NavBar from '../navBar/NavBar';
 import fblogo from '../../resources/images/facebook.png';
-import Feedback from './../feedback/Feedback';
+import Feedback from '../feedback/Feedback';
 import output from './../../resources/images/output.png'; 
 
 
