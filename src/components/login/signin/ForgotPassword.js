@@ -6,6 +6,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import './ForgotPassword.css';
 import { Modal } from '@mui/material';
+import loudspeaker from '../../../resources/images/loudspeaker.png';
+import success from '../../../resources/images/success.png';
+import error from '../../../resources/images/error.png';
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -52,12 +55,12 @@ export default function ForgotPassword() {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 700,
-    height: 300,
+    width: 500,
+    height: 600,
     bgcolor: 'background.paper',
     border: '0',
     boxShadow: 10,
-    p: 4,
+    borderRadius:'50px'
   };
   return (
     <div className="body">
@@ -94,7 +97,15 @@ export default function ForgotPassword() {
           onClose={() => setViewError(false)}
         >
           <Box sx={style}>
-            {viewErrorText}
+            <h3 style={{textAlign:'center',marginTop:'10%'}}>ERROR</h3>
+            <img src={error} width={100} className='decoImage' />
+            <br/>
+            <h5 style={{marginTop:'20%',textAlign:'center'}}> {viewErrorText} </h5>
+            <div className='curvedCornerLoudSpeaker' />
+            <div className='decoImageLoduspeakerContainer'>
+              <img src={loudspeaker} width={300} className='decoImageLoudspeaker' />
+            </div>
+
           </Box>
         </Modal>
 
