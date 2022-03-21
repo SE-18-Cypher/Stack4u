@@ -1,5 +1,5 @@
 import React from 'react';
-import './Output.css';
+import './output.css';
 import mainpageFooter from './../../resources/images/mainPage/mainpageFooter.png';
 import mainpageFooterStack4uLogo from './../../resources/images/mainPage/mainpageFooterStack4uLogo.png';
 import NavBar from '../navBar/NavBar';
