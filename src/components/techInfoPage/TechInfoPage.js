@@ -12,7 +12,7 @@ export default function TechInfoPage() {
   const navigate = useNavigate();
   document.title = "stack4u-TechnologyInformation";
 
-  const user = localStorage.getItem("user");
+  const user = sessionStorage.getItem("user");
 
   const [loggedIn, setLoggedIn] = useState(false);
   React.useEffect(() => {

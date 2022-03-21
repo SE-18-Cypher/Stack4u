@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router';
 
 export default function CommonProfile() {
-    const user = localStorage.getItem("user");
+    const user = sessionStorage.getItem("user");
     const navigate = useNavigate();
 
     React.useEffect(() => {

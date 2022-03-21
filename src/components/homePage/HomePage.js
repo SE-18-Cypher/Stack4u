@@ -20,33 +20,43 @@ import { getStorage } from "firebase/storage";
 const fileTypes = ["JPEG", "PDF"];
 
 export default function HomePage() {
-    const user = localStorage.getItem("user");
-    
+    const user = sessionStorage.getItem("user");
+    const guser = sessionStorage.getItem("guser");
+    console.log(guser)
+    const guserFN = sessionStorage.getItem("guserFirstName");
+    const guserLN = sessionStorage.getItem("guserSecondName");
     const navigate = useNavigate();
 
     React.useEffect(() => {
         if (user === '0') {
             navigate('/access_error')
         }
-    },)
+    })
 
     const [rememberMe, setRememberMe] = React.useState(true);
-    const remember = localStorage.getItem("rememberMe");
+    const remember = sessionStorage.getItem("rememberMe");
     React.useEffect(() => {
         if (remember === 'false') {
             setRememberMe(false)
         }
         console.log(rememberMe)
-    },[rememberMe])
+    }, [rememberMe])
 
     window.onbeforeunload = closingCode;
     function closingCode() {
-        if (!rememberMe) {
-            localStorage.setItem("user", null);
-            localStorage.setItem("guser", null);
-            localStorage.setItem("guserFirstName", null);
-            localStorage.setItem("guserSecondName", null);
+        if (rememberMe) {
+            console.log("Storing the values")
+            localStorage.setItem("user", user);
+            localStorage.setItem("guser", guser);
+            localStorage.setItem("guserFirstName", guserFN);
+            localStorage.setItem("guserSecondName", guserLN);
         }
+        // else{
+        //     sessionStorage.setItem("user", null);
+        //     sessionStorage.setItem("guser", null);
+        //     sessionStorage.setItem("guserFirstName", null);
+        //     sessionStorage.setItem("guserSecondName", null);
+        // }
     }
 
     const [file, setFile] = React.useState('');
@@ -91,7 +101,7 @@ export default function HomePage() {
             {/* <div className='commonbg' /> */}
 
             <div className='mainPageContent'>
-                <div style={{ color: 'white' }}>
+                <div className='mainPageImage'>
                     <img src={mainpageBackground} alt='decoration background' className='mainPageBackground' />
                     <div className="content-left">
                         <p className='mainPageBackgroundHeader'>Technology Stack <br /> Recommender</p>
@@ -154,7 +164,7 @@ export default function HomePage() {
                         <img src={mainpageFooterStack4uLogo} alt='stack4u logo' />
                     </a>
                     <h6 >We present a web based technology stack <br /> recommendation system</h6>
-                    <br />                   
+                    <br />
                     <a href="https://www.facebook.com/Stack4u-111840144770759">
                         <img src={fblogo} alt="fblogo" style={{ height: '5%', width: '5%' }} />
                     </a>
@@ -163,7 +173,7 @@ export default function HomePage() {
 
                     <a href="aboutus"> About us</a>
                     <br />
-                    <a href="Contactus"> Contact us </a>                    
+                    <a href="Contactus"> Contact us </a>
                     <br />
                     <br />
                     <p className='copy'> Copyright © All rights reserved </p>

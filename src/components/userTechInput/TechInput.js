@@ -36,7 +36,7 @@ import { useNavigate } from 'react-router';
 
 export default function TechInput() {
 
-    const user = localStorage.getItem("user");
+    const user = sessionStorage.getItem("user");
     const navigate = useNavigate();
 
     React.useEffect(() => {

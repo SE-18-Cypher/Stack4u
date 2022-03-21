@@ -16,6 +16,11 @@ import { useNavigate } from "react-router";
 export default function Common() {
     const navigate = useNavigate();
 
+    localStorage.setItem("user", null);
+    localStorage.setItem("guser", null);
+    localStorage.setItem("guserFirstName", null);
+    localStorage.setItem("guserSecondName", null);
+    
     const [view, setView] = useState(true);
     const toggleView = () => setView((view) => !view);
 
