@@ -1,0 +1,131 @@
+.bk2{
+    background: linear-gradient(58deg, rgba(17, 138, 225, 0.43) 13.78%, rgba(22, 142, 229, 0.687012) 89.33%, rgba(28, 147, 234, 0.95) 107.25%);
+}
+.commonbg2{
+    
+    height: 100%;
+    position: fixed;
+    /* top: 0;
+    left: 0; */
+    
+    margin-left: 120px;
+    margin-right: 120px;
+    width: 84.5%;
+    /* background: linear-gradient(58deg, rgba(17, 138, 225, 0.43) 13.78%, rgba(22, 142, 229, 0.687012) 89.33%, rgba(28, 147, 234, 0.95) 107.25%); */
+    
+    /* background-image: linear-gradient(113.86deg, #FFFFFF 19.97%, rgba(28, 147, 234, 0.95) 106.91%); */
+}
+.mainPageContent2{
+    
+    
+    margin-left: 5%;
+    margin-bottom:10%;
+    
+    margin-top: 4.3% ;
+    
+    
+    position: relative;
+    width: 42%;
+    height: 550px;
+    background-color: #FFFFFF;
+    border-radius: 4%;
+}
+
+.mainPageContent3{
+    
+    margin-left:52%;
+    margin-bottom:10%;
+
+    margin-top: -46.2% ;
+    
+    position: relative;
+    width: 42%;
+    height: 550px;
+    background-color: #ffffff;
+    border-radius: 4%;
+    
+
+}
+
+.bkimage {
+    margin-top: -460px;
+    margin-bottom: 10px;
+    position: relative;
+    margin-left: 510px;
+
+}
+
+
+
+
+.dragAndDropOutsideContainer2{
+    position: relative;
+    width: 72%;
+    height: 650px;
+    border-radius: 5%;
+    background-color: #FFFFFF;
+    margin: auto;
+    margin-top: 2.3%;
+    margin-bottom: 10%;
+}
+
+.uploader2{
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+}
+
+
+
+
+
+
+.footerMainPage2{
+    position: relative;
+    color: white;
+    margin-top: -5%;
+    
+}
+.footerImage2{
+    width: 100%;
+    height:300px;
+    opacity: 0.5;
+}
+
+.content-left3 {
+    position: absolute;
+    top: 6%;
+    left: 3%;
+    margin-left: 105px;
+          
+}
+
+
+
+
+
+
+.content-right3 {
+    position: absolute;
+    top: 25%;
+    right: 5%;
+    padding-right: 10%;
+}
+
+
+
+.mainPageGetStartedButton2{
+    margin-left: 3%;
+    margin-top: 4%;
+    
+}
+
+
+.content-right2 {
+    position: absolute;
+    top: 9%;
+    right: 10%;
+    
+}
+
+
