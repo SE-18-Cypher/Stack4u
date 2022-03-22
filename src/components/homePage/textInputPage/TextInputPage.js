@@ -7,7 +7,7 @@ export default function TextInputPage() {
   const navigate = useNavigate();
 
     React.useEffect(() => {
-        if (user === '0') {
+        if (user === null) {
             navigate('/access_error')
         }
     },)

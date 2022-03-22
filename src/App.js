@@ -15,8 +15,8 @@ import ContactusPage from './components/contactUs/ContactusPage';
 import Feedback from './components/feedback/Feedback';
 import ConstructionPage from './components/constructionPage/ConstructionPage';
 import AboutusPage from './components/aboutUs/AboutusPage';
-import Output from './components/outputpage/output';
 import TechInput from './components/userTechInput/TechInput';
+import OutputPage from './components/outputpage/OutputPage';
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
           <Route path="/aboutus" element={<AboutusPage />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/techinput" element={<TechInput />} />
-          <Route path="/output" element={<Output />} />
+          <Route path="/output" element={<OutputPage />} />
           <Route path="/constructionPage" element={<ConstructionPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

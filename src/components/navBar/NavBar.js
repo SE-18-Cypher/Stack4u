@@ -26,11 +26,7 @@ const NavBar = (props) => {
     var user2 = sessionStorage.getItem("guser");
     console.log(user2)
     React.useEffect(() => {
-        if (user2 !== 'null') {
-            const img = document.getElementById('myimg');
-            img.setAttribute('src', user2);
-        }
-        else {
+        if (user2 === null || user2 === 'null') {
             getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
                 .then((url) => {
                     const img = document.getElementById('myimg');
@@ -39,6 +35,12 @@ const NavBar = (props) => {
                 .catch((error) => {
                     console.log(error)
                 });
+
+        }
+        else {
+            const img = document.getElementById('myimg');
+            img.setAttribute('src', user2);
+            console.log(user2)
         }
     }, [])
 
@@ -46,15 +48,8 @@ const NavBar = (props) => {
     const storage = getStorage();
 
     function logout() {
-        sessionStorage.setItem("user", null);
-        sessionStorage.setItem("guser", null);
-        sessionStorage.setItem("guserFirstName", null);
-        sessionStorage.setItem("guserSecondName", null);
-        localStorage.setItem("user", null);
-        localStorage.setItem("guser", null);
-        localStorage.setItem("guserFirstName", null);
-        localStorage.setItem("guserSecondName", null);
-        console.log(localStorage.getItem("user"));
+        sessionStorage.clear();
+        localStorage.clear();
         navigate('/login')
         window.location.reload()
     }

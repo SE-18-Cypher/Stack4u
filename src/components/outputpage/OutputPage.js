@@ -1,40 +1,34 @@
 import React from 'react';
-import './Output.css';
+import './OutputPage.css';
 import mainpageFooter from './../../resources/images/mainPage/mainpageFooter.png';
 import mainpageFooterStack4uLogo from './../../resources/images/mainPage/mainpageFooterStack4uLogo.png';
 import NavBar from '../navBar/NavBar';
 import fblogo from '../../resources/images/facebook.png';
 import Feedback from '../feedback/Feedback';
-import output from './../../resources/images/output.png'; 
+import output from './../../resources/images/output.png';
 
 
-export default function Output() {
-
+export default function OutputPage() {
     return (
-
         <div className='bk2'>
-            <NavBar />        
-                    <div className='Contentt'>
-                        <div className='mainPageContent2' >
-                            <div className='text1'>
-                                <h3 style={{textAlign:'center', paddingTop:'30px',fontFamily:'calibri',color:'#037ED7',fontSize:'35px'}}> Suitable Stack</h3>
-                            </div>                           
-                             </div>
-                                                        
-                        <div className='mainPageContent3' > 
-                            <div className='text1'>
-                                <h3 style={{textAlign:'center', paddingTop:'30px',fontFamily:'calibri',color:'#037ED7',fontSize:'35px' }}> User Preferred Stack</h3>
-                            </div>
-                        </div>                        
+            <NavBar />
+            <div className='Contentt'>
+                <div className='mainPageContent2' >
+                    <div className='text1'>
+                        <h3 style={{ textAlign: 'center', paddingTop: '30px', fontFamily: 'calibri', color: '#037ED7', fontSize: '35px' }}> Suitable Stack</h3>
                     </div>
+                </div>
 
-                    <div className='bkimage'>
-                            <img src={output} width="450px" />
-                        </div>
+                <div className='mainPageContent3' >
+                    <div className='text1'>
+                        <h3 style={{ textAlign: 'center', paddingTop: '30px', fontFamily: 'calibri', color: '#037ED7', fontSize: '35px' }}> User Preferred Stack</h3>
+                    </div>
+                </div>
+            </div>
 
-
-                                                       
-
+            <div className='bkimage'>
+                <img src={output} width="450px" />
+            </div>
             <div className='footerMainPage2'>
                 <div style={{ backgroundColor: '#045794C9' }}>
                     <img src={mainpageFooter} alt='decoration - circuitboard' className='footerImage' />
@@ -62,7 +56,7 @@ export default function Output() {
                     <p className='copy2'> Copyright © All rights reserved </p>
                 </div>
             </div>
-           <Feedback/>
+            <Feedback />
         </div>
 
     )

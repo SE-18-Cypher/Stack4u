@@ -10,7 +10,7 @@ export default function CommonProfile() {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        if (user === '0') {
+        if (user === null) {
             navigate('/access_error')
         }
     },)
