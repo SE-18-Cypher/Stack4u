@@ -17,6 +17,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { Modal } from '@mui/material';
+
+import loudspeaker from '../../../resources/images/loudspeaker.png';
+import error from '../../../resources/images/error.png';
+import cape from '../../../resources/images/astronautCape.png';
 
 const theme = createTheme();
 
@@ -68,7 +73,17 @@ export default function Signin() {
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error.code)
+        if (error.code === 'auth/invalid-email'){
+          setErrorText("Invalid Email")
+        }
+        if (error.code === 'auth/user-not-found'){
+          setErrorText("User Not Found Email")
+        }
+        if (error.code === 'auth/invalid-email'){
+          setErrorText("Incorrect Password")
+        }
+        setErrorBox(true);
       });
   }
 
@@ -102,8 +117,37 @@ export default function Signin() {
 
   const [rememberMe, setRememberMe] = React.useState(false);
   const toggleRememberMe = () => setRememberMe((rememberMe) => !rememberMe);
+  
+  const [errorText, setErrorText] = React.useState("");
+
+  const [errorBox, setErrorBox] = React.useState(false);
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    height: 600,
+    bgcolor: 'background.paper',
+    borderRadius: '50px'
+  };
+
   return (
     <div>
+      <Modal
+          open={errorBox}
+          onClose={() => setErrorBox(false)}
+        >
+          <Box sx={style}>
+            <h3 style={{ textAlign: 'center', marginTop: '10%', fontSize:30, fontWeight:'bold' }}>ERROR</h3>
+            <img src={error} width={80} className='decoImage' />
+            <br />
+            <h5 style={{ marginTop: '20%', textAlign: 'center', fontSize:30, fontWeight:'bold' }}> {errorText}  </h5>
+            <div>
+              <img src={cape} width={300} className='decoImageLoudspeaker' style={{marginTop:-50,marginLeft:35}}/>
+            </div>
+          </Box>
+        </Modal>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
