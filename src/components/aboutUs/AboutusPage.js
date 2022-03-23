@@ -50,7 +50,7 @@ export default function AboutusPage() {
                     <h2 className="aboutUsTopic" style={{ fontWeight: 'bold', fontFamily: 'calibri', color: 'white' }}>About Us</h2>
                 </div>
                 <div className='Ourstory'>
-                    <div className='container1'><h3 className="aboutUsContent">Our Story</h3>
+                    <div className='container1'><h4 className="aboutUsContent">Our Story</h4>
                         <p>We are a group of 2nd-year undergraduates who are currently following the  BEng(Hons) Software Engineering degree at the informatics
                             Institute of Technology. As our second-year Software Development Group Project, We were asked to come up with an innovative solution
                             to solve real-world problems, covering the aspects of Data Science, Blockchain, Gaming, Cyber Security, Identity, and access
@@ -60,7 +60,7 @@ export default function AboutusPage() {
                         </p>
                     </div>
 
-                    <div className='container2'> <h3 className="aboutUsContent">About our Project</h3>
+                    <div className='container2'> <h4 className="aboutUsContent">About our Project</h4>
                         <p>In the software development industry, it's common to have new technologies, standards, and common practices change from time to time.
                             Sometimes it can be a bit harsh on new developers. When a new developer enters the industry it would be really helpful to have a tool
                             to generate a technology stack according to a specific requirement. And it also considers user preferences when generating
@@ -73,7 +73,7 @@ export default function AboutusPage() {
                             nowadays constantly want to evolve and learn new technologies.
                         </p>
 
-                        <h5 style={{ textAlign: 'center', paddingTop: 70 }}>Scroll down {'>>>>>>'}</h5>
+                        <h5 style={{ textAlign: 'center', paddingTop: 4 }}>Scroll down {'>>>>>>'}</h5>
                     </div>
                 </div>
             </div>
