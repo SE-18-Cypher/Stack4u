@@ -18,8 +18,6 @@ import { useNavigate } from "react-router";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { Modal } from '@mui/material';
-
-import loudspeaker from '../../../resources/images/loudspeaker.png';
 import error from '../../../resources/images/error.png';
 import cape from '../../../resources/images/astronautCape.png';
 
@@ -62,7 +60,6 @@ export default function Signin() {
     checkAuth(data);
   };
 
-
   function signInWithEmail() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
@@ -80,7 +77,7 @@ export default function Signin() {
         if (error.code === 'auth/user-not-found'){
           setErrorText("User Not Found Email")
         }
-        if (error.code === 'auth/invalid-email'){
+        if (error.code === 'auth/wrong-password'){
           setErrorText("Incorrect Password")
         }
         setErrorBox(true);
@@ -102,7 +99,8 @@ export default function Signin() {
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error.message);
+        setErrorText("Login Error");
+        setErrorBox(true);
       });
   }
 
