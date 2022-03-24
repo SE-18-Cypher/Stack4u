@@ -16,17 +16,21 @@ import app from '../../../Firebase-config';
 import { Modal } from "@mui/material";
 import error from '../../../resources/images/error.png';
 import cape from '../../../resources/images/astronautCape.png';
+import { addDoc, collection, doc, getDoc, setDoc,onSnapshot, query, updateDoc } from "firebase/firestore";
+import { getFirestore } from "@firebase/firestore";
 
 const theme = createTheme();
 
 export default function Signup() {
-
     const navigate = useNavigate();
     document.title = "stack4u/SignUp";
     const provider = new GoogleAuthProvider();
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    
+    const [firstName, setFirstName] = React.useState('');
+    const [lastName, setLastName] = React.useState('');
 
     const checkAuth = (data) => {
         if (data.get('password').length < 7) {
@@ -82,12 +86,14 @@ export default function Signup() {
         signUpWithEmail();
     };
 
-    function signUpWithEmail() {
-        const auth = getAuth();
+    const signUpWithEmail = async () =>{
+        const auth = getAuth(app);
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                // const user = userCredential.user;
+            .then((res) => {
+                const user = res.user;
+                console.log(res);
+                console.log(user);
+                addUser(user);
                 navigate("/techinput");
             })
             .catch((error) => {
@@ -110,15 +116,51 @@ export default function Signup() {
         const auth = getAuth(app);
         signInWithPopup(auth, provider)
             .then((result) => {
+
                 localStorage.setItem("user", result.user.uid);
                 localStorage.setItem("guser", result.user.photoURL);
+                let text = result.user.displayName;
+                const nameArray = text.split(" ");
+                const user = result.user;
+                addGoogleUser(user,nameArray[0],nameArray[1]);
+                sessionStorage.setItem("user", result.user.uid);
+                sessionStorage.setItem("guser", result.user.photoURL);
                 console.log(result.user.photoURL)
+
+                // sessionStorage.setItem("user", result.user.uid);
+                // sessionStorage.setItem("guser", result.user.photoURL);
+                // let text = result.user.displayName;
+                // const myArray = text.split(" ");
+                // sessionStorage.setItem("guserFirstName", myArray[0]);
+                // sessionStorage.setItem("guserSecondName", myArray[1]);
+                // sessionStorage.setItem("rememberMe", rememberMe);
                 navigate("/techinput");
             })
             .catch((error) => {
                 console.log(error);
             });
     }
+
+    const database = getFirestore(app);
+    const addUser = async (user) => {
+        const ref = doc(database, 'Users', user.uid);
+        await setDoc(ref, {
+            userID    : user.uid,
+            firstName : firstName,
+            lastName  : lastName,
+            email     : user.email
+        });
+    };
+
+    const addGoogleUser = async (user,fname,lname) => {
+        const ref = doc(database, 'Users', user.uid);
+        await setDoc(ref, {
+            userID    : user.uid,
+            firstName : fname,
+            lastName  : lname,
+            email     : user.email
+        });
+    };
 
     const [validFName, setValidFName] = React.useState(true);
     const [fNameHelpertext, setFNameHelpertext] = React.useState("");
@@ -195,6 +237,8 @@ export default function Signup() {
                                         fullWidth
                                         id="firstName"
                                         label={firstNameLabelName}
+                                        value={firstName}
+                                        onChange={(e) => setFirstName(e.target.value)}
                                         autoFocus
                                     />
                                 </Grid>
@@ -206,6 +250,8 @@ export default function Signup() {
                                         fullWidth
                                         id="lastName"
                                         label={lastNameLabelName}
+                                        value={lastName}
+                                        onChange={(e) => setLastName(e.target.value)}
                                         name="lastName"
                                         autoComplete="family-name"
                                     />
@@ -239,7 +285,7 @@ export default function Signup() {
                                 </Grid>
                             </Grid>
                             <Button
-                                // type="submit"
+                                type="submit"
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
