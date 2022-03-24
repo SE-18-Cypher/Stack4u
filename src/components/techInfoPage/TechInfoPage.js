@@ -14,12 +14,15 @@ export default function TechInfoPage() {
 
   const user = sessionStorage.getItem("user");
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   React.useEffect(() => {
-    if (user !== '0') {
-      setLoggedIn(true)
+    console.log(user === 'null')
+    console.log(user === null)
+    if (user === null) {
+      setLoggedIn(false)
     }
-  },[user])
+    console.log(loggedIn)
+  },[user,loggedIn])
 
   const [frontendView, setFrontendView] = useState(true);
   const [backendView, setBackendView] = useState(false);

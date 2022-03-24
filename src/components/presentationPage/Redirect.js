@@ -7,18 +7,16 @@ import Home from './../homePage/HomePage';
 export default function Redirect() {
     const [view, setView] = useState(0);
 
-    // sessionStorage.setItem("user", null);
-    // sessionStorage.setItem("guser", null);
-    console.log(sessionStorage.getItem("guser"))
-    // sessionStorage.setItem("guserFirstName", null);
-    // sessionStorage.setItem("guserSecondName", null);
     const loggedInUser = localStorage.getItem("user");
-    const loggedInUserg = localStorage.getItem("guser");
     const ssloggedInUser = sessionStorage.getItem("user");
-    const ssloggedInUserg = sessionStorage.getItem("guser");
 
-    console.log(ssloggedInUser)
-    console.log(ssloggedInUserg)
+    // console.log(sessionStorage.getItem("guser"))
+    // console.log(loggedInUser)
+    // const loggedInUserg = localStorage.getItem("guser");
+    // console.log(ssloggedInUser)
+    // const ssloggedInUserg = sessionStorage.getItem("guser");
+
+   
     setTimeout(function () {
         if (view < 3) {
             setView(view + 1);
@@ -29,11 +27,14 @@ export default function Redirect() {
         if (view < 3) {
             return <PresentationPage />
         }
-        if (ssloggedInUserg !== null &&  ssloggedInUser !== null) {
+        if (ssloggedInUser !== null){
             return <Home />
         }
-        if (loggedInUser === 'null' || loggedInUser === null) {
+        if (loggedInUser === null || loggedInUser === 'null') {
             return <Common />
+        }
+        if (loggedInUser !== null && loggedInUser !== 'null'){
+            return <Home />
         }
     }
     return (

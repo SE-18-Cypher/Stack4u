@@ -20,6 +20,7 @@ import { getStorage } from "firebase/storage";
 const fileTypes = ["JPEG", "PDF"];
 
 export default function HomePage() {
+    const localUser = localStorage.getItem("user");
     const user = sessionStorage.getItem("user");
     const guser = sessionStorage.getItem("guser");
     console.log(guser)
@@ -28,7 +29,7 @@ export default function HomePage() {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        if (user === '0') {
+        if (user === null && localUser === null) {
             navigate('/access_error')
         }
     })
@@ -47,9 +48,9 @@ export default function HomePage() {
         if (rememberMe) {
             console.log("Storing the values")
             localStorage.setItem("user", user);
-            localStorage.setItem("guser", guser);
-            localStorage.setItem("guserFirstName", guserFN);
-            localStorage.setItem("guserSecondName", guserLN);
+            // localStorage.setItem("guser", guser);
+            // localStorage.setItem("guserFirstName", guserFN);
+            // localStorage.setItem("guserSecondName", guserLN);
         }
         // else{
         //     sessionStorage.setItem("user", null);
@@ -94,6 +95,7 @@ export default function HomePage() {
 
     const testRef = React.useRef(null);
     const scrollToElement = () => testRef.current.scrollIntoView();
+    console.log(user)
     return (
 
         <div className='bk'>

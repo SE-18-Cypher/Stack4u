@@ -101,12 +101,24 @@ export default function Signup() {
         const auth = getAuth(app);
         signInWithPopup(auth, provider)
             .then((result) => {
+
                 localStorage.setItem("user", result.user.uid);
                 localStorage.setItem("guser", result.user.photoURL);
                 let text = result.user.displayName;
                 const nameArray = text.split(" ");
                 const user = result.user;
                 addGoogleUser(user,nameArray[0],nameArray[1]);
+                sessionStorage.setItem("user", result.user.uid);
+                sessionStorage.setItem("guser", result.user.photoURL);
+                console.log(result.user.photoURL)
+
+                // sessionStorage.setItem("user", result.user.uid);
+                // sessionStorage.setItem("guser", result.user.photoURL);
+                // let text = result.user.displayName;
+                // const myArray = text.split(" ");
+                // sessionStorage.setItem("guserFirstName", myArray[0]);
+                // sessionStorage.setItem("guserSecondName", myArray[1]);
+                // sessionStorage.setItem("rememberMe", rememberMe);
                 navigate("/techinput");
             })
             .catch((error) => {
