@@ -1,0 +1,28 @@
+/* body {
+    background: linear-gradient(113.22deg, rgba(28, 147, 234, 0.95) -17.22%, #FFFFFF 90.6%);
+    background-position: center;
+    margin: 10%;
+} */
+
+.divP {
+    /* background-position: center; */
+    margin: 10%
+}
+
+.divM{
+    background: linear-gradient(113.22deg, rgba(28, 147, 234, 0.95) -17.22%, #FFFFFF 90.6%);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.paper{
+    position: relative;
+    padding: 30px;
+}
+
+#pht{
+    position: absolute;
+    margin-left: 1200px;
+    margin-right: 600px;
+}
