@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TechInfoPage from './components/techInfoPage/TechInfoPage';
 import Common from './components/login/common/Common';
 import ForgotPassword from './components/login/signin/ForgotPassword';
-import CommonProfile from './components/profile/commonProfile/commonProfile';
+import CommonProfile from './components/profile/CommonProfile';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Forum from './components/forum/Forum';
 import HomePage from './components/homePage/HomePage';

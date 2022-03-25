@@ -22,9 +22,8 @@ const settings = ['Account', 'Logout'];
 
 
 const NavBar = (props) => {
-
+    
     var user2 = sessionStorage.getItem("guser");
-    console.log(user2)
     React.useEffect(() => {
         if (user2 === null || user2 === 'null') {
             getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
