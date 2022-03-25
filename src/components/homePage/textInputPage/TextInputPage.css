@@ -3,13 +3,16 @@
     padding : 0; 
     
 }
-
 .textinput{
     margin-left:3%;
     margin-right:8%;
     margin-top: 6%;
-    width: 95%;
-
-    
-    
+    width: 75%;
+}
+.select{
+    float: right;
+}
+.description{
+    float: left;
+    width: 75%;
 }
