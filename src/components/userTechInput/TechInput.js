@@ -4,7 +4,7 @@ import bg from './../../resources/images/image.png';
 
 import { Button } from '@mui/material';
 import { getFirestore } from "@firebase/firestore";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import app from './../../Firebase-config';
 
 import reactLogo from './../../resources/images/techpage/frontend/reactLogo.png';
@@ -44,7 +44,6 @@ export default function TechInput() {
 
     // const ref = collection(database, "UserTechInfo");
     const ref = doc(database, 'UserTechInfo', user);
-    
 
     React.useEffect(() => {
         if (user === '0') {
@@ -92,10 +91,10 @@ export default function TechInput() {
         [xMark, 'Not Selected']
     ];
 
-    const [frontendView, setFrontendView] = React.useState(true);               //to view the web frontend technologies
+    const [frontendView, setFrontendView] = React.useState(true);                //to view the web frontend technologies
     const [mobileFrontendView, setMobileFrontendView] = React.useState(false);   //to view the mobile frontend technologies
-    const [backendView, setBackendView] = React.useState(false);                //to view the backend technologies
-    const [databaseView, setDatabaseView] = React.useState(false);              //to view the database technologies
+    const [backendView, setBackendView] = React.useState(false);                 //to view the backend technologies
+    const [databaseView, setDatabaseView] = React.useState(false);               //to view the database technologies
 
     function switchFrontend() {
         setFrontendView(true);
@@ -133,28 +132,66 @@ export default function TechInput() {
     const [selectedBackendTech, setSelectedBackendTech] = React.useState(7);
     const [selectedDatabaseTech, setSelectedDatabaseTech] = React.useState(6);
 
-    React.useEffect(() => {
-        if (selectedFrontendTech !== 5 && selectedMobileFrontendTech !== 6 && selectedBackendTech !== 7 && selectedDatabaseTech !== 6) {
-            toggleConfirm();
-        }
-    }, [selectedFrontendTech, selectedMobileFrontendTech, selectedBackendTech, selectedDatabaseTech])
-
     function getTechInput() {
-        console.log(frontendTech[selectedFrontendTech][1])
-        console.log(frontendMobileTech[selectedMobileFrontendTech][1])
-        console.log(backendTech[selectedBackendTech][1])
-        console.log(databaseTech[selectedDatabaseTech][1])
-        submitQuery();
-        navigate('/home');
+        if (selectedFrontendTech === 5) {
+            alert("Choose Technology")
+        }
+        if (selectedMobileFrontendTech === 6) {
+            alert("Choose Technology")
+        }
+        if (selectedBackendTech === 7) {
+            alert("Choose Technology")
+        }
+        if (selectedDatabaseTech === 6) {
+            alert("Choose Technology")
+        }
+        else {
+            submitQuery();
+            navigate('/home');
+        }
     }
     const submitQuery = async () => {
         await setDoc(ref, {
-            frontendWeb    : frontendTech[selectedFrontendTech][1],
-            frontendMobile : frontendMobileTech[selectedMobileFrontendTech][1],
-            backend        : backendTech[selectedBackendTech][1],
-            database       : databaseTech[selectedDatabaseTech][1]
+            frontendWeb: frontendTech[selectedFrontendTech][1],
+            frontendMobile: frontendMobileTech[selectedMobileFrontendTech][1],
+            backend: backendTech[selectedBackendTech][1],
+            database: databaseTech[selectedDatabaseTech][1]
         });
     };
+
+    const docRef = doc(database, "UserTechInfo", user);
+    const getUserDetails = async () => {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            for (var i = 0; i < backendTech.length; i++) {
+                if (backendTech[i][1] == docSnap.data().backend) {
+                    setSelectedBackendTech(i)
+                }
+            }
+            for (var i = 0; i < frontendTech.length; i++) {
+                if (frontendTech[i][1] == docSnap.data().frontendWeb) {
+                    setSelectedFrontendTech(i)
+                }
+            }
+            for (var i = 0; i < frontendMobileTech.length; i++) {
+                if (frontendMobileTech[i][1] == docSnap.data().frontendMobile) {
+                    setSelectedMobileFrontendTech(i)
+                }
+            }
+            for (var i = 0; i < databaseTech.length; i++) {
+                if (databaseTech[i][1] == docSnap.data().database) {
+                    setSelectedDatabaseTech(i)
+                }
+            }
+        } else {
+            console.log("No such document!");
+        }
+    }
+
+    React.useEffect(() => {
+        getUserDetails()
+    }, [selectedBackendTech])
+
 
     return (
         <div>
@@ -329,7 +366,7 @@ export default function TechInput() {
             </div>
             <div className='choiceButtons'>
                 <Button variant='contained' style={{ margin: 10, padding: 5 }} onClick={() => navigate("/home")}> Skip </Button>
-                <Button variant='contained' style={{ margin: 10, padding: 5 }} disabled={confirm} onClick={() => getTechInput()}> Confirm </Button>
+                <Button variant='contained' style={{ margin: 10, padding: 5 }} onClick={() => getTechInput()}> Confirm </Button>
             </div>
         </div >
     )
