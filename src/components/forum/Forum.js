@@ -18,7 +18,7 @@ import { addDoc, collection, doc, getDoc, onSnapshot, query, updateDoc } from "f
 import { useNavigate } from 'react-router';
 
 export default function Forum() {
-  const user = localStorage.getItem("user");
+  const user = sessionStorage.getItem("user");
   const navigate = useNavigate();
   React.useEffect(() => {
       if (user === '0') {
@@ -163,11 +163,11 @@ export default function Forum() {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 700,
+    transform:'translate(-50%, -50%)',
+    width: 700 ,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
+    // border: '2px solid #000',
+    // boxShadow: 24 ,
     overflow: 'scroll',
     height: 500,
     p: 4,
@@ -175,14 +175,15 @@ export default function Forum() {
 
   const style2 = {    //style setting for add comment for query modal 
     position: 'absolute',
-    top: '50%',
-    left: '50%',
+    top: '45%',
+    left: '50%',  
     transform: 'translate(-50%, -50%)',
-    width: 700,
+    width: 700, 
     bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+    // border: '2px solid #000',
+    // boxShadow: 24,
+    p: 4,         
+
   };
 
   return (
@@ -192,7 +193,7 @@ export default function Forum() {
       <NavBar uidValue={user} />
         <div className="commonOppBg" />
         <div style={{ position: 'relative' }}>
-          <h1 style={{ textAlign: 'center' }}>Forum</h1>
+          <h1 style={{ textAlign: 'center', paddingTop:'2%',  fontSize:'30px',  }}>FORUM </h1>
           {allForumQueries.forumData && allForumQueries.forumData.map((eachContent, index) =>
           (
             <div className="eachQuery" key={index}>
@@ -205,10 +206,10 @@ export default function Forum() {
                 }}
               >
                 {/* <img src={eachContent.profilePicture} width={40} alt="profile figure" style={{float:'left'}}/> */}
-                <h3 style={{ marginLeft: 50, wordWrap: 'break-word' }} > {eachContent.topicname} </h3>
-                <br />
-                <p style={{ wordWrap: 'break-word' }}> {eachContent.topicdesc} </p>
-                <div>
+                <h5 style={{ marginLeft: '2.5%',paddingTop:'1.7%', wordWrap: 'break-word' }} > {eachContent.topicname} </h5>
+                <br />  
+                <p style={{ wordWrap: 'break-word',  marginLeft: '2.5%', marginTop:'-1.7%' }}> {eachContent.topicdesc} </p>
+                <div className='button'>
                   {eachContent.currentuserliked ? (
                     <Button> <FavoriteIcon /> {eachContent.likes} </Button>
                   ) : (
@@ -224,10 +225,9 @@ export default function Forum() {
               <Box sx={style}>
                 <CloseIcon onClick={toggleView} style={{ float: 'right' }} />
                 {/* <img src={docClicked.profilePicture} width={40}  alt="profile figure" style={{float:'left'}}/> */}
-                <h3 style={{ marginLeft: 50, wordWrap: 'break-word' }}> {clickedQuery.topicname} </h3>
-                <br />
+                <h4 style={{ wordWrap: 'break-word' }}> {clickedQuery.topicname} </h4>                
                 <p style={{ wordWrap: 'break-word' }}> {clickedQuery.topicdesc} </p>
-                <div>
+                <div className='buttonsinside'>
                   <Button
                     onClick={() => {
                       updateLike(docClicked, clickedQuery.likes, clickedQuery.currentuserliked);
@@ -237,22 +237,24 @@ export default function Forum() {
                       <FavoriteIcon />
                     ) : (
                       <FavoriteBorderIcon />
-                    )}
+                    )}                 
                     {clickedQuery.likes}
+                    <br/>
                   </Button>
-                  <Button
+                  <Button 
                     onClick={() => {
                       addComment();
                       setCommentCount(clickedQuery.com);
-                    }}
-                  > <CommentIcon /> {clickedQuery.com} </Button>
-                </div>
+                    }}  
+                  > <CommentIcon /> {clickedQuery.com} </Button>                  
+                </div> 
+                <br/> 
                 {eachQueryComments.allQueryArray && eachQueryComments.allQueryArray.map((eachQuery, index) =>
                 (
                   <div key={index}>
                     {/* <img src={eachComment.profilePicture} width={30}  alt="profile figure" style={{float:'left'}}/> */}
-                    <h6 style={{ marginLeft: 50, wordWrap: 'break-word' }}> {eachQuery.name} </h6>
-                    <p style={{ marginLeft: 50, wordWrap: 'break-word' }}> {eachQuery.desc} </p>
+                    <h6 style={{  wordWrap: 'break-word' }}> {eachQuery.name} </h6>
+                    <p style={{  wordWrap: 'break-word' }}> {eachQuery.desc} </p>
                     <hr />
                   </div>
                 ))}
@@ -264,7 +266,7 @@ export default function Forum() {
               <Box sx={style2}>
                 <CloseIcon onClick={toggleViewCommentQuery} style={{ float: 'right' }} />
                 <h4>Add Comment</h4>
-                <br />
+                <br/>    
                 <TextField
                   label="Description"
                   multiline
@@ -285,11 +287,11 @@ export default function Forum() {
                 </Button>
               </Box>
             </Modal>
-          )}
+          )}        
         </div>
-        <div className='createPost'>
-          <h4 style={{ marginBottom: 20 }}>Create a post</h4>
-          <h5 style={{ marginBottom: 20 }}>
+        <div className='createPost'>    
+          <h4 style={{ marginBottom: '3%', marginTop:'30%' }}>Create a post</h4>
+          <h5 style={{ marginBottom: '3%', color:'white' }}>
             Enter a name
           </h5>
           <TextField
@@ -299,9 +301,9 @@ export default function Forum() {
             style={{ marginBottom: 20 }}
             value={newQueryName}
             onChange={e => setNewQueryName(e.target.value)}
-          />
+          />  
           <br />
-          <h5 style={{ marginBottom: 20 }}>
+          <h5 style={{ marginBottom: 20, color:'white' }}>
             Enter a description
           </h5>
           <TextField
@@ -320,11 +322,11 @@ export default function Forum() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             style={{ float: 'right' }}
-            onClick={() => {
+            onClick= {() => {
               checkQuery();
             }}
           >
-            SUBMIT
+            SUBMIT 
           </Button>
         </div>
       </div>

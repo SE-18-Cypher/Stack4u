@@ -1,24 +1,28 @@
 .eachQuery{
     width: 50%;
     padding-bottom: 2%;
-    margin-left:7%;
+    margin-left:45%;
     margin-top: 2%;
 }
+
 .createPost{
     position: fixed;
     width: 30%;
     top: 10%;
-    right: 3%;
+    margin-left: 5%;
+}
+.button{
+    padding-bottom: 1%;
+}
+.buttonsinside{
+    margin-left: -1%;
 }
 .commonOppBg{
-    height: 100%;
-
-    position: fixed;
-    top: 50;
-    left: 0;
-    width: 100%;
+    height: 100%;    
+    position: fixed;   
+    width: 100%;   
     overflow: hidden;
-    background: linear-gradient(113.22deg, rgba(28, 147, 234, 0.95) -17.22%, #FFFFFF 90.6%);
+    background: linear-gradient(58deg, rgba(17, 138, 225, 0.43) 13.78%, rgba(22, 142, 229, 0.687012) 89.33%, rgba(28, 147, 234, 0.95) 107.25%);
 }
 .loading{
     opacity: 0.5;
