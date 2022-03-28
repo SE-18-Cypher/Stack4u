@@ -2,8 +2,12 @@ import { TextField } from '@mui/material';
 import React from 'react'
 import { useNavigate } from 'react-router';
 import "./TextInputPage.css";
+import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-export default function BasicButtons() {
+import bg from "./../../resources/images/computerImage.png";
+    
+    
+
 export default function TextInputPage() {
   const user = sessionStorage.getItem("user");
   const navigate = useNavigate();
@@ -36,6 +40,7 @@ export default function TextInputPage() {
     setCurrency(event.target.value);
   };
   return (
+    <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
     <div className='textinput'>
       <div className='description'>
         <TextField
@@ -43,20 +48,24 @@ export default function TextInputPage() {
           label="Please Enter The Requirement Specification"
           fullWidth
           multiline
-          rows={10}
+          rows={30}
           defaultValue={userinput} onChange={(e) => e.target.value}
           variant="filled"
+          
         />
       </div>
 
       <div className='select'>
         <TextField 
+          className='opotions'
           id="outlined-select-currency"
           select
           label="Select"
           value={currency}
           onChange={handleChange}
-          helperText="Please select your platform"
+          helperText="Please select the application you want"
+          
+
         >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -65,18 +74,16 @@ export default function TextInputPage() {
           ))}
         </TextField>
 
-        import Button from '@mui/material/Button';
+        
+        
 
-
-  return (
-    <Stack spacing={2} direction="row">
-      <Button variant="text">Text</Button>
-      <Button variant="contained">Contained</Button>
-      <Button variant="outlined">Outlined</Button>
-    </Stack>
-  );
-}
       </div>
+      <div className='button'>
+        <Button variant="outlined" size="small">
+          Small
+        </Button></div>
+      
+    </div>
     </div>
   )
 }
