@@ -21,6 +21,7 @@ import Tesseract from 'tesseract.js';
 const fileTypes = ["JPEG", "PDF", "JPG", "PNG"];
 
 export default function HomePage() {
+    const storage = getStorage(app);
     const localUser = localStorage.getItem("user");
     const user = sessionStorage.getItem("user");
     const guser = sessionStorage.getItem("guser");
@@ -66,7 +67,7 @@ export default function HomePage() {
         setFile(file);
     };
 
-    const storage = getStorage(app);
+
 
     React.useEffect(() => {
         handleSubmit();
@@ -108,7 +109,7 @@ export default function HomePage() {
             var fileExtension = fileName.split('.').pop();
             console.log(fileExtension)
             if (fileExtension === 'pdf') {
-                console.log("w")
+                
             }
             else {
                 extractText(file);
@@ -130,12 +131,12 @@ export default function HomePage() {
                 setText(result.data.text);
             });
     }
+
+
     return (
 
         <div className='bk'>
             <NavBar uidValue={user} />
-            {/* <div className='commonbg' /> */}
-
             <div className='mainPageContent'>
                 <div className='mainPageImage'>
                     <img src={mainpageBackground} alt='decoration background' className='mainPageBackground' />
