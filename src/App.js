@@ -43,6 +43,7 @@ function App() {
           <Route path="/constructionPage" element={<ConstructionPage />} />
           <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path="/textInputPage" element={<TextInputPage />} />
         </Routes>
       </Router>
     </div>

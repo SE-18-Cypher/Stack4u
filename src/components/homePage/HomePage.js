@@ -182,7 +182,7 @@ export default function HomePage() {
                         <h4 style={{ textAlign: 'center', fontSize: 20 }}> OR </h4>
                         <br />
 
-                        <Button variant='contained' onClick={() => navigate("/constructionPage")}> < span style={{ fontSize: 17 }}> Enter requirement specification manually </span> </Button>
+                        <Button variant='contained' onClick={() => navigate("/TextInputPage")}> < span style={{ fontSize: 17 }}> Enter requirement specification manually </span> </Button>
 
                     </div>
                 </div>
