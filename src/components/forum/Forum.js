@@ -209,7 +209,7 @@ export default function Forum() {
                 <h5 style={{ marginLeft: '2.5%',paddingTop:'1.7%', wordWrap: 'break-word' }} > {eachContent.topicname} </h5>
                 <br />  
                 <p style={{ wordWrap: 'break-word',  marginLeft: '2.5%', marginTop:'-1.7%' }}> {eachContent.topicdesc} </p>
-                <div className='button'>
+                <div className='button2'>
                   {eachContent.currentuserliked ? (
                     <Button> <FavoriteIcon /> {eachContent.likes} </Button>
                   ) : (

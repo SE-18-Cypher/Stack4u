@@ -68,7 +68,7 @@ export default function Frontend() {
             <thead>
             <tr>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(0)} className="eachTechContent"> 
                                 <img src={content[0][0]} alt='logo' width={150} style={{marginTop:18,float:'left',marginLeft:33}} />
@@ -81,7 +81,7 @@ export default function Frontend() {
                     </div>
                 </td>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(1)} className="eachTechContent"> 
                                 <img src={content[1][0]} alt='logo' width={150} style={{marginTop:30,float:'left',marginLeft:30}} />
@@ -94,7 +94,7 @@ export default function Frontend() {
                     </div>
                 </td>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(2)} className="eachTechContent"> 
                                 <img src={content[2][0]} alt='logo' width={140} style={{marginTop:29,float:'left',marginLeft:30}} />
@@ -109,7 +109,7 @@ export default function Frontend() {
             </tr>
             <tr>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(3)} className="eachTechContent"> 
                                 <img src={content[3][0]} alt='logo' width={135} style={{marginTop:20,float:'left',marginLeft:30}} />
@@ -122,7 +122,7 @@ export default function Frontend() {
                     </div>
                 </td>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                              <Paper elevation={24} onClick={() => openDescription(4)} className="eachTechContent"> 
                                 <img src={content[4][0]} alt='logo' width={125} style={{marginTop:30,float:'left',marginLeft:30}} />
@@ -135,7 +135,7 @@ export default function Frontend() {
                     </div>
                 </td>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(5)} className="eachTechContent"> 
                                 <img src={content[5][0]} alt='logo' width={150} style={{marginTop:18,float:'left',marginLeft:30}} />

@@ -53,19 +53,12 @@ const NavBar = (props) => {
         window.location.reload()
     }
 
-    // const [anchorElNav, setAnchorElNav] = React.useState(null);
+    
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    // const handleOpenNavMenu = (event) => {
-    //     setAnchorElNav(event.currentTarget);
-    // };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
-    // const handleCloseNavMenu = () => {
-    //     setAnchorElNav(null);
-    // };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
@@ -80,42 +73,6 @@ const NavBar = (props) => {
 
                     <img src={Logo} alt="logo" style={{ height: '11%', width: '12%', marginLeft: '105px', marginTop: '1px' }} />
 
-                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box> */}
                     <Box sx={{ paddingLeft: '15%', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
 
