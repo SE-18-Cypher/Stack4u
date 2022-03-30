@@ -7,8 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import bg from "./../../../resources/images/computerImage.png";
 import axios from "axios";
 
-
-
 export default function TextInputPage() {
   const user = sessionStorage.getItem("user");
   const navigate = useNavigate();
@@ -96,6 +94,7 @@ export default function TextInputPage() {
                 </MenuItem>
               ))}
             </TextField>
+
 
 
 
