@@ -15,11 +15,12 @@ import ContactusPage from './components/contactUs/ContactusPage';
 import Feedback from './components/feedback/Feedback';
 import ConstructionPage from './components/constructionPage/ConstructionPage';
 import AboutusPage from './components/aboutUs/AboutusPage';
-import Output from './components/outputpage/output';
+// import Output from './components/outputpage/output';
 import TechInput from './components/userTechInput/TechInput';
 import OutputPage from './components/output/OutputPage';
 import Output from './components/outputpage/output';
 import Questionnaire from './components/questionnaire/Questionnaire';
+import AccuracyBar from './components/accuracyBar/AccuracyBar';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/output" element={<Output />} />
           <Route path="/constructionPage" element={<ConstructionPage />} />
           <Route path="/questionnaire" element={<Questionnaire />} />
+          <Route path="/accuracy" element={<AccuracyBar />} />
           <Route path="*" element={<ErrorPage />} />
           <Route path="/textInputPage" element={<TextInputPage />} />
         </Routes>
