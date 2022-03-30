@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import "./TextInputPage.css";
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import bg from "./../../resources/images/computerImage.png";
+import bg from "./../../../resources/images/computerImage.png";
     
     
 
