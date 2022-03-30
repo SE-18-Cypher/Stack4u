@@ -17,6 +17,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { Modal } from '@mui/material';
+import error from '../../../resources/images/error.png';
+import cape from '../../../resources/images/astronautCape.png';
 
 const theme = createTheme();
 
@@ -57,16 +60,27 @@ export default function Signin() {
     checkAuth(data);
   };
 
-
   function signInWithEmail() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        localStorage.setItem("user", userCredential.user.uid);
+        sessionStorage.setItem("user", userCredential.user.uid);
+        sessionStorage.setItem("rememberMe", rememberMe);
+        console.log(sessionStorage.getItem("guser"))
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.code)
+        if (error.code === 'auth/invalid-email'){
+          setErrorText("Invalid Email")
+        }
+        if (error.code === 'auth/user-not-found'){
+          setErrorText("User Not Found Email")
+        }
+        if (error.code === 'auth/wrong-password'){
+          setErrorText("Incorrect Password")
+        }
+        setErrorBox(true);
       });
   }
 
@@ -75,16 +89,18 @@ export default function Signin() {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log(result)
-        localStorage.setItem("user", result.user.uid);
-        localStorage.setItem("guser", result.user.photoURL);
+        sessionStorage.setItem("user", result.user.uid);
+        sessionStorage.setItem("guser", result.user.photoURL);
         let text = result.user.displayName;
         const myArray = text.split(" ");
-        localStorage.setItem("guserFirstName", myArray[0]);
-        localStorage.setItem("guserSecondName", myArray[1]);
+        sessionStorage.setItem("guserFirstName", myArray[0]);
+        sessionStorage.setItem("guserSecondName", myArray[1]);
+        sessionStorage.setItem("rememberMe", rememberMe);
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
+        setErrorText("Login Error");
+        setErrorBox(true);
       });
   }
 
@@ -97,8 +113,39 @@ export default function Signin() {
   const [emailLabelName, setEmailLabelName] = React.useState("EmailAddress");
   const [passwordLabelName, setPasswordLabelName] = React.useState("Password");
 
+  const [rememberMe, setRememberMe] = React.useState(false);
+  const toggleRememberMe = () => setRememberMe((rememberMe) => !rememberMe);
+  
+  const [errorText, setErrorText] = React.useState("");
+
+  const [errorBox, setErrorBox] = React.useState(false);
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    height: 600,
+    bgcolor: 'background.paper',
+    borderRadius: '50px'
+  };
+
   return (
     <div>
+      <Modal
+          open={errorBox}
+          onClose={() => setErrorBox(false)}
+        >
+          <Box sx={style}>
+            <h3 style={{ textAlign: 'center', marginTop: '10%', fontSize:30, fontWeight:'bold' }}>ERROR</h3>
+            <img src={error} width={80} className='decoImage' />
+            <br />
+            <h5 style={{ marginTop: '20%', textAlign: 'center', fontSize:30, fontWeight:'bold' }}> {errorText}  </h5>
+            <div>
+              <img src={cape} width={300} className='decoImageLoudspeaker' style={{marginTop:-50,marginLeft:35}}/>
+            </div>
+          </Box>
+        </Modal>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -145,6 +192,7 @@ export default function Signin() {
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
+                onClick={() => toggleRememberMe()}
               />
               <Grid item xs>
                 <Link href="" style={{ color: "rgb(1, 103, 176, 0.88)" }} variant="body2" onClick={() => navigate("/forgotpassword")}>

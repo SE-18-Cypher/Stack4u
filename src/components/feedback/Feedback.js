@@ -25,11 +25,11 @@ const style = {
 };
 
 export default function Feedback() {
-    const user = localStorage.getItem("user");
+    const user = sessionStorage.getItem("user");
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        if (user === '0') {
+        if (user === null) {
             navigate('/access_error')
         }
     },)

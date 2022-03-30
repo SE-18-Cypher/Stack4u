@@ -7,11 +7,11 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 
 export default function ContactusPage() {
-  const user = localStorage.getItem("user");
+  const user = sessionStorage.getItem("user");
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (user === '0') {
+    if (user === null) {
       navigate('/access_error')
     }
   },)

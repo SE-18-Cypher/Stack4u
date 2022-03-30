@@ -12,14 +12,17 @@ export default function TechInfoPage() {
   const navigate = useNavigate();
   document.title = "stack4u-TechnologyInformation";
 
-  const user = localStorage.getItem("user");
+  const user = sessionStorage.getItem("user");
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   React.useEffect(() => {
-    if (user !== '0') {
-      setLoggedIn(true)
+    console.log(user === 'null')
+    console.log(user === null)
+    if (user === null) {
+      setLoggedIn(false)
     }
-  },[user])
+    console.log(loggedIn)
+  },[user,loggedIn])
 
   const [frontendView, setFrontendView] = useState(true);
   const [backendView, setBackendView] = useState(false);

@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TechInfoPage from './components/techInfoPage/TechInfoPage';
 import Common from './components/login/common/Common';
 import ForgotPassword from './components/login/signin/ForgotPassword';
-import CommonProfile from './components/profile/commonProfile/commonProfile';
+import CommonProfile from './components/profile/CommonProfile';
 import ErrorPage from './components/errorPage/ErrorPage';
 import Forum from './components/forum/Forum';
 import HomePage from './components/homePage/HomePage';
@@ -17,6 +17,9 @@ import ConstructionPage from './components/constructionPage/ConstructionPage';
 import AboutusPage from './components/aboutUs/AboutusPage';
 import Output from './components/outputpage/output';
 import TechInput from './components/userTechInput/TechInput';
+import OutputPage from './components/output/OutputPage';
+import Output from './components/outputpage/output';
+import Questionnaire from './components/questionnaire/Questionnaire';
 
 function App() {
   return (
@@ -36,9 +39,12 @@ function App() {
           <Route path="/aboutus" element={<AboutusPage />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/techinput" element={<TechInput />} />
+          <Route path="/outputpage" element={<OutputPage />} />
           <Route path="/output" element={<Output />} />
           <Route path="/constructionPage" element={<ConstructionPage />} />
+          <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path="/textInputPage" element={<TextInputPage />} />
         </Routes>
       </Router>
     </div>
