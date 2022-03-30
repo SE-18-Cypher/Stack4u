@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import "./TextInputPage.css";
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import bg from "./../../resources/images/computerImage.png";
+// import bg from "./../../../resources/images/computerImage.png";
     
     
 
@@ -40,7 +40,7 @@ export default function TextInputPage() {
     setCurrency(event.target.value);
   };
   return (
-    <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
+    <div className="body">
     <div className='textinput'>
       <div className='description'>
         <TextField
@@ -64,8 +64,6 @@ export default function TextInputPage() {
           value={currency}
           onChange={handleChange}
           helperText="Please select the application you want"
-          
-
         >
           {currencies.map((option) => (
             <MenuItem key={option.value} value={option.value}>
