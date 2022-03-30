@@ -1,0 +1,11 @@
+.progressBar{
+    width: 50%;
+    height:50px;
+    background-color: grey;
+}
+.progress{
+    height: 100%;
+}
+.low{
+    background-color: red;
+}
