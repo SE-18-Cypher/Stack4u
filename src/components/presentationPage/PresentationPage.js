@@ -9,7 +9,7 @@ export default function PresentationPage() {
         <div className='border'>
         <div className='presentationPage'>    
             <img src={orgLogo} className='orgLogo' alt='stack4u Logo'/>
-            <div className="progressBar">
+            <div className="progressBar2">
                 <LinearProgress/>
             </div> 
             </div>    
