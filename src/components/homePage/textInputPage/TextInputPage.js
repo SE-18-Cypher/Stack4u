@@ -16,8 +16,7 @@ export default function TextInputPage() {
       navigate('/access_error')
     }
   })
-  const [userinput, setuserinput] = React.useState("")
-
+  
   const currencies = [
     {
       value: 'USD',
@@ -39,28 +38,35 @@ export default function TextInputPage() {
     setCurrency(event.target.value);
   };
 
+  const [userinput, setuserinput] = React.useState("")
 
-
-  function getInput() {
-    axios({
-      method: "POST",
-      url: "/input",
+  function sendData(event) {
+    event.preventDefault()
+    axios.post('/input', {
+      userInput: userinput,
     })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    // axios({
+    //   method: "POST",
+    //   url: "/input",
+    // })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }
-
-
-
 
   return (
     <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
       <div className='textinput'>
-        <form action = "/input" method="POST">
+        <form name='manual_input'>
           <div className='description'>
 
             <TextField
@@ -70,7 +76,8 @@ export default function TextInputPage() {
               fullWidth
               multiline
               rows={30}
-              defaultValue={userinput} onChange={(e) => e.target.value}
+              value ={userinput}
+              onChange={(e) => setuserinput(e.target.value)}
               variant="filled"
 
             />
@@ -101,7 +108,7 @@ export default function TextInputPage() {
 
           </div>
           <div className='button'>
-            <Button type="submit" variant="contained" size="small">
+            <Button type="submit" variant="contained" size="small" onClick={(e) =>  sendData(e)}>
               Submit
             </Button></div>
         </form>
