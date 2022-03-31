@@ -11,26 +11,18 @@ html {
 .bk{
     background: linear-gradient(58deg, rgba(17, 138, 225, 0.43) 13.78%, rgba(22, 142, 229, 0.687012) 89.33%, rgba(28, 147, 234, 0.95) 107.25%);
 }
-.commonbg{
-   
-    height: 100%;
-    position: fixed;       
-    margin-left: 120px;
-    margin-right: 120px;
-    width: 84.5%;
-    
-}
+
 .mainPageContent{
     
     position: relative;
-    margin-left: 120px;
-    margin-right: 120px;
+    margin-left: 8%;
+    
     width: 84.5%;
 }
 .dragAndDropOutsideContainer{
     position: relative;
     width: 72%;
-    height: 650px;
+    height:650px;
     border-radius: 5%;
     background-color: #FFFFFF;
     margin: auto;
@@ -57,7 +49,7 @@ html {
 .uploader{
     position: relative;
     width: 100%;
-    min-height: 480px;
+    
 }
 .decoContent{
     position: absolute;
@@ -95,8 +87,10 @@ html {
     background: rgba(28, 147, 234, 0.7);
     margin-bottom: -10%;
 }
-
-
+.Nav{ 
+  position: fixed;
+  
+}
 .footerMainPage{
     position: relative;
     color: white;
@@ -105,7 +99,7 @@ html {
 }
 .footerImage{
     width: 100%;
-    height:300px;
+    height: 100%;
     opacity: 0.5;
 }
 .content-left {
@@ -131,7 +125,6 @@ html {
 }
 .mainPageBackground{
     margin: 2%;
-
     position: static;
     width: 95%;
     height: 630px;

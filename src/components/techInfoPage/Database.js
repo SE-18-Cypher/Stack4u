@@ -69,7 +69,7 @@ export default function Database() {
             <thead>
             <tr>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(0)} className="eachTechContent"> 
                             <img src={content[0][0]} alt='logo' width={140} style={{marginTop:48,float:'left',marginLeft:30}} />
@@ -82,7 +82,7 @@ export default function Database() {
                     </div>
                 </td>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(1)} className="eachTechContent"> 
                                 <img src={content[1][0]} alt='logo' width={100} style={{marginTop:34,float:'left',marginLeft:20}} />
@@ -95,7 +95,7 @@ export default function Database() {
                     </div>
                 </td>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(2)} className="eachTechContent"> 
                                 <img src={content[2][0]} alt='logo' width={100} style={{marginTop:29,float:'left',marginLeft:30}} />
@@ -110,7 +110,7 @@ export default function Database() {
             </tr>
             <tr>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(3)} className="eachTechContent"> 
                                 <img src={content[3][0]} alt='logo' width={130} style={{marginTop:18,float:'left',marginLeft:30}} />
@@ -123,7 +123,7 @@ export default function Database() {
                     </div>
                 </td>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(4)} className="eachTechContent"> 
                                 <img src={content[4][0]} alt='logo' width={115} style={{marginTop:30,float:'left',marginLeft:30}} />
@@ -136,7 +136,7 @@ export default function Database() {
                     </div>
                 </td>
                 <td>
-                    <div style={{margin:50}}>
+                    <div style={{margin:40}}>
                         { loaded ? (
                             <Paper elevation={24} onClick={() => openDescription(5)} className="eachTechContent"> 
                                 <img src={content[5][0]} alt='logo' width={115} style={{marginTop:20,float:'left',marginLeft:30}} />

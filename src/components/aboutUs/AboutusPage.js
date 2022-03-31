@@ -29,7 +29,7 @@ export default function AboutusPage() {
 
     window.onscroll = function (e) {
 
-        if (window.scrollY <= 350) {
+        if (window.scrollY <= 300) {
             setViewMembers(false)
         }
         else if (window.scrollY >= 430) {
@@ -37,14 +37,14 @@ export default function AboutusPage() {
         }
     };
 
-    console.log(viewMembers)
+    
 
 
 
     return (
 
         <div id="contentBody" className='bgr'>
-            <NavBar uidValue={user}/>
+            <div className='nav'><NavBar uidValue={user}/></div>
             <div className={viewMembers ? "text" : "Activetext"} >
                 <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
                     <h2 className="aboutUsTopic" style={{ fontWeight: 'bold', fontFamily: 'calibri', color: 'white' }}>About Us</h2>
@@ -73,7 +73,7 @@ export default function AboutusPage() {
                             nowadays constantly want to evolve and learn new technologies.
                         </p>
 
-                        <h5 style={{ textAlign: 'center', paddingTop: 4 }}>Scroll down {'>>>>>>'}</h5>
+                        <h6 style={{ textAlign: 'center', paddingTop: 15 }}>Scroll down {'>>>>>>'}</h6>
                     </div>
                 </div>
             </div>
