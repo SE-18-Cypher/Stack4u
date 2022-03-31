@@ -84,7 +84,25 @@ web_backend_values = ['object oriented', 'simple', 'security', 'neural architect
                       'simple', 'quick', 'extensible', 'dynamic', 'web scraping', 'crawling','staticaly typed', 'fast', 
                       'reliable', 'efficient', 'flexible', 'safe', 'speed']
 
-database_values = ['secure', 'scalable', 'available', 'readable', 'security', 'relational']
+database_values = ['secure', 'scalable', 'available', 'readable', 'security', 'relational','secure', 'scalable', 
+                   'available', 'readable', 'security', 'relational', 'high performance', 'cross platform', 'flexible',
+                   'robust', 'protection', 'open source','fast', 'flexible', 'dynamic', 'auditing', 'automatic sharding',
+                   'security', 'elastic scalable', 'speed', 'indexing', 'replication','easy', 'dynamic', 'hosting', 
+                   'authentication', 'realtime', 'storage', 'cloud', 'mobile', 'serverless','scalable', 'easy', 
+                   'multi model', 'distributed', 'redundancy', 'big data', 'speed','scalable', 'security', 'reliable', 
+                   'data analysis', 'critical', 'popular', 'secure', 'fast', 'advance', 'intelligence', 'backup', 
+                   'recovery', 'relational','open source', 'json support',' handle massive data', 'scalable',
+                   'high available', 'textual data', 'flexible index', 'integrity', 'relational','json', 'fast indexing',
+                   'retrieval', 'avilability', 'consistency', 'partition tolerance', 'multiple language','serverless', 
+                   'flexible', 'free', 'open source', 'no configuration', 'multiple languages','scalablity', 'resiliency',
+                   'security', 'easy integrations','IP filtering', 'role base access controll', 'encryption' ,
+                   'High Scalability', 'Rigid Architecture', 'Fast Linear-scale Performance', 'Fault tolerant', 
+                   'Flexible Data Storage', 'Easy Data Distribution', 'Transaction Support', 'Fast writes','small teams', 
+                   'induviduals', 'easier', 'output in pdf',' ready templates','indexing', 'search', 'alerts', 'Dashboard',
+                   'pivot', 'reports','multi model', 'high performance', 'relational database','flexible','grid computing',
+                   'efficient','Property Graph Data Model','query language', 'index', 'support ACID',' export json', 
+                   'export xls', 'unique constraints', 'Cypher', 'Gremlin','Bolt', 'Cypher','automatic shard rebalancing', 'GraphQL inspired', 'Distributed ACID transactions', 
+                   'Grpc/HTTP', 'JSON/RDF']
 
 df = pd.read_csv('dataset.csv')
 X_train = v.fit_transform(df.features.values)
@@ -109,6 +127,7 @@ def extract_preproces_sentences(text):
 web_backend = []
 mobile_front_end = []
 web_front_end= []
+database = []
 def calculate_relevancy_percentage(text):
     web_frontend_count = 0
     mobile_frontend_count = 0
@@ -153,14 +172,13 @@ def userInput():
         confirmTechnologies(predicted_web_frontend)
         confirmTechnologies(predicted_mobile_frontend)
         confirmTechnologies(predicted_web_backend)
-        
+        confirmTechnologies(predicted_database)
         print(final_technologies)
         return str(final_technologies)
 
 final_technologies = []
-technologies = ["React","Flutter","Java"]
+technologies = ["React","Flutter","Java", "MySQL"]
 def confirmTechnologies(technology):
-    
     for each_tech in technologies:
         print(each_tech)
         print(technology)
@@ -169,11 +187,10 @@ def confirmTechnologies(technology):
             final_technologies.append(each_tech)
     
 
-
 final_web_front_end = "" 
 final_mobile_front_end = ""
 final_web_backend = ""
-
+final_database = ""
 def classify_sentences():
     loaded_model = joblib.load('classifier')
     for sentence in final_sentences:
@@ -184,35 +201,44 @@ def classify_sentences():
             mobile_front_end.append(sentence)
         if val == ['Web Frontend']:
             web_front_end.append(sentence)
+        if val == ['Database']:
+            database.append(sentence)
 
 def create_predicatable_sentences():
     global final_web_front_end
     global final_mobile_front_end
     global final_web_backend
+    global final_database
     final_web_front_end = ""
     final_mobile_front_end = ""
     final_web_backend = ""
+    final_database = ""
     for each_sentence in web_front_end:
         final_web_front_end += each_sentence
     for each_sentence in mobile_front_end:
         final_mobile_front_end += each_sentence
     for each_sentence in web_backend:
         final_web_backend += each_sentence
+    for each_sentence in database:
+        final_database += each_sentence
 
 predicted_web_frontend = ''
 predicted_mobile_frontend = ''
 predicted_web_backend = ''
-
+predicted_database = ''
 def prediction():
     global predicted_web_frontend
     global predicted_mobile_frontend
     global predicted_web_backend
+    global predicted_database
     features_count1 = v.transform([final_web_front_end])
     predicted_web_frontend = model.predict(features_count1)
     features_count2 = v.transform([final_mobile_front_end])
     predicted_mobile_frontend = model.predict(features_count2)
     features_count3 = v.transform([final_web_backend])
     predicted_web_backend = model.predict(features_count3)
+    features_count4 = v.transform([final_database])
+    predicted_database = model.predict(features_count4)
     return "f"
 
 
