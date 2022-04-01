@@ -165,6 +165,20 @@ def userInput():
         print(final_sentences)
         extract_preproces_sentences(user_input)
         percentage = calculate_relevancy_percentage(user_input)
+        # classify_sentences()
+        # create_predicatable_sentences()
+        # prediction() 
+
+        # confirmTechnologies(predicted_web_frontend)
+        # confirmTechnologies(predicted_mobile_frontend)
+        # confirmTechnologies(predicted_web_backend)
+        # confirmTechnologies(predicted_database)
+        # print(final_technologies)
+        return str(percentage)
+
+@api.route('/finalStack',methods=['GET', 'POST'])
+def getStack():
+    if request.method == 'POST':
         classify_sentences()
         create_predicatable_sentences()
         prediction() 
