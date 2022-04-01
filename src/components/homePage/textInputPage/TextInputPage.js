@@ -46,25 +46,33 @@ export default function TextInputPage() {
       userInput: userinput,
     })
     .then(function (response) {
-      console.log(response);
+      console.log(parseInt(response.data));
+      if (parseInt(response.data) > 10){
+        getTechStack()
+        navigate('/output')
+      }
+      else if (parseInt(response.data) < 10){
+        navigate('/questionnaire')
+      }
     })
     .catch(function (error) {
       console.log(error);
     });
-    // axios({
-    //   method: "POST",
-    //   url: "/input",
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+  }
+
+  function getTechStack() {
+    axios.post('/finalStack')
+    .then(function (response) {
+      console.log(response)
+      sessionStorage.setItem("finalTechStack", response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
-    <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
+    <div >
       <div className='textinput'>
         <form name='manual_input'>
           <div className='description'>
