@@ -3,6 +3,16 @@
     padding : 0; 
     
 }
+
+.textInputBg{
+    position: fixed;
+    min-width: 100%;
+    height: 100%;
+    /* margin-top: -4%; */
+    /* margin-bottom: -2%; */
+    background: linear-gradient(113.22deg, rgba(28, 147, 234, 0.95) -17.22%, #FFFFFF 90.6%);
+}
+
 .textinput{
     margin-left:3%;
     margin-right:8%;
@@ -18,6 +28,7 @@
 .description{
     float: left;
     width: 80%;
+    margin-bottom: 200px;
 }
 
 .options{
@@ -25,6 +36,6 @@
 }
 
 .button{
-    padding-top: 52%;
+    padding-top: 46%;
     padding-left: 95%;
 }

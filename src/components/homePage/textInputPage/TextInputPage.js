@@ -72,7 +72,7 @@ export default function TextInputPage() {
   }
 
   return (
-    <div >
+    <div className="textInputBg">
       <div className='textinput'>
         <form name='manual_input'>
           <div className='description'>
@@ -83,7 +83,7 @@ export default function TextInputPage() {
               label="Please Enter The Requirement Specification"
               fullWidth
               multiline
-              rows={30}
+              rows={25}
               value ={userinput}
               onChange={(e) => setuserinput(e.target.value)}
               variant="filled"
