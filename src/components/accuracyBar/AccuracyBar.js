@@ -1,9 +1,13 @@
 import React from 'react';
 import './AccuracyBar.css';
 
-export default function AccuracyBar() {
-    const [accuracyValue, setAccuracyValue] = React.useState(10)
+export default function AccuracyBar(props) {
 
+    const [accuracyValue, setAccuracyValue] = React.useState(30)
+
+    React.useEffect(() => {
+        setAccuracyValue(props.value);
+    },[])
 
     React.useEffect(() => {
         var progress = document.getElementById("progress");
@@ -12,6 +16,9 @@ export default function AccuracyBar() {
         }
         if(accuracyValue > 10 && accuracyValue <= 30){
             progress.style.backgroundColor = "green";
+        }
+        if(accuracyValue >= 30){
+            progress.style.backgroundColor = "orange";
         }
         //continue this put gradient values
         

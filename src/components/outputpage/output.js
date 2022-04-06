@@ -9,11 +9,17 @@ import output from './../../resources/images/output.png';
 
 
 export default function Output() {
-
+    var webFrontend    = sessionStorage.getItem("finalTechStackWF");
+    var mobileFrontend = sessionStorage.getItem("finalTechStackMF");
+    var backend        = sessionStorage.getItem("finalTechStackB" );
+    var database       = sessionStorage.getItem("finalTechStackD" );
+    
     React.useEffect(() => {
-        const techStack = sessionStorage.getItem("finalTechStack");
-        console.log(techStack)
-    }, [])
+        console.log(webFrontend)
+        console.log(mobileFrontend)
+        console.log(backend)
+        console.log(database)
+    },)
 
     return (
         <div className='bk2'>

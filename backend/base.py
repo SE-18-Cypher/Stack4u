@@ -134,6 +134,7 @@ def calculate_relevancy_percentage(text):
     web_backend_count = 0
     database_count = 0
     for sentence in final_sentences:
+        print(sentence)
         words_each_sentence = word_tokenize(sentence)
         for each_word in words_each_sentence:
             if(each_word in web_frontend_values):
@@ -165,15 +166,7 @@ def userInput():
         print(final_sentences)
         extract_preproces_sentences(user_input)
         percentage = calculate_relevancy_percentage(user_input)
-        # classify_sentences()
-        # create_predicatable_sentences()
-        # prediction() 
-
-        # confirmTechnologies(predicted_web_frontend)
-        # confirmTechnologies(predicted_mobile_frontend)
-        # confirmTechnologies(predicted_web_backend)
-        # confirmTechnologies(predicted_database)
-        # print(final_technologies)
+        print(percentage)
         return str(percentage)
 
 @api.route('/finalStack',methods=['GET', 'POST'])
@@ -188,7 +181,8 @@ def getStack():
         confirmTechnologies(predicted_web_backend)
         confirmTechnologies(predicted_database)
         print(final_technologies)
-        return str(final_technologies)
+        techDic = {1: final_technologies[0], 2: final_technologies[1], 3: final_technologies[2], 4: final_technologies[3] }
+        return techDic
 
 final_technologies = []
 technologies = ["React","Flutter","Java", "MySQL"]
