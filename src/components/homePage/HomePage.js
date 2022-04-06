@@ -14,7 +14,7 @@ import NavBar from './../navBar/NavBar';
 import Feedback from './../feedback/Feedback';
 import fblogo from '../../resources/images/facebook.png';
 import app from './../../Firebase-config';
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+// import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 import Tesseract from 'tesseract.js';
 
