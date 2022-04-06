@@ -71,8 +71,8 @@ export default function TextInputPage() {
       .then(function (response) {
         sessionStorage.setItem("finalTechStackWF", response.data["1"]);
         sessionStorage.setItem("finalTechStackMF", response.data["2"]);
-        sessionStorage.setItem("finalTechStackB" , response.data["3"]);
-        sessionStorage.setItem("finalTechStackD" , response.data["4"]);
+        sessionStorage.setItem("finalTechStackB", response.data["3"]);
+        sessionStorage.setItem("finalTechStackD", response.data["4"]);
         navigate('/output')
       })
       .catch(function (error) {
@@ -86,7 +86,7 @@ export default function TextInputPage() {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '80%',
-    height: '60%',
+    height: '40%',
     bgcolor: 'background.paper',
     borderRadius: '50px'
   };
@@ -98,8 +98,14 @@ export default function TextInputPage() {
         onClose={() => setLessAccuracyBox(false)}
       >
         <Box sx={style}>
-          <p> HI!!!! </p>
-          <AccuracyBar value={accuracyValue} />
+          <div style={{textAlign:'center', marginTop:'5%'}} >
+            <p> The Accuracy is Low </p>
+            <p> {accuracyValue} % </p>
+            <div style={{marginLeft:'34%'}} > <AccuracyBar value={accuracyValue} /> </div>
+          </div>
+          <div>
+            
+          </div>
         </Box>
       </Modal>
       <div className='textinput'>

@@ -15,10 +15,10 @@ export default function AccuracyBar(props) {
             progress.style.backgroundColor = "red";
         }
         if(accuracyValue > 10 && accuracyValue <= 30){
-            progress.style.backgroundColor = "green";
+            progress.style.backgroundColor = "orange";
         }
         if(accuracyValue >= 30){
-            progress.style.backgroundColor = "orange";
+            progress.style.backgroundColor = "green";
         }
         //continue this put gradient values
         
