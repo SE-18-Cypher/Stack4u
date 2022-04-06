@@ -36,6 +36,19 @@ import postgresqlLogo from './../../resources/images/techpage/database/postgresq
 
 export default function Output() {
 
+    var webFrontend    = sessionStorage.getItem("finalTechStackWF");
+    var mobileFrontend = sessionStorage.getItem("finalTechStackMF");
+    var backend        = sessionStorage.getItem("finalTechStackB" );
+    var database       = sessionStorage.getItem("finalTechStackD" );
+    
+    React.useEffect(() => {
+        console.log(webFrontend)
+        console.log(mobileFrontend)
+        console.log(backend)
+        console.log(database)
+    },)
+
+
     const frontendTech = [
         [reactLogo, 'ReactJs', 'reactLogo'],
         [angularLogo, 'AngularJs', 'angularLogo'],
@@ -83,6 +96,7 @@ export default function Output() {
 
         
     }, [])
+
 
     // React.useEffect(() => {
 

@@ -22,12 +22,12 @@
 .select{
     margin-top: 2%;
     float: right;
-        background-color: rgba(76, 41, 194, 0.1);
-        
+    background-color: rgba(76, 41, 194, 0.1);
+ 
 }
 .description{
     float: left;
-    width: 80%;
+    width: 70%;
     margin-bottom: 200px;
 }
 
