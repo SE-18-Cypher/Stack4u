@@ -34,27 +34,17 @@ import nosqlLogo from './../../resources/images/techpage/database/nosql.png';
 import sqlserverLogo from './../../resources/images/techpage/database/sqlserver.png';
 import postgresqlLogo from './../../resources/images/techpage/database/postgresql.png';
 
+import xMark from './../../resources/images/xmark.png';
+
 export default function Output() {
 
-    var webFrontend    = sessionStorage.getItem("finalTechStackWF");
-    var mobileFrontend = sessionStorage.getItem("finalTechStackMF");
-    var backend        = sessionStorage.getItem("finalTechStackB" );
-    var database       = sessionStorage.getItem("finalTechStackD" );
-    
-    React.useEffect(() => {
-        console.log(webFrontend)
-        console.log(mobileFrontend)
-        console.log(backend)
-        console.log(database)
-    },)
-
-
     const frontendTech = [
-        [reactLogo, 'ReactJs', 'reactLogo'],
+        [reactLogo, 'React', 'reactLogo'],
         [angularLogo, 'AngularJs', 'angularLogo'],
         [nodeLogo, 'NodeJs', 'nodeLogo'],
         [javascriptLogo, 'Javascript', 'javascriptLogo'],
         [vueLogo, 'VueJs', 'vueLogo'],
+        [xMark, 'Not Selected']
     ];
 
     const frontendMobileTech = [
@@ -64,6 +54,7 @@ export default function Output() {
         [ionicLogo, 'Ionic', 'ionic logo'],
         [xamarinLogo, 'Xamarin', 'xamarin logo'],
         [jqueryLogo, 'Jquery', 'jquery logo'],
+        [xMark, 'Not Selected']
     ];
 
     const backendTech = [
@@ -74,6 +65,7 @@ export default function Output() {
         [javascriptLogo, 'Javascript', 'javascriptLogo'],
         [rubyLogo, 'Ruby', 'rubyLogo'],
         [goLogo, 'Go', 'goLogo'],
+        [xMark, 'Not Selected']
     ];
 
     const databaseTech = [
@@ -83,25 +75,42 @@ export default function Output() {
         [firebaseLogo, 'Firebase', 'firebase logo'],
         [sqlserverLogo, 'SQLServer', 'sql server logo'],
         [postgresqlLogo, 'PostgreSQL', 'postgresql logo'],
+        [xMark, 'Not Selected']
     ];
 
-    const [frontendWeb, setFrontendWeb] = React.useState(1);
-    const [frontendMobile, setFrontendMobile] = React.useState(1);
-    const [backend, setBackend] = React.useState(1);
-    const [database, setDatabase] = React.useState(1);
+    var finalWebFrontend = sessionStorage.getItem("finalTechStackWF");
+    var finalMobileFrontend = sessionStorage.getItem("finalTechStackMF");
+    var finalBackend = sessionStorage.getItem("finalTechStackB");
+    var finalDatabase = sessionStorage.getItem("finalTechStackD");
+
+    const [frontendWeb, setFrontendWeb] = React.useState(5);
+    const [frontendMobile, setFrontendMobile] = React.useState(6);
+    const [backend, setBackend] = React.useState(7);
+    const [database, setDatabase] = React.useState(6);
 
     React.useEffect(() => {
-        const techStack = sessionStorage.getItem("finalTechStack");
-        console.log(techStack);
+        for (var i = 0; i < frontendTech.length; i++) {
+            if (frontendTech[i][1] === finalWebFrontend) {
+                setFrontendWeb(i);
+            }
+        }
+        for (var j = 0; j < frontendMobileTech.length; j++) {
+            if (frontendMobileTech[j][1] === finalMobileFrontend) {
+                setFrontendMobile(j);
+            }
+        }
+        for (var k = 0; k < backendTech.length; k++) {
+            if (backendTech[k][1] === finalBackend) {
+                setBackend(k);
+            }
+        }
+        for (var l = 0; l < databaseTech.length; l++) {
+            if (databaseTech[l][1] === finalDatabase) {
+                setDatabase(l);
+            }
+        }
 
-        
-    }, [])
-
-
-    // React.useEffect(() => {
-
-    // }, [third])
-    
+    }, [finalBackend])
 
     return (
         <div className='bk2'>
@@ -111,20 +120,20 @@ export default function Output() {
                     <div className='text1'>
                         <h3 style={{ textAlign: 'center', paddingTop: '30px', fontFamily: 'calibri', color: '#037ED7', fontSize: '35px' }}> Suitable Stack</h3>
                     </div>
-                    <div style={{float:'left'}}>
+                    <div style={{ float: 'left' }}>
                         <p>Web Frontend</p>
                         <img src={frontendTech[frontendWeb][0]} width={100} />
                     </div>
-                    <div style={{float:'right'}}>
+                    <div style={{ float: 'right' }}>
                         <p>Mobile Frontend</p>
                         <img src={frontendMobileTech[frontendMobile][0]} width={100} />
                     </div>
-                    <br/>
-                    <div style={{float:'left',bottom:0, position:'absolute'}}>
+                    <br />
+                    <div style={{ float: 'left', bottom: 0, position: 'absolute' }}>
                         <p>Backend</p>
                         <img src={backendTech[backend][0]} width={100} />
                     </div>
-                    <div style={{float:'right',bottom:0, right:0, position:'absolute'}}>
+                    <div style={{ float: 'right', bottom: 0, right: 0, position: 'absolute' }}>
                         <p>Database</p>
                         <img src={databaseTech[database][0]} width={100} />
                     </div>
