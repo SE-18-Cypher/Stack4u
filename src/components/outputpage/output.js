@@ -6,7 +6,12 @@ import NavBar from '../navBar/NavBar';
 import fblogo from '../../resources/images/facebook.png';
 import Feedback from '../feedback/Feedback';
 import output from './../../resources/images/output.png';
-import mainPageComputer from './../../resources/images/mainPage/mainpageComputer.png';
+import app from '../../Firebase-config';
+import { doc, getDoc } from "firebase/firestore";
+import { getFirestore } from "@firebase/firestore";
+// import { useNavigate } from 'react-router';
+// import { getStorage } from "firebase/storage";
+import axios from "axios";
 
 import reactLogo from './../../resources/images/techpage/frontend/reactLogo.png';
 import vueLogo from './../../resources/images/techpage/frontend/vue.png';
@@ -37,6 +42,12 @@ import postgresqlLogo from './../../resources/images/techpage/database/postgresq
 import xMark from './../../resources/images/xmark.png';
 
 export default function Output() {
+
+    const user = sessionStorage.getItem("user");
+    // const navigate = useNavigate();
+    // const storage = getStorage();
+
+    const firestoreDatabase = getFirestore(app);
 
     const frontendTech = [
         [reactLogo, 'React', 'reactLogo'],
@@ -109,8 +120,58 @@ export default function Output() {
                 setDatabase(l);
             }
         }
-
+        getUserDetails();
+        
     }, [finalBackend])
+
+    React.useEffect(() => {
+        getUserDetails();
+    })
+
+    //hook to set state if the user has preferred technologies or not
+    const [preferredTechnologies, setPreferredTechnologies] = React.useState(false);
+    //hooks to store each preferred technologies 
+    const [preferredFrontendMobile, setPreferredFrontendMobile] = React.useState("");
+    const [preferredFrontendWeb, setPreferredFrontendWeb] = React.useState("");
+    const [preferredBackend, setPreferredBackend] = React.useState("");
+    const [preferredDatabase, setPreferredDatabase] = React.useState("");
+
+    function getPreferredTechPercentages() {
+     
+        axios.post('/getPreferredTechPercentages', {
+            predictedFrontendWebTech    : finalWebFrontend,
+            predictedFrontendMobileTech : finalMobileFrontend,
+            predictedBackendTech        : finalBackend,
+            predictedDatabaseTech       : finalDatabase,
+            preferredFrontendWebTech    : preferredFrontendWeb,
+            preferredFrontendMobileTech : preferredFrontendMobile,
+            preferredBackendTech        : preferredBackend,
+            preferredDatabaseTech       : preferredDatabase,
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+
+    const docRef = doc(firestoreDatabase, "UserTechInfo", user);
+    const getUserDetails = async () => {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            setPreferredFrontendMobile(docSnap.data().frontendMobile)
+            setPreferredFrontendWeb(docSnap.data().frontendWeb)
+            setPreferredBackend(docSnap.data().backend)
+            setPreferredDatabase(docSnap.data().database)
+            getPreferredTechPercentages();
+        } else {
+            setPreferredTechnologies(true);
+        }
+    }
+
+
 
     return (
         <div className='bk2'>
@@ -143,6 +204,9 @@ export default function Output() {
                     <div className='text1'>
                         <h3 style={{ textAlign: 'center', paddingTop: '30px', fontFamily: 'calibri', color: '#037ED7', fontSize: '35px' }}> User Preferred Stack</h3>
                     </div>
+                    {preferredTechnologies && (
+                        <p> NO PREFERRED TECH </p>
+                    )}
                 </div>
             </div>
 

@@ -249,7 +249,185 @@ def prediction():
     predicted_database = model.predict(features_count4)
     return "f"
 
+#User preferences part 
+wf_react = [
+    'easy', 'rich', 'user', 'interface', 'fast', 'trusted', 'trending', 'strong community support', 'speed', 'efficient', 
+    'flexible', 'performance', 'one way data binding', 'dynamic web development', 'complex website'
+]
+wf_angular = [
+    'easy', 'mvc architecture', 'model view control architecture' ,'compatible', 'filter'
+]
+wf_vue = [
+    'small size', 'simple integration', 'improved documentation', 'progressive', 'well defined ecosystem', 'flexible', 
+    'interactive web application', 'scalable web apps'
+]
+wf_node = [
+    'open source', 'cross platform', 'popular', 'lightweight', 'fast', 'serverside'
+]
+wf_javascript = [
+    'high level', 'popular','easy','versatile', 'flexible', 'multi paradigm'
+]
 
+mf_react_native =[
+    'reusable','cost effective','compatible','deployment','maintainable','third party','cross platform'
+]
+mf_flutter = [
+    'native','widget','material design','flexible','cross platform','dart'
+]
+mf_xamarin = [
+    'native','cross platform','api','easy','community','fast','windows'
+]
+mf_ionic = [
+    'cross platform','windows','cordova','independent','adaptable','uniform'
+]
+mf_jquery_mobile = [
+    'cross platform','responsive','lightweight','theming','interactive','rich','simple'
+]
+mf_mobile_angular_ui= [
+    'easy', 'simple development','hybrid'
+]
+
+matching_words = []
+prefered_matching_words = []
+
+final_web_front_end_words = ""
+final_mobile_front_end_words = ""
+final_back_end_words = ""
+final_database_words = ""
+
+@api.route('/getPreferredTechPercentages',methods=['GET', 'POST'])
+def getPreferredTechnologyPercentages():
+    print("inside getPreferredTechPercentages1")
+    if request.method == 'POST':
+        print("inside getPreferredTechPercentages")
+        global final_web_front_end_words
+        global final_mobile_front_end_words
+        global final_back_end_words
+        global final_database_words
+
+        global matching_words
+        global prefered_matching_words
+
+        matching_words = []
+        prefered_matching_words = []
+
+        final_web_front_end_words    = word_tokenize(final_web_front_end)
+        final_mobile_front_end_words = word_tokenize(final_mobile_front_end)
+        final_back_end_words         = word_tokenize(final_web_backend)
+        final_database_words         = word_tokenize(final_database)
+
+        predictedFrontendWebTech    = request.json['predictedFrontendWebTech']
+        predictedFrontendMobileTech = request.json['predictedFrontendMobileTech']
+        predictedBackendTech        = request.json['predictedBackendTech']
+        predictedDatabaseTech       = request.json['predictedDatabaseTech']
+
+        preferredFrontendWebTech    = request.json['preferredFrontendWebTech']
+        preferredFrontendMobileTech = request.json['preferredFrontendMobileTech']
+        preferredBackendTech        = request.json['preferredBackendTech']
+        preferredDatabaseTech       = request.json['preferredDatabaseTech']
+
+        check_matching_words_web_frontend()
+        check_matching_words_mobile_frontend()
+        check_for_preferred_matching_web_frontend('React')
+        check_for_preferred_matching_mobile_frontend('React Native')
+        preferred_percentage = (len(prefered_matching_words)/len(matching_words))*100
+        print(len(prefered_matching_words))
+        print(len(matching_words))
+        print("percentage is : " , preferred_percentage)
+    return "S"
+
+def check_matching_words_web_frontend():
+    if predicted_web_frontend == ['React']:
+        for each in final_web_front_end_words:
+            if each in wf_react:
+                matching_words.append(each)
+    if predicted_web_frontend == ['Angular']:
+        for each in final_web_front_end_words:
+            if each in wf_angular:
+                matching_words.append(each)
+    if predicted_web_frontend == ['Vue']:
+        for each in final_web_front_end_words:
+            if each in wf_vue:
+                matching_words.append(each)
+    if predicted_web_frontend == ['Node']:
+        for each in final_web_front_end_words:
+            if each in wf_node:
+                matching_words.append(each)
+
+def check_matching_words_mobile_frontend():
+    if predicted_mobile_frontend == ['React Native']:
+        for each in final_mobile_front_end_words:
+            if each in mf_react_native:
+                matching_words.append(each)
+    if predicted_mobile_frontend == ['Flutter']:
+        for each in final_mobile_front_end_words:
+            if each in mf_flutter :
+                matching_words.append(each)
+    if predicted_mobile_frontend == ['Xamarin']:
+        for each in final_mobile_front_end_words:
+            if each in mf_xamarin :
+                matching_words.append(each)
+    if predicted_mobile_frontend == ['Ionic']:
+        for each in final_mobile_front_end_words:
+            if each in mf_ionic :
+                matching_words.append(each)
+    if predicted_mobile_frontend == ['Jquery Mobile']:
+        for each in final_mobile_front_end_words:
+            if each in mf_jquery_mobile  :
+                matching_words.append(each)
+    if predicted_mobile_frontend == ['Mobile angular ui']:
+        for each in final_mobile_front_end_words:
+            if each in mf_mobile_angular_ui :
+                matching_words.append(each)
+
+def check_for_preferred_matching_web_frontend(frontend):
+    if frontend == 'React':
+         for each_matching_word in matching_words:
+            if each_matching_word in wf_react :
+                prefered_matching_words.append(each_matching_word)       
+    if frontend == 'Angular':
+        for each_matching_word in matching_words:
+            if each_matching_word in wf_angular:
+                prefered_matching_words.append(each_matching_word)   
+    if frontend == 'Vue':
+        for each_matching_word in matching_words:
+            if each_matching_word in wf_vue :
+                prefered_matching_words.append(each_matching_word)
+    if frontend == 'Node':
+        for each_matching_word in matching_words:
+            if each_matching_word in wf_node :
+                prefered_matching_words.append(each_matching_word)
+    if frontend == 'JavaScript':
+        for each_matching_word in matching_words:
+            if each_matching_word in wf_javascript  :
+                prefered_matching_words.append(each_matching_word)
+
+def check_for_preferred_matching_mobile_frontend(frontend):
+    if frontend == 'React Native':
+         for each_matching_word in matching_words:
+            if each_matching_word in mf_react_native  :
+                prefered_matching_words.append(each_matching_word)       
+    if frontend == 'Flutter':
+        for each_matching_word in matching_words:
+            if each_matching_word in mf_flutter :
+                prefered_matching_words.append(each_matching_word)   
+    if frontend == 'Xamarin':
+        for each_matching_word in matching_words:
+            if each_matching_word in mf_xamarin  :
+                prefered_matching_words.append(each_matching_word)
+    if frontend == 'Ionic':
+        for each_matching_word in matching_words:
+            if each_matching_word in mf_ionic  :
+                prefered_matching_words.append(each_matching_word)
+    if frontend == 'Jquery Mobile':
+        for each_matching_word in matching_words:
+            if each_matching_word in mf_jquery_mobile   :
+                prefered_matching_words.append(each_matching_word)
+    if frontend == 'Mobile angular ui':
+        for each_matching_word in matching_words:
+            if each_matching_word in mf_mobile_angular_ui :
+                prefered_matching_words.append(each_matching_word)
 if __name__ == "__main__":
     api.debug = True
     api.run()
+    
