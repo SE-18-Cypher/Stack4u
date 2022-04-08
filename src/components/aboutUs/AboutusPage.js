@@ -15,40 +15,45 @@ import NavBar from './../navBar/NavBar';
 import { useNavigate } from 'react-router';
 
 export default function AboutusPage() {
+    //getting the uid value of the user from the session storage
     const user = sessionStorage.getItem("user");
+    //navigate hook
     const navigate = useNavigate();
-
+    // use effect hook to check if the user id value is valid or if the user
+    // is logged in 
     React.useEffect(() => {
         if (user === null) {
+            // user id value is null so not logged in navigate to the access
+            //error page
             navigate('/access_error')
         }
     }, )
 
-
+    //boolean use state hook to set the members images view
     const [viewMembers, setViewMembers] = React.useState(false)
 
+    //on scroll function to set the use state hook respectively 
     window.onscroll = function (e) {
-
         if (window.scrollY <= 300) {
+            //if y value is less than 300 the member images is not visible
             setViewMembers(false)
         }
         else if (window.scrollY >= 430) {
+            //if y value is greater then the member images will be visiable
             setViewMembers(true)
         }
     };
-
-    
-
-
-
     return (
-
         <div id="contentBody" className='bgr'>
-            <div className='nav'><NavBar uidValue={user}/></div>
+            {/* nav bar */}
+            <div className='nav'><NavBar uidValue={user}/></div>  
+            {/* conditional rendering according to scroll position and the use state hook  */}
             <div className={viewMembers ? "text" : "Activetext"} >
+                {/* page header */}
                 <div className="bground" style={{ backgroundImage: `url(${bg})` }}>
                     <h2 className="aboutUsTopic" style={{ fontWeight: 'bold', fontFamily: 'calibri', color: 'white' }}>About Us</h2>
                 </div>
+                {/* text content in the page */}
                 <div className='Ourstory'>
                     <div className='container1'><h4 className="aboutUsContent">Our Story</h4>
                         <p>We are a group of 2nd-year undergraduates who are currently following the  BEng(Hons) Software Engineering degree at the informatics
@@ -77,9 +82,11 @@ export default function AboutusPage() {
                     </div>
                 </div>
             </div>
+            {/* seperate div to display all the members  */}
             <div className='profiles'>
-
+                {/* each member */}
                 <div className='desc'>
+                    {/* conditional rendering according view members tate hook */}
                     <img className={viewMembers ? "ActiveImage" : "Image"} src={Thisaru} alt="Error Logo" />
                     <h6 className='name'><b>THISARU WIKRAMASEKARA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
@@ -288,17 +295,8 @@ export default function AboutusPage() {
                     <br />
                     <br />
                     <br />
-
-
-
                 </div>
-
             </div>
-
         </div>
-
-
-
     );
-
 }

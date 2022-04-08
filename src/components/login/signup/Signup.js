@@ -22,10 +22,13 @@ import { getFirestore } from "@firebase/firestore";
 const theme = createTheme();
 
 export default function Signup() {
+    //navigate hook
     const navigate = useNavigate();
+    // document title
     document.title = "stack4u/SignUp";
-    const provider = new GoogleAuthProvider();
 
+    const provider = new GoogleAuthProvider();
+    
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     
