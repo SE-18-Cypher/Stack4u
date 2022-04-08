@@ -18,13 +18,17 @@ import { addDoc, collection, doc, getDoc, onSnapshot, query, updateDoc } from "f
 import { useNavigate } from 'react-router';
 
 export default function Forum() {
+  //getting the user id value from the session storage 
   const user = sessionStorage.getItem("user");
+  //navigate hook
   const navigate = useNavigate();
+  //if the id value is null redirectss to the error page 
   React.useEffect(() => {
       if (user === null) {
           navigate('/access_error')
       }
   },)
+  //database from fiirestore 
   const database = getFirestore(app);
   
   const [view, setView] = React.useState(false);                                  //hook to view the comments on each query

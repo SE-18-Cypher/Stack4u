@@ -12,11 +12,13 @@ import error from '../../../resources/images/error.png';
 import forgotpassword from '../../../resources/images/forgotpassword.png';
 
 export default function ForgotPassword() {
+  // navigate hook
   const navigate = useNavigate();
+  // setting the document title
   document.title = "stack4u/Forgot Password";
 
-  const [email, setEmail] = React.useState('');
-  const auth = getAuth();
+  const [email, setEmail] = React.useState(''); //email value
+  const auth = getAuth(); 
   function submit() {
     if (email !== '') {
       sendPasswordResetEmail(auth, email)
@@ -25,9 +27,11 @@ export default function ForgotPassword() {
           setView(true)
         })
         .catch((error) => {
+          //if the user is not found 
           if (error.code === 'auth/user-not-found') {
             setViewErrorText('There is no Existing user in the Email entered')
           }
+          // if the entered email is in invalid 
           if (error.code === 'auth/invalid-email') {
             setViewErrorText('The Entered Email is invalid')
           }
@@ -39,12 +43,14 @@ export default function ForgotPassword() {
       alert('Email Field is empty')
     }
   }
-
+  // hook to make the suceess box visible
   const [view, setView] = React.useState(false);
+  // hook to make the error box visible
   const [viewError, setViewError] = React.useState(false);
   const [viewErrorText, setViewErrorText] = React.useState('');
   const [backToLogin, setBackToLogin] = React.useState(true);
 
+  // use effect to navigate to login page once the hook is set true
   React.useEffect(() => {
     if (!backToLogin) {
       navigate('/login')
@@ -89,7 +95,7 @@ export default function ForgotPassword() {
             <img src={forgotpassword} width={300} style={{ marginTop: '-20%' }}/>
           </Paper>
         </Box>
-
+        {/* sucess box  */}
         <Modal
           open={view}
           onClose={() => setBackToLogin(false)}
@@ -106,7 +112,7 @@ export default function ForgotPassword() {
 
           </Box>
         </Modal>
-
+        {/* error box  */}
         <Modal
           open={viewError}
           onClose={() => setViewError(false)}

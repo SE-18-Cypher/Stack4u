@@ -25,47 +25,57 @@ const style = {
 };
 
 export default function Feedback() {
+    //getting the user id value from the session storage 
     const user = sessionStorage.getItem("user");
+    // navigate hook
     const navigate = useNavigate();
-
+    // if the user id is null redirects to the access error page
     React.useEffect(() => {
         if (user === null) {
             navigate('/access_error')
         }
     },)
-
+    //boolean hooks to hold feedback component visiability 
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleOpen = () => setOpen(true); //feedback box is visible
+    const handleClose = () => setOpen(false);   //feedback box is not visible 
 
-    const [value, setValue] = React.useState(0);
-    const database = getFirestore(app);
-    const ref = collection(database, "Feedback");
+    const [value, setValue] = React.useState(0); //hook to hold the star rating in the feedback box 
+    const database = getFirestore(app); //database 
+    const ref = collection(database, "Feedback"); //getting a reference to the databse "feedback" in firebase 
 
+    //hooks to hold the name, email and the feedback from the user  
     const [userName, setUserName] = React.useState('');
     const [userEmail, setUserEmail] = React.useState('');
     const [userFeedback, setUserFeedback] = React.useState('');
 
+    //function to check if the submision is valid
     function checkQuery() {
         if(userName === ""){
+            //alert messages if the field is empty 
             alert("Name Field is empty");
         }
         else if (userEmail === ""){
+            //alert message
             alert("Email Field is empty");
         }
         else if (userFeedback === ""){
+            //alert message 
             alert("Feedback Field is empty");
         }
         else{
-            submitQuery();
-            setUserName('');
+            submitQuery(); //submiting the query 
+            setUserName(''); //resetting the text field values 
             setUserEmail('');
             setUserFeedback('');
-            handleClose();
+            handleClose(); //closing the feedback box 
         }
     }
+
+    //adding the feedback to firebase database 
     const submitQuery = async () => {
         await addDoc(ref, {
+            //data from the respective hooks 
             userName: userName,
             userEmail: userEmail,
             userFeedback: userFeedback,
@@ -79,13 +89,13 @@ export default function Feedback() {
                 <Button variant='contained' onClick={handleOpen}>Feedback<FeedbackIcon style={{marginLeft:11}}/> </Button>
             </div>
             <div >
+                {/* pop up window to diplsy the feedback components */}
                 <Modal
                     open={open}
                 >
                     <Box sx={style}>
                         <h3 className='feedbackTopic'> Feedback </h3>
                         <Button onClick={handleClose} style={{ float: 'right', marginTop: -40 }}> <CloseIcon style={{ color: 'black' }} /> </Button>
-
                         <form>
                             <TextField id="outlined-basic" label="Name" variant="outlined"  style={{ width: 630 }} value={userName} onChange={e => setUserName(e.target.value)} />
                             <br />
@@ -106,6 +116,7 @@ export default function Feedback() {
                             <br />
                             <br />
                             <div style={{ marginLeft: 246}}>
+                                {/* star rating  */}
                                 <Rating
                                     name="size-large"
                                     size='large'
@@ -115,7 +126,6 @@ export default function Feedback() {
                                     }}
                                 />
                             </div>
-
                             <br />
                             <br />
                             <Button style={{ float: 'right' }} variant='contained' onClick={() => { checkQuery() }}> Submit </Button>

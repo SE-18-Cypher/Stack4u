@@ -14,14 +14,17 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router";
 
 export default function Common() {
+    // navigate hook
     const navigate = useNavigate();
-
+    // setting the user id value null in the local storage 
     localStorage.setItem("user", null);
     localStorage.setItem("guser", null);
     localStorage.setItem("guserFirstName", null);
     localStorage.setItem("guserSecondName", null);
     
+    // hook to store the view type 
     const [view, setView] = useState(true);
+    // onclick switching between sigin in and sign ups 
     const toggleView = () => setView((view) => !view);
 
     return (

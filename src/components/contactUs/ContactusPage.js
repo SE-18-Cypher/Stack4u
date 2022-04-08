@@ -7,14 +7,16 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
 
 export default function ContactusPage() {
+  //getting the user id from the session storage
   const user = sessionStorage.getItem("user");
+  //navigate hook
   const navigate = useNavigate();
-
+  //if te user id value is null then redirect to error page (protected routing)
   React.useEffect(() => {
     if (user === null) {
       navigate('/access_error')
     }
-  },)
+  })
   //emailjs reference variables
   const SERVICE_ID = "service_10mf3il";
   const TEMPLATE_ID = "template_2u15ydb";
@@ -22,7 +24,7 @@ export default function ContactusPage() {
 
   //Handle the submission of the form
   const handleOnSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault();//refreshing the page 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, USER_ID)
       .then((result) => {
         console.log(result.text);
@@ -45,15 +47,15 @@ export default function ContactusPage() {
 
   return (
     <div>
-      
+      {/* navigatiion bar  */}
       <NavBar uidValue={user} />
 
       <div className='contactUsBackground'>
 
         <div className='contactUsHeader'>
-          <h2 style={{ paddingTop:'10px',fontSize:'30px', color: 'black' }}>Contact Us</h2>
+          <h2 style={{ paddingTop: '10px', fontSize: '30px', color: 'black' }}>Contact Us</h2>
         </div>
-        
+
         <Grid>
 
           <Card style={{ maxWidth: 950, maxHeight: 560, padding: "0px 5px", margin: "0 auto" }}>
@@ -62,51 +64,50 @@ export default function ContactusPage() {
               {/* Form that needs to be filled by the user */}
               <form onSubmit={handleOnSubmit}>
                 <div className='Cardwords'>
-                <Typography variant="h5">
-                  Any question or remarks? Just write us a message!
-                </Typography>
-                <Typography variant="h7" color="textSecondary" component="h6" gutterBottom>
-                  Fill up the form and our team will get back to you.
-                </Typography>
-                <br/>
+                  <Typography variant="h5">
+                    Any question or remarks? Just write us a message!
+                  </Typography>
+                  <Typography variant="h7" color="textSecondary" component="h6" gutterBottom>
+                    Fill up the form and our team will get back to you.
+                  </Typography>
+                  <br />
 
-                <Grid container spacing={2}>
+                  <Grid container spacing={2}>
 
-                  <Grid xs={12} sm={6} item>
-                    <TextField name="fName" placeholder="Enter your first name" label="First Name" variant="outlined" fullWidth required />
+                    <Grid xs={12} sm={6} item>
+                      <TextField name="fName" placeholder="Enter your first name" label="First Name" variant="outlined" fullWidth required />
+                    </Grid>
+
+                    <Grid xs={12} sm={6} item>
+                      <TextField name="lName" placeholder="Enter your last name" label="Last Name" variant="outlined" fullWidth required />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <TextField name="userEmail" type="email" placeholder="Enter your email address" label="Email" variant="outlined" fullWidth required />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <TextField name="subject" placeholder="Enter the subject" label="Subject" variant="outlined" fullWidth required />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <TextField name="message" label="Message" multiline rows={4} placeholder="Type your message here" variant="outlined" fullWidth required />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <div className='submitbutton'>
+                        <Button type="submit" variant="contained" color="primary" >Submit</Button>
+                      </div>
+                    </Grid>
+
                   </Grid>
-
-                  <Grid xs={12} sm={6} item>
-                    <TextField name="lName" placeholder="Enter your last name" label="Last Name" variant="outlined" fullWidth required />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <TextField name="userEmail" type="email" placeholder="Enter your email address" label="Email" variant="outlined" fullWidth required />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <TextField name="subject" placeholder="Enter the subject" label="Subject" variant="outlined" fullWidth required />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <TextField name="message" label="Message" multiline rows={4} placeholder="Type your message here" variant="outlined" fullWidth required />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <div className='submitbutton'>
-                    <Button type="submit" variant="contained" color="primary" >Submit</Button>
-                    </div>
-                  </Grid>
-
-                </Grid>
                 </div>
               </form>
-              
+
             </CardContent>
           </Card>
-
         </Grid>
       </div>
     </div>
   )
-  }
+}

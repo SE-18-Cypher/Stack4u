@@ -4,6 +4,8 @@ import errorlogo from "./../../resources/images/astronauts.jfif";
 import "./ErrorPage.css";
 
 export default function ErrorPage() {
+  // page that will be displayed if the user enters an incorrect path or
+  // if the user is trying to get access without logged in 
 
   return (
 
@@ -17,12 +19,12 @@ export default function ErrorPage() {
         </p>
         <div className="homebutton">
           <button type="button" className="button1">
+            {/* back to login   */}
             <NavLink to="/login"> Sign in </NavLink>
           </button>
         </div>
       </div>
     </div>
-
   );
 }
 

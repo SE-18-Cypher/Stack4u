@@ -104,9 +104,11 @@ export default function Signin() {
       });
   }
 
+  // hook to store if the email is valid 
   const [validEmail, setValidEmail] = React.useState(true);
+  // hook to store the helper text if the email is valid 
   const [emailHelperText, setEmailHelperText] = React.useState("");
-
+  
   const [validPassword, setValidPassword] = React.useState(true);
   const [passwordHelperText, setPasswordHelperText] = React.useState("");
 
