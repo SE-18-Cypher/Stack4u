@@ -249,6 +249,397 @@ def prediction():
     predicted_database = model.predict(features_count4)
     return "f"
 
+#User preferences part 
+#frontend web technologies 
+wf_react = [
+    'easy', 'rich', 'user', 'interface', 'fast', 'trusted', 'trending', 'strong community support', 'speed', 'efficient', 
+    'flexible', 'performance', 'one way data binding', 'dynamic web development', 'complex website'
+]
+wf_angular = [
+    'easy', 'mvc architecture', 'model view control architecture' ,'compatible', 'filter'
+]
+wf_vue = [
+    'small size', 'simple integration', 'improved documentation', 'progressive', 'well defined ecosystem', 'flexible', 
+    'interactive web application', 'scalable web apps'
+]
+wf_node = [
+    'open source', 'cross platform', 'popular', 'lightweight', 'fast', 'serverside'
+]
+wf_javascript = [
+    'high level', 'popular','easy','versatile', 'flexible', 'multi paradigm'
+]
+#frontend mobile technologies 
+mf_react_native =[
+    'reusable','cost effective','compatible','deployment','maintainable','third party','cross platform'
+]
+mf_flutter = [
+    'native','widget','material design','flexible','cross platform','dart'
+]
+mf_xamarin = [
+    'native','cross platform','api','easy','community','fast','windows'
+]
+mf_ionic = [
+    'cross platform','windows','cordova','independent','adaptable','uniform'
+]
+mf_jquery_mobile = [
+    'cross platform','responsive','lightweight','theming','interactive','rich','simple'
+]
+mf_mobile_angular_ui= [
+    'easy', 'simple development','hybrid'
+]
+#backend technologies 
+b_java = [
+    'object oriented', 'simple', 'security', 'neural architecture', 'portable', 'robust', 'multithreading', 'flexible', 
+    'distributed', 'high performance', 'rich api', 'independent', 'multi paradigm', 'garbage collected'
+]
+b_python = [
+    'simple', 'free', 'open source', 'portable', 'scalable', 'embeddable', 'high level interpreting', 
+    'large library', 'object oriented', 'readable', 'compatible'
+]
+b_php = [
+    'flexible', 'dynamic', 'content management', 'open source', 'effective', 'less time', 'integrative', 
+    'scalable', 'hosting', 'cms', 'resources'
+]
+b_c = [
+    'scalable', 'object oriented', 'maintainable', 'nested', 'indexer', 'readable', '.net', 
+    'dotnet', 'cross platform', 'active', 'popular', 'design patterns', 'well documented', 'fast'
+]
+b_dart = [ 
+   'object oriented', 'open source', 'class based', 'garbage collected'
+]
+b_express = [ 
+    'open source','simple','easy','quick','extensible'
+]
+b_ruby = [
+    'versatile', 'dynamic', 'open source', 'simple', 'high level', 'web scraping', 'crawling'
+]
+#database technologies 
+d_mysql = [ 
+    'secure', 'scalable', 'available', 'readable', 'security', 'relational', 'high performance', 'cross platform', 
+    'flexible', 'robust', 'protection', 'open source'
+]
+d_mongodb = [ 
+    'fast', 'flexible', 'dynamic', 'auditing', 'automatic sharding', 'security', 'elastic scalable', 'speed', 
+    'indexing', 'replication'
+]
+d_firebase = [ 
+    'easy', 'dynamic', 'hosting', 'authentication', 'realtime', 'storage', 'cloud', 'mobile', 'serverless'
+]
+d_nosql = [ 
+    'scalable', 'easy', 'multi model', 'distributed', 'redundancy', 'big data', 'speed'
+]
+d_sqlserver = [ 
+    'scalable', 'security', 'reliable',' data analysis', 'critical', 'popular', 'secure', 'fast', 'advance', 
+    'intelligence', 'backup', 'recovery', 'relational'
+]
+d_postgresql = [ 
+    'open source', 'json support',' handle massive data', 'scalable', 'high available', 'textual data',
+    'flexible index', 'integrity', 'relational'
+]
+
+matching_words_wf = []
+prefered_matching_words_wf = []
+
+matching_words_mf = []
+prefered_matching_words_mf = []
+
+matching_words_b = []
+prefered_matching_words_b = []
+
+matching_words_d = []
+prefered_matching_words_d = []
+
+final_web_front_end_words = ""
+final_mobile_front_end_words = ""
+final_back_end_words = ""
+final_database_words = ""
+
+@api.route('/getPreferredTechPercentages',methods=['GET', 'POST'])
+def getPreferredTechnologyPercentages():
+    print("inside getPreferredTechPercentages1")
+    if request.method == 'POST':
+        print("inside getPreferredTechPercentages")
+        global final_web_front_end_words
+        global final_mobile_front_end_words
+        global final_back_end_words
+        global final_database_words
+
+        global matching_words_wf
+        global prefered_matching_words_wf
+        global matching_words_mf
+        global prefered_matching_words_mf
+        global matching_words_b
+        global prefered_matching_words_b
+        global matching_words_d
+        global prefered_matching_words_d
+
+        matching_words_wf = []
+        prefered_matching_words_wf = []
+        matching_words_mf = []
+        prefered_matching_words_mf = []
+        matching_words_b = []
+        prefered_matching_words_b = []
+        matching_words_d = []
+        prefered_matching_words_d = []
+
+        final_web_front_end_words    = word_tokenize(final_web_front_end)
+        final_mobile_front_end_words = word_tokenize(final_mobile_front_end)
+        final_back_end_words         = word_tokenize(final_web_backend)
+        final_database_words         = word_tokenize(final_database)
+
+        preferredFrontendWebTech    = request.json['preferredFrontendWebTech']
+        preferredFrontendMobileTech = request.json['preferredFrontendMobileTech']
+        preferredBackendTech        = request.json['preferredBackendTech']
+        preferredDatabaseTech       = request.json['preferredDatabaseTech']
+
+        check_matching_words_web_frontend()
+        check_matching_words_mobile_frontend()
+        check_matching_words_backend()
+        check_matching_words_database()
+        check_for_preferred_matching_web_frontend(preferredFrontendWebTech)
+        check_for_preferred_matching_mobile_frontend(preferredFrontendMobileTech)
+        check_for_preferred_matching_backend(preferredBackendTech)
+        check_for_preferred_matching_database(preferredDatabaseTech)
+
+        preferred_percentage_wf = 0
+        if len(matching_words_wf) == 0:
+            preferred_percentage_wf = 30
+        else:
+            preferred_percentage_wf = (len(prefered_matching_words_wf)/len(matching_words_wf))*100
+            if preferred_percentage_wf < 30:
+                preferred_percentage_wf = 30
+
+        preferred_percentage_mf = 0
+        if len(matching_words_mf) == 0:
+            preferred_percentage_mf = 30
+        else:
+            preferred_percentage_mf = (len(prefered_matching_words_mf)/len(matching_words_mf))*100
+            if preferred_percentage_mf < 30:
+                preferred_percentage_mf = 30
+
+        preferred_percentage_b = 0
+        if len(matching_words_b) == 0:
+            preferred_percentage_b = 30
+        else:
+            preferred_percentage_b = (len(prefered_matching_words_b)/len(matching_words_b))*100
+            if preferred_percentage_b < 30:
+                preferred_percentage_b = 30
+
+        preferred_percentage_d = 0
+        if len(matching_words_d) == 0:
+            preferred_percentage_d = 30
+        else:
+            preferred_percentage_d = (len(prefered_matching_words_d)/len(matching_words_d))*100
+            if preferred_percentage_d < 30:
+                preferred_percentage_d = 30
+                
+        preferredPercentages = {1: preferred_percentage_wf, 2: preferred_percentage_mf, 3: preferred_percentage_b, 4: preferred_percentage_d}
+        print(preferredPercentages)
+        return preferredPercentages
+
+def check_matching_words_web_frontend():
+    if predicted_web_frontend == ['React']:
+        for each in final_web_front_end_words:
+            if each in wf_react:
+                matching_words_wf.append(each)
+    if predicted_web_frontend == ['Angular']:
+        for each in final_web_front_end_words:
+            if each in wf_angular:
+                matching_words_wf.append(each)
+    if predicted_web_frontend == ['Vue']:
+        for each in final_web_front_end_words:
+            if each in wf_vue:
+                matching_words_wf.append(each)
+    if predicted_web_frontend == ['Node']:
+        for each in final_web_front_end_words:
+            if each in wf_node:
+                matching_words_wf.append(each)
+
+def check_matching_words_mobile_frontend():
+    if predicted_mobile_frontend == ['React Native']:
+        for each in final_mobile_front_end_words:
+            if each in mf_react_native:
+                matching_words_mf.append(each)
+    if predicted_mobile_frontend == ['Flutter']:
+        for each in final_mobile_front_end_words:
+            if each in mf_flutter :
+                matching_words_mf.append(each)
+    if predicted_mobile_frontend == ['Xamarin']:
+        for each in final_mobile_front_end_words:
+            if each in mf_xamarin :
+                matching_words_mf.append(each)
+    if predicted_mobile_frontend == ['Ionic']:
+        for each in final_mobile_front_end_words:
+            if each in mf_ionic :
+                matching_words_mf.append(each)
+    if predicted_mobile_frontend == ['Jquery Mobile']:
+        for each in final_mobile_front_end_words:
+            if each in mf_jquery_mobile  :
+                matching_words_mf.append(each)
+    if predicted_mobile_frontend == ['Mobile angular ui']:
+        for each in final_mobile_front_end_words:
+            if each in mf_mobile_angular_ui :
+                matching_words_mf.append(each)
+
+def check_matching_words_backend():
+    if predicted_web_backend == ['Java']:
+        for each in final_back_end_words:
+            if each in b_java:
+                matching_words_b.append(each)
+    if predicted_web_backend == ['Python']:
+        for each in final_back_end_words:
+            if each in b_python:
+                matching_words_b.append(each)
+    if predicted_web_backend == ['PHP']:
+        for each in final_back_end_words:
+            if each in b_php:
+                matching_words_b.append(each)
+    if predicted_web_backend == ['C#']:
+        for each in final_back_end_words:
+            if each in b_c:
+                matching_words_b.append(each)
+    if predicted_web_backend == ['Dart']:
+        for each in final_back_end_words:
+            if each in b_dart:
+                matching_words_b.append(each)
+    if predicted_web_backend == ['Express']:
+        for each in final_back_end_words:
+            if each in b_express:
+                matching_words_b.append(each)
+    if predicted_web_backend == ['Ruby']:
+        for each in final_back_end_words:
+            if each in b_ruby:
+                matching_words_b.append(each)
+
+def check_matching_words_database():
+    if predicted_database == ['MySQL']:
+        for each in final_database_words:
+            if each in d_mysql:
+                matching_words_d.append(each)
+    if predicted_database == ['MongoDB']:
+        for each in final_database_words:
+            if each in d_mongodb:
+                matching_words_d.append(each)
+    if predicted_database == ['Firebase']:
+        for each in final_database_words:
+            if each in d_firebase:
+                matching_words_d.append(each)
+    if predicted_database == ['NoSQL']:
+        for each in final_database_words:
+            if each in d_nosql:
+                matching_words_d.append(each)
+    if predicted_database == ['SQL Server']:
+        for each in final_database_words:
+            if each in d_sqlserver:
+                matching_words_d.append(each)
+    if predicted_database == ['PostgreSQL']:
+        for each in final_database_words:
+            if each in d_postgresql:
+                matching_words_d.append(each)
+
+def check_for_preferred_matching_web_frontend(frontend):
+    if frontend == 'ReactJs':
+         for each_matching_word in matching_words_wf:
+            if each_matching_word in wf_react :
+                prefered_matching_words_wf.append(each_matching_word)       
+    if frontend == 'Angular':
+        for each_matching_word in matching_words_wf:
+            if each_matching_word in wf_angular:
+                prefered_matching_words_wf.append(each_matching_word)   
+    if frontend == 'Vue':
+        for each_matching_word in matching_words_wf:
+            if each_matching_word in wf_vue :
+                prefered_matching_words_wf.append(each_matching_word)
+    if frontend == 'Node':
+        for each_matching_word in matching_words_wf:
+            if each_matching_word in wf_node :
+                prefered_matching_words_wf.append(each_matching_word)
+    if frontend == 'JavaScript':
+        for each_matching_word in matching_words_wf:
+            if each_matching_word in wf_javascript  :
+                prefered_matching_words_wf.append(each_matching_word)
+
+def check_for_preferred_matching_mobile_frontend(frontend):
+    if frontend == 'React Native':
+         for each_matching_word in matching_words_mf:
+            if each_matching_word in mf_react_native  :
+                prefered_matching_words_mf.append(each_matching_word)       
+    if frontend == 'Flutter':
+        for each_matching_word in matching_words_mf:
+            if each_matching_word in mf_flutter :
+                prefered_matching_words_mf.append(each_matching_word)   
+    if frontend == 'Xamarin':
+        for each_matching_word in matching_words_mf:
+            if each_matching_word in mf_xamarin  :
+                prefered_matching_words_mf.append(each_matching_word)
+    if frontend == 'Ionic':
+        for each_matching_word in matching_words_mf:
+            if each_matching_word in mf_ionic  :
+                prefered_matching_words_mf.append(each_matching_word)
+    if frontend == 'Jquery Mobile':
+        for each_matching_word in matching_words_mf:
+            if each_matching_word in mf_jquery_mobile   :
+                prefered_matching_words_mf.append(each_matching_word)
+    if frontend == 'Mobile angular ui':
+        for each_matching_word in matching_words_mf:
+            if each_matching_word in mf_mobile_angular_ui :
+                prefered_matching_words_mf.append(each_matching_word)
+
+def check_for_preferred_matching_backend(backend):
+    if backend == 'Java':
+         for each_matching_word in matching_words_b:
+            if each_matching_word in b_java :
+                prefered_matching_words_b.append(each_matching_word)       
+    if backend == 'Python':
+        for each_matching_word in matching_words_b:
+            if each_matching_word in b_python:
+                prefered_matching_words_b.append(each_matching_word)   
+    if backend == 'PHP':
+        for each_matching_word in matching_words_b:
+            if each_matching_word in b_php :
+                prefered_matching_words_b.append(each_matching_word)
+    if backend == 'C#':
+        for each_matching_word in matching_words_b:
+            if each_matching_word in b_c :
+                prefered_matching_words_b.append(each_matching_word)
+    if backend == 'Dart':
+        for each_matching_word in matching_words_b:
+            if each_matching_word in b_dart  :
+                prefered_matching_words_b.append(each_matching_word)
+    if backend == 'Express':
+        for each_matching_word in matching_words_b:
+            if each_matching_word in b_express:
+                prefered_matching_words_b.append(each_matching_word)
+    if backend == 'Ruby':
+        for each_matching_word in matching_words_b:
+            if each_matching_word in b_ruby:
+                prefered_matching_words_b.append(each_matching_word)
+
+def check_for_preferred_matching_database(database):
+    if database == 'MySQL':
+         for each_matching_word in matching_words_d:
+            if each_matching_word in d_mysql  :
+                prefered_matching_words_d.append(each_matching_word)       
+    if database == 'MongoDB':
+        for each_matching_word in matching_words_d:
+            if each_matching_word in d_mongodb :
+                prefered_matching_words_d.append(each_matching_word)   
+    if database == 'Firebase':
+        for each_matching_word in matching_words_d:
+            if each_matching_word in d_firebase  :
+                prefered_matching_words_d.append(each_matching_word)
+    if database == 'NoSQL':
+        for each_matching_word in matching_words_d:
+            if each_matching_word in d_nosql:
+                prefered_matching_words_d.append(each_matching_word)
+    if database == 'SQL Server':
+        for each_matching_word in matching_words_d:
+            if each_matching_word in d_sqlserver:
+                prefered_matching_words_d.append(each_matching_word)
+    if database == 'PostgreSQL':
+        for each_matching_word in matching_words_d:
+            if each_matching_word in d_postgresql:
+                prefered_matching_words_d.append(each_matching_word)
 
 if __name__ == "__main__":
     api.debug = True
