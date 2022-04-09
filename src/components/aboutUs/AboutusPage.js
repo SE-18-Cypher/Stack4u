@@ -3,10 +3,10 @@ import React from 'react';
 import bg from "./../../resources/images/image.png";
 import "./AboutusPage.css";
 import Sadurshan from "./../../resources/images/Sadurshan.jpeg";
-import madusha from "./../../resources/images/madusha.jpeg";
-import Bupani from "./../../resources/images/Bupani.jpeg";
-import chami from "./../../resources/images/chami.png";
-import Thisaru from "./../../resources/images/Thisaru.jfif";
+import madusha from "./../../resources/images/Madusha.png";
+import Bupani from "./../../resources/images/Bupani.jpg";
+import chami from "./../../resources/images/chami.jpg";
+import Thisaru from "./../../resources/images/Thisaru.jpg";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -124,9 +124,10 @@ export default function AboutusPage() {
 
                     > <LinkedInIcon color="primary" /></Button>
                 </div>
+
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Bupani} alt="Error Logo" />
-                    <h6 className='name'><b>BUPANIE THALAGALA</b></h6>
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Sadurshan} alt="Error Logo" />
+                    <h6 className='name'><b>SADURSHAN RAVINDRAN</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
 
@@ -134,7 +135,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.instagram.com/_bups_c/', '_blank')
+                            window.open('https://www.instagram.com/sadurshan_ravindran/', '_blank')
 
                         }}
 
@@ -145,7 +146,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.facebook.com/bupanie.thalagala', '_blank')
+                            window.open('https://www.facebook.com/sadu.ravi.1000', '_blank')
 
                         }}
 
@@ -156,14 +157,14 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.linkedin.com/in/bupanie-chamathka-thalagala-041674207/', '_blank')
+                            window.open('https://www.linkedin.com/in/sadurshan-ravindran-811540113/', '_blank')
 
                         }}
 
                     > <LinkedInIcon color="primary" /></Button>
-
-                    <p></p>
                 </div>
+                
+            
                 <div className='desc'>
                     <img className={viewMembers ? "ActiveImage" : "Image"} src={madusha} alt="Error Logo" />
                     <h6 className='name'><b>MADUSHA THUMBOWITA</b></h6>
@@ -244,8 +245,8 @@ export default function AboutusPage() {
 
                 </div>
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Sadurshan} alt="Error Logo" />
-                    <h6 className='name'><b>SADURSHAN RAVINDRAN</b></h6>
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Bupani} alt="Error Logo" />
+                    <h6 className='name'><b>BUPANIE THALAGALA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
 
@@ -253,7 +254,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.instagram.com/sadurshan_ravindran/', '_blank')
+                            window.open('https://www.instagram.com/_bups_c/', '_blank')
 
                         }}
 
@@ -264,7 +265,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.facebook.com/sadu.ravi.1000', '_blank')
+                            window.open('https://www.facebook.com/bupanie.thalagala', '_blank')
 
                         }}
 
@@ -275,15 +276,13 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.linkedin.com/in/sadurshan-ravindran-811540113/', '_blank')
+                            window.open('https://www.linkedin.com/in/bupanie-chamathka-thalagala-041674207/', '_blank')
 
                         }}
 
                     > <LinkedInIcon color="primary" /></Button>
 
-
-                    <br />
-                    <br />
+                    <p></p>
                     <br />
                     <br />
                     <br />
