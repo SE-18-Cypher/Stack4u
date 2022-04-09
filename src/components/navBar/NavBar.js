@@ -27,23 +27,23 @@ const NavBar = (props) => {
     console.log(user2)
     React.useEffect(() => {
         console.log(user2)
-        // if (user2 === null || user2 === 'null') {
-        //     console.log(user2)
-        //     getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
-        //         .then((url) => {
-        //             const img = document.getElementById('myimg');
-        //             img.setAttribute('src', url);
-        //         })
-        //         .catch((error) => {
-        //             console.log(error)
-        //         });
+        if (user2 === null || user2 === 'null') {
+            console.log(user2)
+            getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
+                .then((url) => {
+                    const img = document.getElementById('myimg');
+                    img.setAttribute('src', url);
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
 
-        // }
-        // else {
-        //     const img = document.getElementById('myimg');
-        //     img.setAttribute('src', user2);
-        //     console.log(user2)
-        // }
+        }
+        else {
+            const img = document.getElementById('myimg');
+            img.setAttribute('src', user2);
+            console.log(user2)
+        }
     })
 
     const navigate = useNavigate();
