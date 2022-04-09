@@ -24,8 +24,6 @@ v = CountVectorizer()
 
 # fileName2 = ''
 
-
-# @app.route('/')
 # @app.route('/index', methods=['GET', 'POST'])
 # def index():
 #     if request.method == "POST":
@@ -41,6 +39,7 @@ v = CountVectorizer()
 
 #            print("\n".join("{}:{}".format(i, j) for i, j in summary.items()))
 #            return result
+
 #         file = request.files['filename']
 #         if file.filename != '':
 #            file.save(os.path.join(
@@ -52,14 +51,14 @@ v = CountVectorizer()
 #            global fileName2
 #            fileName2 = input_file.split(".")[0]
 #            my_text = docx2txt.process(fileName2+".docx")
-#         #    print(my_text)
+#            print(my_text)
 #            lis = doc.replace(" ", "=")
 #            return render_template("docx.html", variable=lis)
 #     return render_template("index.html")
 
 
 api = Flask(__name__)
-
+#all keywords in web frontend
 web_frontend_values = ['easy', 'rich user interface', 'fast', 'trusted', 'trending', 'strong community support', 'speed', 
                        'efficient', 'flexible', 'performance', 'one way data binding', 'dynamic web development', 
                        'complex website', 'mvc architecture', 'model view control architecture', 'compatible', 'filter', 
@@ -67,12 +66,12 @@ web_frontend_values = ['easy', 'rich user interface', 'fast', 'trusted', 'trendi
                        'dynamic app', 'small size', 'simple integration', 'improved documentation', 'progressive',
                        'well defined ecosystem', 'interactive web application', 'scalable web apps', 'open source', 
                        'cross platform', 'popular', 'lightweight','serverside', 'high level', 'versatile', 'multi paradigm']
-
+#all keywords in mobile frontend 
 mobile_frontend_values = ['reusable', 'cost effective', 'compatible', 'deployment', 'maintainable', 'third party', 
                           'cross platform', 'native', 'widget','material design','flexible', 'dart', 'api', 'easy', 
                           'community', 'fast', 'windows', 'cardova', 'independent', 'adaptable', 'uniform', 'responsive', 
                           'lightweight','theming', 'interactive', 'rich', 'simple', 'simple development', 'hybrid']
-
+#all keywords in backend 
 web_backend_values = ['object oriented', 'simple', 'security', 'neural architecture', 'portable', 'robust', 'multithreading', 
                       'flexible', 'distributed', 'high performance', 'rich api', 'independent', 'multi paradigm', 
                       'garbage collected', 'free', 'open source', 'portable', 'scalable', 'embeddable', 
@@ -83,7 +82,7 @@ web_backend_values = ['object oriented', 'simple', 'security', 'neural architect
                       'cross platform','active', 'popular', 'design patterns', 'well documented', 'fast', 'class based', 
                       'simple', 'quick', 'extensible', 'dynamic', 'web scraping', 'crawling','staticaly typed', 'fast', 
                       'reliable', 'efficient', 'flexible', 'safe', 'speed']
-
+#all keywords in database 
 database_values = ['secure', 'scalable', 'available', 'readable', 'security', 'relational','secure', 'scalable', 
                    'available', 'readable', 'security', 'relational', 'high performance', 'cross platform', 'flexible',
                    'robust', 'protection', 'open source','fast', 'flexible', 'dynamic', 'auditing', 'automatic sharding',
@@ -104,40 +103,40 @@ database_values = ['secure', 'scalable', 'available', 'readable', 'security', 'r
                    'export xls', 'unique constraints', 'Cypher', 'Gremlin','Bolt', 'Cypher','automatic shard rebalancing', 'GraphQL inspired', 'Distributed ACID transactions', 
                    'Grpc/HTTP', 'JSON/RDF']
 
-df = pd.read_csv('dataset.csv')
-X_train = v.fit_transform(df.features.values)
-model = MultinomialNB()
-model.fit(X_train,df.technology)
+df = pd.read_csv('dataset.csv')                     # reading the dataset
+X_train = v.fit_transform(df.features.values)       # vectorizing the data 
+model = MultinomialNB()                             # naive bayes model
+model.fit(X_train,df.technology)                    # training the model
 
-final_sentences = []
+final_sentences = []                                # array to hold all the preprocessed sentences 
+# method to extract preprocessed sentences 
 def extract_preproces_sentences(text):
-    global final_sentences
-    final_sentences = []
-    sentences = sent_tokenize(text)
-    stopWords = set(stopwords.words('english'))
+    global final_sentences                          # global array to hold the preprocessed sentences 
+    final_sentences = []                            # resetting the array
+    sentences = sent_tokenize(text)                 # tokenzing the text to sentences 
+    stopWords = set(stopwords.words('english'))     # removing the stop words from the sentences 
     for sentence in sentences:
-        words = word_tokenize(sentence)
+        words = word_tokenize(sentence)             # tokenzing each word in each sentence 
         final_words=''
         for word in words:
             if word not in stopWords:
-                final_words += word + ' '
-        final_sentences.append(final_words)
-    print(final_sentences)
+                final_words += word + ' '           # generating preprocessed sentences 
+        final_sentences.append(final_words)         # adding the sentences to the final sentences array 
         
-web_backend = []
+web_backend = []                                    # seperate arrays to hold classified sentences 
 mobile_front_end = []
 web_front_end= []
 database = []
+# method to calculate the relevancy percentage of the input
 def calculate_relevancy_percentage(text):
     web_frontend_count = 0
     mobile_frontend_count = 0
     web_backend_count = 0
     database_count = 0
-    for sentence in final_sentences:
-        print(sentence)
-        words_each_sentence = word_tokenize(sentence)
-        for each_word in words_each_sentence:
-            if(each_word in web_frontend_values):
+    for sentence in final_sentences:                    # each preprocessed sentence 
+        words_each_sentence = word_tokenize(sentence)   # tokenize each sentence to a words
+        for each_word in words_each_sentence:           # each word in the sentence is a key value of 
+            if(each_word in web_frontend_values):       # of either frontend, backend or database there will be count 
                 web_frontend_count += 1
             if(each_word in mobile_frontend_values):
                 mobile_frontend_count += 1
@@ -146,64 +145,61 @@ def calculate_relevancy_percentage(text):
             if(each_word in database_values):
                 database_count += 1
 
-    new_word_set = word_tokenize(text)
+    new_word_set = word_tokenize(text)                  # getting the number of words in the input text 
     text_word_count = 0
     for word in new_word_set:
         text_word_count += 1
     count = web_frontend_count + mobile_frontend_count + web_backend_count + database_count
-    percentage = (count/text_word_count)*100
-    print(percentage)
-    
+    percentage = (count/text_word_count)*100            # calculating the percentage 
     return str(percentage)
 
 @api.route('/input',methods=['GET', 'POST'])
 def userInput():
     if request.method == 'POST':
-        global final_technologies
-        final_technologies = []
-        user_input = request.json['userInput']
-        print(user_input)
-        print(final_sentences)
-        extract_preproces_sentences(user_input)
-        percentage = calculate_relevancy_percentage(user_input)
-        print(percentage)
-        return str(percentage)
+        global final_technologies                                   # global final technologies array 
+        final_technologies = []                                     # resetting the array 
+        user_input = request.json['userInput']                      # getting the user input from frontend 
+        extract_preproces_sentences(user_input)                     # prerpocessing the text input 
+        percentage = calculate_relevancy_percentage(user_input)     # calculating the percentage 
+        return str(percentage)                                      # returning the percentage 
 
 @api.route('/finalStack',methods=['GET', 'POST'])
 def getStack():
     if request.method == 'POST':
-        classify_sentences()
-        create_predicatable_sentences()
-        prediction() 
+        classify_sentences()                             # classifying the preprocess sentences into the respective classes 
+        create_predicatable_sentences()                  # merging all the sentences in each classifed arrays to one 
+        prediction()                                     # technology predictions Naive Bayes 
 
-        confirmTechnologies(predicted_web_frontend)
+        confirmTechnologies(predicted_web_frontend)      # adding the predicted technologies to the final technology array 
         confirmTechnologies(predicted_mobile_frontend)
         confirmTechnologies(predicted_web_backend)
         confirmTechnologies(predicted_database)
-        print(final_technologies)
+        print(final_technologies)                        # final technologies 
         techDic = {1: final_technologies[0], 2: final_technologies[1], 3: final_technologies[2], 4: final_technologies[3] }
-        return techDic
+        return techDic                                   # return the final technologies as an dictionary 
 
-final_technologies = []
-technologies = ["React","Flutter","Java", "MySQL"]
+final_technologies = []                                  # array to hold the final technologies 
+technologies = ["React","Angular","Vue","Node",          # all the available technologies 
+                "React Native","Flutter","Xamarin","Ionic","Jquery Mobile","Mobile angular ui",
+                "Java" ,"Python" ,"PHP", "C#" ,"Dart"  ,"Express", "Ruby",
+                "MySQL", "MongoDB", "Firebase", "NoSQL", "SQL Server" ,"PostgreSQL"
+               ]
+# method to add the technologies to the final technology array
 def confirmTechnologies(technology):
     for each_tech in technologies:
-        print(each_tech)
-        print(technology)
         if (each_tech == technology):
-            print("running inside loop")
             final_technologies.append(each_tech)
-    
-
+  
 final_web_front_end = "" 
 final_mobile_front_end = ""
 final_web_backend = ""
 final_database = ""
+# method to classify sentences into classes 
 def classify_sentences():
-    loaded_model = joblib.load('classifier')
-    for sentence in final_sentences:
-        val = loaded_model.predict([sentence])
-        if val == ['Web Backend']:
+    loaded_model = joblib.load('classifier')            # loading the Naive Bayes classifer 
+    for sentence in final_sentences:                    
+        val = loaded_model.predict([sentence])          # getting each sentence classifying it to a class and adding 
+        if val == ['Web Backend']:                      # each classified sentence to its respective array 
             web_backend.append(sentence)
         if val == ['Mobile Frontend']:
             mobile_front_end.append(sentence)
@@ -211,17 +207,17 @@ def classify_sentences():
             web_front_end.append(sentence)
         if val == ['Database']:
             database.append(sentence)
-
+# method to create a predicatable sentences so that they can be predicted 
 def create_predicatable_sentences():
-    global final_web_front_end
+    global final_web_front_end                      # global variables holding the each classified sentences 
     global final_mobile_front_end
     global final_web_backend
     global final_database
-    final_web_front_end = ""
+    final_web_front_end = ""                        # resetting the variables 
     final_mobile_front_end = ""
     final_web_backend = ""
     final_database = ""
-    for each_sentence in web_front_end:
+    for each_sentence in web_front_end:             # merging all the sentences as one 
         final_web_front_end += each_sentence
     for each_sentence in mobile_front_end:
         final_mobile_front_end += each_sentence
@@ -230,17 +226,18 @@ def create_predicatable_sentences():
     for each_sentence in database:
         final_database += each_sentence
 
-predicted_web_frontend = ''
+predicted_web_frontend = ''                         # variables to hold each predicted technologies 
 predicted_mobile_frontend = ''
 predicted_web_backend = ''
 predicted_database = ''
+# method to predict technologies 
 def prediction():
-    global predicted_web_frontend
+    global predicted_web_frontend                   # global variables holding the technologies 
     global predicted_mobile_frontend
     global predicted_web_backend
     global predicted_database
-    features_count1 = v.transform([final_web_front_end])
-    predicted_web_frontend = model.predict(features_count1)
+    features_count1 = v.transform([final_web_front_end])            # vectorzing each classified sentences 
+    predicted_web_frontend = model.predict(features_count1)         # predicting technologies 
     features_count2 = v.transform([final_mobile_front_end])
     predicted_mobile_frontend = model.predict(features_count2)
     features_count3 = v.transform([final_web_backend])
@@ -249,8 +246,8 @@ def prediction():
     predicted_database = model.predict(features_count4)
     return "f"
 
-#User preferences part 
-#frontend web technologies 
+# USER PREFERENCES PART  
+# frontend web technologies 
 wf_react = [
     'easy', 'rich', 'user', 'interface', 'fast', 'trusted', 'trending', 'strong community support', 'speed', 'efficient', 
     'flexible', 'performance', 'one way data binding', 'dynamic web development', 'complex website'
@@ -268,7 +265,7 @@ wf_node = [
 wf_javascript = [
     'high level', 'popular','easy','versatile', 'flexible', 'multi paradigm'
 ]
-#frontend mobile technologies 
+# frontend mobile technologies 
 mf_react_native =[
     'reusable','cost effective','compatible','deployment','maintainable','third party','cross platform'
 ]
@@ -287,7 +284,7 @@ mf_jquery_mobile = [
 mf_mobile_angular_ui= [
     'easy', 'simple development','hybrid'
 ]
-#backend technologies 
+# backend technologies 
 b_java = [
     'object oriented', 'simple', 'security', 'neural architecture', 'portable', 'robust', 'multithreading', 'flexible', 
     'distributed', 'high performance', 'rich api', 'independent', 'multi paradigm', 'garbage collected'
@@ -313,7 +310,7 @@ b_express = [
 b_ruby = [
     'versatile', 'dynamic', 'open source', 'simple', 'high level', 'web scraping', 'crawling'
 ]
-#database technologies 
+# database technologies 
 d_mysql = [ 
     'secure', 'scalable', 'available', 'readable', 'security', 'relational', 'high performance', 'cross platform', 
     'flexible', 'robust', 'protection', 'open source'
@@ -337,34 +334,32 @@ d_postgresql = [
     'flexible index', 'integrity', 'relational'
 ]
 
-matching_words_wf = []
-prefered_matching_words_wf = []
+matching_words_wf = []                      # arrays to hold matching words for each class 
+prefered_matching_words_wf = []             # arrays to hold common words between matching and preferred technologies  
 
 matching_words_mf = []
 prefered_matching_words_mf = []
 
-matching_words_b = []
-prefered_matching_words_b = []
+matching_words_b  = []
+prefered_matching_words_b  = []
 
-matching_words_d = []
-prefered_matching_words_d = []
+matching_words_d  = []
+prefered_matching_words_d  = []
 
-final_web_front_end_words = ""
-final_mobile_front_end_words = ""
+final_web_front_end_words = ""              # variables to hold words for each class 
+final_mobile_front_end_words = ""           
 final_back_end_words = ""
 final_database_words = ""
 
 @api.route('/getPreferredTechPercentages',methods=['GET', 'POST'])
 def getPreferredTechnologyPercentages():
-    print("inside getPreferredTechPercentages1")
     if request.method == 'POST':
-        print("inside getPreferredTechPercentages")
-        global final_web_front_end_words
+        global final_web_front_end_words        # global variables holding the tokenzied words for each class 
         global final_mobile_front_end_words
         global final_back_end_words
         global final_database_words
 
-        global matching_words_wf
+        global matching_words_wf                # global arrays to hold matching words  and common words 
         global prefered_matching_words_wf
         global matching_words_mf
         global prefered_matching_words_mf
@@ -373,7 +368,7 @@ def getPreferredTechnologyPercentages():
         global matching_words_d
         global prefered_matching_words_d
 
-        matching_words_wf = []
+        matching_words_wf = []                  # resetting the arrays 
         prefered_matching_words_wf = []
         matching_words_mf = []
         prefered_matching_words_mf = []
@@ -382,27 +377,27 @@ def getPreferredTechnologyPercentages():
         matching_words_d = []
         prefered_matching_words_d = []
 
-        final_web_front_end_words    = word_tokenize(final_web_front_end)
+        final_web_front_end_words    = word_tokenize(final_web_front_end)           # tokenzing words in each class 
         final_mobile_front_end_words = word_tokenize(final_mobile_front_end)
         final_back_end_words         = word_tokenize(final_web_backend)
         final_database_words         = word_tokenize(final_database)
 
-        preferredFrontendWebTech    = request.json['preferredFrontendWebTech']
+        preferredFrontendWebTech    = request.json['preferredFrontendWebTech']      # getting the preferred technologies from the frontend
         preferredFrontendMobileTech = request.json['preferredFrontendMobileTech']
         preferredBackendTech        = request.json['preferredBackendTech']
         preferredDatabaseTech       = request.json['preferredDatabaseTech']
 
-        check_matching_words_web_frontend()
+        check_matching_words_web_frontend()                                         # calling methods checking matching words in each class  
         check_matching_words_mobile_frontend()
         check_matching_words_backend()
         check_matching_words_database()
-        check_for_preferred_matching_web_frontend(preferredFrontendWebTech)
+        check_for_preferred_matching_web_frontend(preferredFrontendWebTech)         # calling methods to get matching words between predicted and preferred technologies 
         check_for_preferred_matching_mobile_frontend(preferredFrontendMobileTech)
         check_for_preferred_matching_backend(preferredBackendTech)
         check_for_preferred_matching_database(preferredDatabaseTech)
 
-        preferred_percentage_wf = 0
-        if len(matching_words_wf) == 0:
+        preferred_percentage_wf = 0                 # initalising the percentage 
+        if len(matching_words_wf) == 0:             # when 
             preferred_percentage_wf = 30
         else:
             preferred_percentage_wf = (len(prefered_matching_words_wf)/len(matching_words_wf))*100
