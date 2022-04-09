@@ -24,24 +24,27 @@ const settings = ['Account', 'Logout'];
 const NavBar = (props) => {
     
     var user2 = sessionStorage.getItem("guser");
+    console.log(user2)
     React.useEffect(() => {
-        if (user2 === null || user2 === 'null') {
-            getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
-                .then((url) => {
-                    const img = document.getElementById('myimg');
-                    img.setAttribute('src', url);
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
+        console.log(user2)
+        // if (user2 === null || user2 === 'null') {
+        //     console.log(user2)
+        //     getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
+        //         .then((url) => {
+        //             const img = document.getElementById('myimg');
+        //             img.setAttribute('src', url);
+        //         })
+        //         .catch((error) => {
+        //             console.log(error)
+        //         });
 
-        }
-        else {
-            const img = document.getElementById('myimg');
-            img.setAttribute('src', user2);
-            console.log(user2)
-        }
-    }, [])
+        // }
+        // else {
+        //     const img = document.getElementById('myimg');
+        //     img.setAttribute('src', user2);
+        //     console.log(user2)
+        // }
+    })
 
     const navigate = useNavigate();
     const storage = getStorage();

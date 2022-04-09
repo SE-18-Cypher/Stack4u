@@ -227,7 +227,8 @@ export default function CommonProfile() {
             <div className="profilePage">
                 <h2 style={{ paddingTop:'5%',fontSize:'30px', color: 'black', textAlign: 'center' }}>Profile</h2>
                 <div className='commonProfileHeader'>
-                    <div style={{ backgroundColor: "white", height: 400, width: 1400, borderRadius: 30 }}>
+                    <div style={{ backgroundColor: "white", height: 400, width: 1400, borderRadius: 30, paddingTop: "10%" }}>
+                        
                         <div style={{ marginTop: "-5%" }}>
                             <Avatar sx={{ width: 220, height: 220, marginLeft: 10 }}>
                                 <img id='myimg2' src={defaultProfilePicture} width={350} alt='profile-avatar' />
@@ -237,7 +238,7 @@ export default function CommonProfile() {
                         <Avatar onClick={handleOpen} sx={{ width: 56, height: 56, float: "right", marginRight: "2%", marginTop: "-13%", cursor: "pointer" }}>
                             <EditIcon fontSize='large' />
                         </Avatar>
-                        <div style={{ marginLeft: "30%", marginTop: "-10%", fontSize: 25 }}>
+                        <div style={{ marginLeft: "30%", marginTop: "-15%", fontSize: 25 }}>
                             <p>Name: <b>{firstName} {lastName}</b></p>
                             <p>Email: {email}</p>
                             <p>Preferred Technologies: </p>
