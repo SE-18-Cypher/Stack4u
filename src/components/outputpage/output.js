@@ -51,6 +51,7 @@ export default function Output() {
 
     const frontendTech = [
         [reactLogo, 'React', 'reactLogo'],
+        [reactLogo, 'ReactJs', 'reactLogo'],
         [angularLogo, 'AngularJs', 'angularLogo'],
         [nodeLogo, 'NodeJs', 'nodeLogo'],
         [javascriptLogo, 'Javascript', 'javascriptLogo'],
@@ -121,7 +122,7 @@ export default function Output() {
             }
         }
         getUserDetails();
-        
+
     }, [finalBackend])
 
     React.useEffect(() => {
@@ -136,26 +137,28 @@ export default function Output() {
     const [preferredBackend, setPreferredBackend] = React.useState("");
     const [preferredDatabase, setPreferredDatabase] = React.useState("");
 
+    const [preferredPercentagesWF, setPreferredPercentagesWF] = React.useState(null);
+    const [preferredPercentagesMF, setPreferredPercentagesMF] = React.useState(null);
+    const [preferredPercentagesB, setPreferredPercentagesB] = React.useState(null);
+    const [preferredPercentagesD, setPreferredPercentagesD] = React.useState(null);
+
     function getPreferredTechPercentages() {
-     
         axios.post('/getPreferredTechPercentages', {
-            predictedFrontendWebTech    : finalWebFrontend,
-            predictedFrontendMobileTech : finalMobileFrontend,
-            predictedBackendTech        : finalBackend,
-            predictedDatabaseTech       : finalDatabase,
-            preferredFrontendWebTech    : preferredFrontendWeb,
-            preferredFrontendMobileTech : preferredFrontendMobile,
-            preferredBackendTech        : preferredBackend,
-            preferredDatabaseTech       : preferredDatabase,
+            preferredFrontendWebTech: preferredFrontendWeb,
+            preferredFrontendMobileTech: preferredFrontendMobile,
+            preferredBackendTech: preferredBackend,
+            preferredDatabaseTech: preferredDatabase,
         })
             .then(function (response) {
-                console.log(response);
+                setPreferredPercentagesWF(() => (response.data["1"]));
+                setPreferredPercentagesMF(() => (response.data["2"]));
+                setPreferredPercentagesB (() => (response.data["3"]));
+                setPreferredPercentagesD (() => (response.data["4"]));
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
-
 
     const docRef = doc(firestoreDatabase, "UserTechInfo", user);
     const getUserDetails = async () => {
@@ -171,11 +174,38 @@ export default function Output() {
         }
     }
 
+    const [preferredFrontendWebIndex, setPreferredFrontendWebIndex] = React.useState(5);
+    const [preferredFrontendMobileIndex, setPreferredFrontendMobileIndex] = React.useState(6);
+    const [preferredBackendIndex, setPreferredBackendIndex] = React.useState(7);
+    const [preferredDatabaseIndex, setPreferredDatabaseIndex] = React.useState(6);
+
+    React.useEffect(() => {
+        for (var i = 0; i < frontendMobileTech.length; i++) {
+            if (frontendMobileTech[i][1] === preferredFrontendMobile) {
+                setPreferredFrontendMobileIndex(i);
+            }
+        }
+        for (var j = 0; j < frontendTech.length; j++) {
+            if (frontendTech[j][1] === preferredFrontendWeb) {
+                setPreferredFrontendWebIndex(j);
+            }
+        }
+        for (var k = 0; k < backendTech.length; k++) {
+            if (backendTech[k][1] === preferredBackend) {
+                setPreferredBackendIndex(k);
+            }
+        }
+        for (var l = 0; l < databaseTech.length; l++) {
+            if (databaseTech[l][1] === preferredDatabase) {
+                setPreferredDatabaseIndex(l);
+            }
+        }
+    })
 
 
     return (
         <div className='bk2'>
-            <NavBar />
+            <NavBar uidValue={user} />
             <div className='Contentt'>
                 <div className='mainPageContent2' >
                     <div className='text1'>
@@ -204,7 +234,32 @@ export default function Output() {
                     <div className='text1'>
                         <h3 style={{ textAlign: 'center', paddingTop: '30px', fontFamily: 'calibri', color: '#037ED7', fontSize: '35px' }}> User Preferred Stack</h3>
                     </div>
-                    {preferredTechnologies && (
+                    {!preferredTechnologies && (
+                        <div>
+                            <div style={{ float: 'left' }}>
+                                <p>Web Frontend</p>
+                                <img src={frontendTech[preferredFrontendWebIndex][0]} width={100} />
+                                <p> Accuracy: {preferredPercentagesWF} % </p>
+                            </div>
+                            <div style={{ float: 'right' }}>
+                                <p>Mobile Frontend</p>
+                                <img src={frontendMobileTech[preferredFrontendMobileIndex][0]} width={100} />
+                                <p> Accuracy:  {preferredPercentagesMF} % </p>
+                            </div>
+                            <br />
+                            <div style={{ float: 'left', bottom: 0, position: 'absolute' }}>
+                                <p>Backend</p>
+                                <img src={backendTech[preferredBackendIndex][0]} width={100} />
+                                <p> Accuracy: {preferredPercentagesB} %  </p>
+                            </div>
+                            <div style={{ float: 'right', bottom: 0, right: 0, position: 'absolute' }}>
+                                <p>Database</p>
+                                <img src={databaseTech[preferredDatabaseIndex][0]} width={100} />
+                                <p> Accuracy: {preferredPercentagesD} %  </p>
+                            </div>
+                        </div>
+                    )}
+                     {preferredTechnologies && (
                         <p> NO PREFERRED TECH </p>
                     )}
                 </div>
