@@ -214,19 +214,23 @@ export default function Output() {
                     <div style={{ float: 'left' }}>
                         <p>Web Frontend</p>
                         <img src={frontendTech[frontendWeb][0]} width={100} />
+                        <p>{frontendTech[frontendWeb][1]} </p>
                     </div>
                     <div style={{ float: 'right' }}>
                         <p>Mobile Frontend</p>
                         <img src={frontendMobileTech[frontendMobile][0]} width={100} />
+                        <p>{frontendMobileTech[frontendMobile][1]} </p>
                     </div>
                     <br />
                     <div style={{ float: 'left', bottom: 0, position: 'absolute' }}>
                         <p>Backend</p>
                         <img src={backendTech[backend][0]} width={100} />
+                        <p>{backendTech[backend][1]} </p>
                     </div>
                     <div style={{ float: 'right', bottom: 0, right: 0, position: 'absolute' }}>
                         <p>Database</p>
                         <img src={databaseTech[database][0]} width={100} />
+                        <p>{databaseTech[database][1]} </p>
                     </div>
                 </div>
 
@@ -239,22 +243,26 @@ export default function Output() {
                             <div style={{ float: 'left' }}>
                                 <p>Web Frontend</p>
                                 <img src={frontendTech[preferredFrontendWebIndex][0]} width={100} />
+                                <p>{frontendTech[preferredFrontendWebIndex][1]} </p>
                                 <p> Accuracy: {preferredPercentagesWF} % </p>
                             </div>
                             <div style={{ float: 'right' }}>
                                 <p>Mobile Frontend</p>
                                 <img src={frontendMobileTech[preferredFrontendMobileIndex][0]} width={100} />
+                                <p>{frontendMobileTech[preferredFrontendMobileIndex][1]} </p>
                                 <p> Accuracy:  {preferredPercentagesMF} % </p>
                             </div>
                             <br />
                             <div style={{ float: 'left', bottom: 0, position: 'absolute' }}>
                                 <p>Backend</p>
                                 <img src={backendTech[preferredBackendIndex][0]} width={100} />
+                                <p>{backendTech[preferredBackendIndex][1]} </p>
                                 <p> Accuracy: {preferredPercentagesB} %  </p>
                             </div>
                             <div style={{ float: 'right', bottom: 0, right: 0, position: 'absolute' }}>
                                 <p>Database</p>
                                 <img src={databaseTech[preferredDatabaseIndex][0]} width={100} />
+                                <p>{databaseTech[preferredDatabaseIndex][1]} </p>
                                 <p> Accuracy: {preferredPercentagesD} %  </p>
                             </div>
                         </div>
