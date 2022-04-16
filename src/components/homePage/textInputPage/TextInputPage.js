@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import "./TextInputPage.css";
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import bg from "./../../../resources/images/computerImage.png";
 import axios from "axios";
 import Box from '@mui/material/Box';
 import AccuracyBar from './../../accuracyBar/AccuracyBar';
@@ -41,8 +40,21 @@ export default function TextInputPage() {
   };
 
   const [userinput, setuserinput] = React.useState("")
+  const [submitButton, setSubmitButton] = React.useState(false);
+
   const [lessAccuracyBox, setLessAccuracyBox] = React.useState(false);
   const [accuracyValue, setAccuracyValue] = React.useState(0);
+
+  const [accuracyValueWF, setAccuracyValueWF] = React.useState(0);
+  const [accuracyValueMF, setAccuracyValueMF] = React.useState(0);
+  const [accuracyValueB, setAccuracyValueB] = React.useState(0);
+  const [accuracyValueD, setAccuracyValueD] = React.useState(0);
+  React.useEffect(() => {
+    let words = userinput.split(' ')
+    if (words.length > 140) {
+      setSubmitButton(true)
+    }
+  }, [userinput])
 
   function sendData(event) {
     event.preventDefault()
@@ -50,13 +62,18 @@ export default function TextInputPage() {
       userInput: userinput,
     })
       .then(function (response) {
+        console.log(response)
         console.log(parseInt(response.data));
-        setAccuracyValue(() => parseInt(response.data));
+        setAccuracyValue(() => parseInt(response.data["1"]));
+        setAccuracyValueWF(() => parseInt(response.data["2"]));
+        setAccuracyValueMF(() => parseInt(response.data["3"]));
+        setAccuracyValueB(() => parseInt(response.data["4"]));
+        setAccuracyValueD(() => parseInt(response.data["5"]));
         console.log(accuracyValue)
-        if (parseInt(response.data) > 10) {
+        if (parseInt(response.data["1"]) > 6) {
           getTechStack()
         }
-        else if (parseInt(response.data) < 10) {
+        else if (parseInt(response.data["1"]) < 6) {
           setLessAccuracyBox(true);
           // navigate('/questionnaire')
         }
@@ -86,7 +103,7 @@ export default function TextInputPage() {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '80%',
-    height: '40%',
+    height: '50%',
     bgcolor: 'background.paper',
     borderRadius: '50px'
   };
@@ -98,13 +115,17 @@ export default function TextInputPage() {
         onClose={() => setLessAccuracyBox(false)}
       >
         <Box sx={style}>
-          <div style={{textAlign:'center', marginTop:'5%'}} >
+          <div style={{ textAlign: 'center', marginTop: '5%' }} >
             <p> The Accuracy is Low </p>
             <p> {accuracyValue} % </p>
-            <div style={{marginLeft:'34%'}} > <AccuracyBar value={accuracyValue} /> </div>
-          </div>
-          <div>
-            
+            <div style={{ marginLeft: '34%' }} > <AccuracyBar value={accuracyValue} /> </div>
+            <br />
+            <div style={{ textAlign: 'left', marginLeft: '34%' }}>
+              <p> Web Frontend    : {accuracyValueWF} % </p>
+              <p> Mobile Frontend : {accuracyValueMF} % </p>
+              <p> Backend         : {accuracyValueB}  % </p>
+              <p> Database        : {accuracyValueD}  % </p>
+            </div>
           </div>
         </Box>
       </Modal>
@@ -122,7 +143,6 @@ export default function TextInputPage() {
               value={userinput}
               onChange={(e) => setuserinput(e.target.value)}
               variant="filled"
-
             />
           </div>
 
@@ -145,7 +165,7 @@ export default function TextInputPage() {
           </div>
 
           <div className='button'>
-            <Button type="submit" variant="contained" size="small" onClick={(e) => sendData(e)}>
+            <Button type="submit" variant="contained" size="small" onClick={(e) => sendData(e)} disabled={!submitButton}>
               Submit
             </Button></div>
         </form>
