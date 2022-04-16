@@ -138,11 +138,11 @@ def calculate_relevancy_percentage(text):
         for each_word in words_each_sentence:           # each word in the sentence is a key value of 
             if(each_word in web_frontend_values):       # of either frontend, backend or database there will be count 
                 web_frontend_count += 1
-            if(each_word in mobile_frontend_values):
+            elif(each_word in mobile_frontend_values):
                 mobile_frontend_count += 1
-            if(each_word in web_backend_values):
+            elif(each_word in web_backend_values):
                 web_backend_count += 1
-            if(each_word in database_values):
+            elif(each_word in database_values):
                 database_count += 1
 
     new_word_set = word_tokenize(text)                  # getting the number of words in the input text 
@@ -151,7 +151,13 @@ def calculate_relevancy_percentage(text):
         text_word_count += 1
     count = web_frontend_count + mobile_frontend_count + web_backend_count + database_count
     percentage = (count/text_word_count)*100            # calculating the percentage 
-    return str(percentage)
+
+    percentageWF = (web_frontend_count/len(web_frontend_values))*100
+    percentageMF = (mobile_frontend_count/len(mobile_frontend_values))*100
+    percentageB  = (web_backend_count/len(web_backend_values))*100
+    percentageD  = (database_count/len(database_values))*100
+    eachPercentages = {1: percentage, 2:percentageWF, 3:percentageMF, 4:percentageB, 5:percentageD}
+    return eachPercentages
 
 @api.route('/input',methods=['GET', 'POST'])
 def userInput():
@@ -161,7 +167,7 @@ def userInput():
         user_input = request.json['userInput']                      # getting the user input from frontend 
         extract_preproces_sentences(user_input)                     # prerpocessing the text input 
         percentage = calculate_relevancy_percentage(user_input)     # calculating the percentage 
-        return str(percentage)                                      # returning the percentage 
+        return percentage                                           # returning the percentage 
 
 @api.route('/finalStack',methods=['GET', 'POST'])
 def getStack():
