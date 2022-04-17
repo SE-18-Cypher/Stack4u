@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 from sklearn.naive_bayes import MultinomialNB
+from sklearn import svm
 v = CountVectorizer()
 
 # import sys
@@ -107,6 +108,9 @@ df = pd.read_csv('dataset.csv')                     # reading the dataset
 X_train = v.fit_transform(df.features.values)       # vectorizing the data 
 model = MultinomialNB()                             # naive bayes model
 model.fit(X_train,df.technology)                    # training the model
+
+SVM = svm.SVC(C=2.0, kernel='linear', degree=4, gamma='auto')
+SVM.fit(X_train,df.technology)
 
 final_sentences = []                                # array to hold all the preprocessed sentences 
 # method to extract preprocessed sentences 
@@ -219,10 +223,10 @@ def create_predicatable_sentences():
     global final_mobile_front_end
     global final_web_backend
     global final_database
-    final_web_front_end = ""                        # resetting the variables 
+    final_web_front_end    = ""                     # resetting the variables 
     final_mobile_front_end = ""
-    final_web_backend = ""
-    final_database = ""
+    final_web_backend      = ""
+    final_database         = ""
     for each_sentence in web_front_end:             # merging all the sentences as one 
         final_web_front_end += each_sentence
     for each_sentence in mobile_front_end:
@@ -232,10 +236,10 @@ def create_predicatable_sentences():
     for each_sentence in database:
         final_database += each_sentence
 
-predicted_web_frontend = ''                         # variables to hold each predicted technologies 
+predicted_web_frontend    = ''                      # variables to hold each predicted technologies 
 predicted_mobile_frontend = ''
-predicted_web_backend = ''
-predicted_database = ''
+predicted_web_backend     = ''
+predicted_database        = ''
 # method to predict technologies 
 def prediction():
     global predicted_web_frontend                   # global variables holding the technologies 
@@ -244,12 +248,20 @@ def prediction():
     global predicted_database
     features_count1 = v.transform([final_web_front_end])            # vectorzing each classified sentences 
     predicted_web_frontend = model.predict(features_count1)         # predicting technologies 
+    predicted_web_frontendSVM = SVM.predict(features_count1)
+    print("SVM",predicted_web_frontendSVM)
     features_count2 = v.transform([final_mobile_front_end])
     predicted_mobile_frontend = model.predict(features_count2)
+    predicted_mobile_frontendSVM = SVM.predict(features_count2)
+    print("SVM",predicted_mobile_frontendSVM)
     features_count3 = v.transform([final_web_backend])
     predicted_web_backend = model.predict(features_count3)
+    predicted_web_backendSVM = SVM.predict(features_count3)
+    print("SVM",predicted_web_backendSVM)
     features_count4 = v.transform([final_database])
     predicted_database = model.predict(features_count4)
+    predicted_web_databaseSVM = SVM.predict(features_count4)
+    print("SVM",predicted_web_databaseSVM)
     return "f"
 
 # USER PREFERENCES PART  

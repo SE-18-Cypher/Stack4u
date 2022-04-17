@@ -9,8 +9,6 @@ import output from './../../resources/images/output.png';
 import app from '../../Firebase-config';
 import { doc, getDoc } from "firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
-// import { useNavigate } from 'react-router';
-// import { getStorage } from "firebase/storage";
 import axios from "axios";
 
 import reactLogo from './../../resources/images/techpage/frontend/reactLogo.png';
