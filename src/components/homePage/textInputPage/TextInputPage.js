@@ -20,20 +20,20 @@ export default function TextInputPage() {
 
   const currencies = [
     {
-      value: 'USD',
+      value: '1',
       label: 'Mobile application',
     },
     {
-      value: 'EUR',
+      value: '2',
       label: 'Web application',
     },
     {
-      value: 'BTC',
+      value: '3',
       label: 'Both',
     },
 
   ];
-  const [currency, setCurrency] = React.useState('EUR');
+  const [currency, setCurrency] = React.useState('2');
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -41,6 +41,8 @@ export default function TextInputPage() {
 
   const [userinput, setuserinput] = React.useState("")
   const [submitButton, setSubmitButton] = React.useState(false);
+  const [inputWordCount, setInputWordCount] = React.useState(0);
+  const [stackType, setStackType] = React.useState(0);
 
   const [lessAccuracyBox, setLessAccuracyBox] = React.useState(false);
   const [accuracyValue, setAccuracyValue] = React.useState(0);
@@ -49,8 +51,10 @@ export default function TextInputPage() {
   const [accuracyValueMF, setAccuracyValueMF] = React.useState(0);
   const [accuracyValueB, setAccuracyValueB] = React.useState(0);
   const [accuracyValueD, setAccuracyValueD] = React.useState(0);
+
   React.useEffect(() => {
     let words = userinput.split(' ')
+    setInputWordCount(words.length)
     if (words.length > 140) {
       setSubmitButton(true)
     }
@@ -90,6 +94,7 @@ export default function TextInputPage() {
         sessionStorage.setItem("finalTechStackMF", response.data["2"]);
         sessionStorage.setItem("finalTechStackB", response.data["3"]);
         sessionStorage.setItem("finalTechStackD", response.data["4"]);
+        sessionStorage.setItem("stackType", currency)
         navigate('/output')
       })
       .catch(function (error) {
@@ -144,6 +149,7 @@ export default function TextInputPage() {
               onChange={(e) => setuserinput(e.target.value)}
               variant="filled"
             />
+            <p style={{float:'right'}}> {inputWordCount} / 140 </p>
           </div>
 
           <div className='select'>
