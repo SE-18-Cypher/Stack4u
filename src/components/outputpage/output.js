@@ -44,9 +44,6 @@ import xMark from './../../resources/images/xmark.png';
 export default function Output() {
 
     const user = sessionStorage.getItem("user");
-    // const navigate = useNavigate();
-    // const storage = getStorage();
-
     const firestoreDatabase = getFirestore(app);
 
     const frontendTech = [
@@ -90,15 +87,19 @@ export default function Output() {
         [xMark, 'Not Selected']
     ];
 
-    var finalWebFrontend = sessionStorage.getItem("finalTechStackWF");
+    var finalWebFrontend    = sessionStorage.getItem("finalTechStackWF");
     var finalMobileFrontend = sessionStorage.getItem("finalTechStackMF");
-    var finalBackend = sessionStorage.getItem("finalTechStackB");
-    var finalDatabase = sessionStorage.getItem("finalTechStackD");
+    var finalBackend        = sessionStorage.getItem("finalTechStackB");
+    var finalDatabase       = sessionStorage.getItem("finalTechStackD");
+    var stackType           = sessionStorage.getItem("stackType")
 
-    const [frontendWeb, setFrontendWeb] = React.useState(5);
+    const [frontendWeb, setFrontendWeb]       = React.useState(5);
     const [frontendMobile, setFrontendMobile] = React.useState(6);
-    const [backend, setBackend] = React.useState(7);
-    const [database, setDatabase] = React.useState(6);
+    const [backend, setBackend]               = React.useState(7);
+    const [database, setDatabase]             = React.useState(6);
+
+    const [viewWebStack, setViewWebStack]     = React.useState(true);
+    const [viewMobStack, setViewMobStack]     = React.useState(true);
 
     React.useEffect(() => {
         for (var i = 0; i < frontendTech.length; i++) {
@@ -123,6 +124,18 @@ export default function Output() {
         }
         getUserDetails();
 
+        if (stackType === '1') {
+            setViewMobStack(true)
+            setViewWebStack(false)
+        }
+        if (stackType === '2') {
+            setViewMobStack(false)
+            setViewWebStack(true)
+        }
+        if (stackType === '3') {
+            setViewMobStack(true)
+            setViewWebStack(true)
+        }
     }, [finalBackend])
 
     React.useEffect(() => {
@@ -130,17 +143,17 @@ export default function Output() {
     })
 
     //hook to set state if the user has preferred technologies or not
-    const [preferredTechnologies, setPreferredTechnologies] = React.useState(false);
+    const [preferredTechnologies, setPreferredTechnologies]     = React.useState(false);
     //hooks to store each preferred technologies 
     const [preferredFrontendMobile, setPreferredFrontendMobile] = React.useState("");
-    const [preferredFrontendWeb, setPreferredFrontendWeb] = React.useState("");
-    const [preferredBackend, setPreferredBackend] = React.useState("");
-    const [preferredDatabase, setPreferredDatabase] = React.useState("");
+    const [preferredFrontendWeb, setPreferredFrontendWeb]       = React.useState("");
+    const [preferredBackend, setPreferredBackend]               = React.useState("");
+    const [preferredDatabase, setPreferredDatabase]             = React.useState("");
 
-    const [preferredPercentagesWF, setPreferredPercentagesWF] = React.useState(null);
-    const [preferredPercentagesMF, setPreferredPercentagesMF] = React.useState(null);
-    const [preferredPercentagesB, setPreferredPercentagesB] = React.useState(null);
-    const [preferredPercentagesD, setPreferredPercentagesD] = React.useState(null);
+    const [preferredPercentagesWF, setPreferredPercentagesWF]   = React.useState(null);
+    const [preferredPercentagesMF, setPreferredPercentagesMF]   = React.useState(null);
+    const [preferredPercentagesB, setPreferredPercentagesB]     = React.useState(null);
+    const [preferredPercentagesD, setPreferredPercentagesD]     = React.useState(null);
 
     function getPreferredTechPercentages() {
         axios.post('/getPreferredTechPercentages', {
@@ -152,8 +165,8 @@ export default function Output() {
             .then(function (response) {
                 setPreferredPercentagesWF(() => (response.data["1"]));
                 setPreferredPercentagesMF(() => (response.data["2"]));
-                setPreferredPercentagesB (() => (response.data["3"]));
-                setPreferredPercentagesD (() => (response.data["4"]));
+                setPreferredPercentagesB(()  => (response.data["3"]));
+                setPreferredPercentagesD(()  => (response.data["4"]));
             })
             .catch(function (error) {
                 console.log(error);
@@ -174,10 +187,10 @@ export default function Output() {
         }
     }
 
-    const [preferredFrontendWebIndex, setPreferredFrontendWebIndex] = React.useState(5);
+    const [preferredFrontendWebIndex, setPreferredFrontendWebIndex]       = React.useState(5);
     const [preferredFrontendMobileIndex, setPreferredFrontendMobileIndex] = React.useState(6);
-    const [preferredBackendIndex, setPreferredBackendIndex] = React.useState(7);
-    const [preferredDatabaseIndex, setPreferredDatabaseIndex] = React.useState(6);
+    const [preferredBackendIndex, setPreferredBackendIndex]               = React.useState(7);
+    const [preferredDatabaseIndex, setPreferredDatabaseIndex]             = React.useState(6);
 
     React.useEffect(() => {
         for (var i = 0; i < frontendMobileTech.length; i++) {
@@ -202,7 +215,6 @@ export default function Output() {
         }
     })
 
-
     return (
         <div className='bk2'>
             <NavBar uidValue={user} />
@@ -211,22 +223,30 @@ export default function Output() {
                     <div className='text1'>
                         <h3 style={{ textAlign: 'center', paddingTop: '30px', fontFamily: 'calibri', color: '#037ED7', fontSize: '35px' }}> Suitable Stack</h3>
                     </div>
-                    <div style={{ float: 'left' }}>
-                        <p>Web Frontend</p>
-                        <img src={frontendTech[frontendWeb][0]} width={100} />
-                    </div>
-                    <div style={{ float: 'right' }}>
-                        <p>Mobile Frontend</p>
-                        <img src={frontendMobileTech[frontendMobile][0]} width={100} />
-                    </div>
+                    {viewWebStack && (
+                        <div style={{ float: 'left' }}>
+                            <p>Web Frontend</p>
+                            <img src={frontendTech[frontendWeb][0]} width={100} />
+                            <p>{frontendTech[frontendWeb][1]} </p>
+                        </div>
+                    )}
+                    {viewMobStack && (
+                        <div style={{ float: 'right' }}>
+                            <p>Mobile Frontend</p>
+                            <img src={frontendMobileTech[frontendMobile][0]} width={100} />
+                            <p>{frontendMobileTech[frontendMobile][1]} </p>
+                        </div>
+                    )}
                     <br />
                     <div style={{ float: 'left', bottom: 0, position: 'absolute' }}>
                         <p>Backend</p>
                         <img src={backendTech[backend][0]} width={100} />
+                        <p>{backendTech[backend][1]} </p>
                     </div>
                     <div style={{ float: 'right', bottom: 0, right: 0, position: 'absolute' }}>
                         <p>Database</p>
                         <img src={databaseTech[database][0]} width={100} />
+                        <p>{databaseTech[database][1]} </p>
                     </div>
                 </div>
 
@@ -236,30 +256,38 @@ export default function Output() {
                     </div>
                     {!preferredTechnologies && (
                         <div>
-                            <div style={{ float: 'left' }}>
-                                <p>Web Frontend</p>
-                                <img src={frontendTech[preferredFrontendWebIndex][0]} width={100} />
-                                <p> Accuracy: {preferredPercentagesWF} % </p>
-                            </div>
-                            <div style={{ float: 'right' }}>
-                                <p>Mobile Frontend</p>
-                                <img src={frontendMobileTech[preferredFrontendMobileIndex][0]} width={100} />
-                                <p> Accuracy:  {preferredPercentagesMF} % </p>
-                            </div>
+                            {viewWebStack && (
+                                <div style={{ float: 'left' }}>
+                                    <p>Web Frontend</p>
+                                    <img src={frontendTech[preferredFrontendWebIndex][0]} width={100} />
+                                    <p>{frontendTech[preferredFrontendWebIndex][1]} </p>
+                                    <p> Accuracy: {preferredPercentagesWF} % </p>
+                                </div>
+                            )}
+                            {viewMobStack && (
+                                <div style={{ float: 'right' }}>
+                                    <p>Mobile Frontend</p>
+                                    <img src={frontendMobileTech[preferredFrontendMobileIndex][0]} width={100} />
+                                    <p>{frontendMobileTech[preferredFrontendMobileIndex][1]} </p>
+                                    <p> Accuracy:  {preferredPercentagesMF} % </p>
+                                </div>
+                            )}
                             <br />
                             <div style={{ float: 'left', bottom: 0, position: 'absolute' }}>
                                 <p>Backend</p>
                                 <img src={backendTech[preferredBackendIndex][0]} width={100} />
+                                <p>{backendTech[preferredBackendIndex][1]} </p>
                                 <p> Accuracy: {preferredPercentagesB} %  </p>
                             </div>
                             <div style={{ float: 'right', bottom: 0, right: 0, position: 'absolute' }}>
                                 <p>Database</p>
                                 <img src={databaseTech[preferredDatabaseIndex][0]} width={100} />
+                                <p>{databaseTech[preferredDatabaseIndex][1]} </p>
                                 <p> Accuracy: {preferredPercentagesD} %  </p>
                             </div>
                         </div>
                     )}
-                     {preferredTechnologies && (
+                    {preferredTechnologies && (
                         <p> NO PREFERRED TECH </p>
                     )}
                 </div>
