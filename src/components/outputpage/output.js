@@ -251,12 +251,12 @@ export default function Output() {
 
                 <div className='mainPageContent3' >
                     <div className='text1'>
-                        <h3 style={{ textAlign: 'center', paddingTop: '30px', fontFamily: 'calibri', color: '#037ED7', fontSize: '35px' }}> User Preferred Stack</h3>
+                        <h3 style={{ textAlign: 'center', paddingTop: '30px', marginLeft:'30%', fontFamily: 'calibri', color: '#037ED7', fontSize: '35px',position:'absolute' }}> User Preferred Stack</h3>
                     </div>
                     {!preferredTechnologies && (
                         <div>
                             {viewWebStack && (
-                                <div style={{ float: 'left',marginTop:'-29%', marginLeft:'17%' }}>
+                                <div style={{ marginTop:'15%', marginLeft:'17%' , position: 'absolute'}}>
                                     <p>Web Frontend</p>
                                     <img src={frontendTech[preferredFrontendWebIndex][0]} width={100} />
                                     <p style={{marginBottom:'-1%'}}>{frontendTech[preferredFrontendWebIndex][1]} </p>
@@ -264,7 +264,7 @@ export default function Output() {
                                 </div>
                             )}
                             {viewMobStack && (
-                                <div style={{ float: 'right',marginTop:'-29%', marginRight:'17%' }}>
+                                <div style={{ marginTop:'15%', marginLeft:'65%',position: 'absolute' }}>
                                     <p>Mobile Frontend</p>
                                     <img src={frontendMobileTech[preferredFrontendMobileIndex][0]} width={100} />
                                     <p style={{marginTop:'18%', marginBottom:'-1%'}}>{frontendMobileTech[preferredFrontendMobileIndex][1]} </p>
@@ -272,16 +272,16 @@ export default function Output() {
                                 </div>
                             )}
                             <br />
-                            <div style={{ float: 'left', position: 'absolute',marginTop:'3%', marginLeft:'17%'}}>
+                            <div style={{  position: 'absolute',marginTop:'46%', marginLeft:'17%'}}>
                                 <p>Backend</p>
                                 <img src={backendTech[preferredBackendIndex][0]} width={100} />
-                                <p style={{marginTop:'-5%', marginBottom:'-1%'}}>{backendTech[preferredBackendIndex][1]} </p>
+                                <p style={{marginTop:'-1%', marginBottom:'-1%'}}>{backendTech[preferredBackendIndex][1]} </p>
                                 <p style={{fontWeight:'bold'}}> Accuracy: {preferredPercentagesB} % </p>
                             </div>
-                            <div style={{ float: 'right', position: 'absolute',marginTop:'3%', marginLeft:'65%' }}>
+                            <div style={{  position: 'absolute',marginTop:'46%', marginLeft:'65%' }}>
                                 <p>Database</p>
                                 <img src={databaseTech[preferredDatabaseIndex][0]} width={100} />
-                                <p style={{marginTop:'38%',marginBottom:'-1%'}}>{databaseTech[preferredDatabaseIndex][1]} </p>
+                                <p style={{marginTop:'40%',marginBottom:'-1%'}}>{databaseTech[preferredDatabaseIndex][1]} </p>
                                 <p style={{paddingTop:'2%',fontWeight:'bold'}}> Accuracy: {preferredPercentagesD} %  </p>
                             </div>
                         </div>
@@ -320,7 +320,7 @@ export default function Output() {
                     <p className='copy2'> Copyright © All rights reserved </p>
                 </div>
             </div>
-            <Feedback />
+            <Feedback/>
         </div>
 
     )
