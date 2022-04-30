@@ -91,7 +91,7 @@ export default function Output() {
     var finalDatabase       = sessionStorage.getItem("finalTechStackD");
     var stackType           = sessionStorage.getItem("stackType")
 
-    const [frontendWeb, setFrontendWeb]       = React.useState(5);
+    const [frontendWeb, setFrontendWeb]       = React.useState(6);
     const [frontendMobile, setFrontendMobile] = React.useState(6);
     const [backend, setBackend]               = React.useState(7);
     const [database, setDatabase]             = React.useState(6);

@@ -247,21 +247,256 @@ def prediction():
     global predicted_web_backend
     global predicted_database
     features_count1 = v.transform([final_web_front_end])            # vectorzing each classified sentences 
-    predicted_web_frontend = model.predict(features_count1)         # predicting technologies 
+    predicted_web_frontendNB = model.predict(features_count1)         # predicting technologies 
     predicted_web_frontendSVM = SVM.predict(features_count1)
-    print("SVM",predicted_web_frontendSVM)
+
+    web_frontend_tech = ["React","Angular","Vue","Node"]
+    if(predicted_web_frontendNB in web_frontend_tech and predicted_web_frontendSVM in web_frontend_tech): #if both the models predict valid technolgoies 
+        nb_web_count = 0
+        if(predicted_web_frontendNB == "React"):
+            for each_word in word_tokenize(final_web_front_end):
+                if each_word in wf_react:
+                    nb_web_count += 1
+        if(predicted_web_frontendNB == "Anuglar"):
+            for each_word in word_tokenize(final_web_front_end):
+                if each_word in wf_angular:
+                    nb_web_count += 1
+        if(predicted_web_frontendNB == "Vue"):
+            for each_word in word_tokenize(final_web_front_end):
+                if each_word in wf_vue:
+                    nb_web_count += 1
+        if(predicted_web_frontendNB == "Node"):
+            for each_word in word_tokenize(final_web_front_end):
+                if each_word in wf_node:
+                    nb_web_count += 1
+        svm_web_count = 0
+        if(predicted_web_frontendSVM == "React"):
+            for each_word in word_tokenize(final_web_front_end):
+                if each_word in wf_react:
+                    svm_web_count += 1
+        if(predicted_web_frontendSVM == "Anuglar"):
+            for each_word in word_tokenize(final_web_front_end):
+                if each_word in wf_angular:
+                    svm_web_count += 1
+        if(predicted_web_frontendSVM == "Vue"):
+            for each_word in word_tokenize(final_web_front_end):
+                if each_word in wf_vue:
+                    svm_web_count += 1
+        if(predicted_web_frontendSVM == "Node"):
+            for each_word in word_tokenize(final_web_front_end):
+                if each_word in wf_node:
+                    svm_web_count += 1
+        if(svm_web_count > nb_web_count):
+            predicted_web_frontend = predicted_web_frontendSVM
+        else:
+            predicted_web_frontend = predicted_web_frontendNB  
+
+    elif(predicted_web_frontendNB in web_frontend_tech):    # if naive bayes prediction is valid then that is the final technology
+        predicted_web_frontend = predicted_web_frontendNB
+    elif(predicted_web_frontendSVM in web_frontend_tech):   # if svm prediction is valid then that is the final technology
+        predicted_web_frontend = predicted_web_frontendSVM  
+
     features_count2 = v.transform([final_mobile_front_end])
-    predicted_mobile_frontend = model.predict(features_count2)
+    predicted_mobile_frontendNB = model.predict(features_count2)
     predicted_mobile_frontendSVM = SVM.predict(features_count2)
-    print("SVM",predicted_mobile_frontendSVM)
+
+    mobile_frontend_tech = ["React Native","Flutter","Xamarin","Ionic","Jquery Mobile","Mobile angular ui"]
+    if(predicted_mobile_frontendNB in mobile_frontend_tech and predicted_mobile_frontendSVM in mobile_frontend_tech):
+        nb_mobile_count = 0
+        if(predicted_mobile_frontendNB == "React Native"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_react_native:
+                    nb_mobile_count += 1
+        if(predicted_mobile_frontendNB == "Flutter"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_flutter:
+                    nb_mobile_count += 1
+        if(predicted_mobile_frontendNB == "Xamarin"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_xamarin:
+                    nb_mobile_count += 1
+        if(predicted_mobile_frontendNB == "Ionic"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_ionic:
+                    nb_mobile_count += 1
+        if(predicted_mobile_frontendNB == "Jquery Mobile"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_jquery_mobile:
+                    nb_mobile_count += 1
+        if(predicted_mobile_frontendNB == "Mobile angular ui"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_mobile_angular_ui:
+                    nb_mobile_count += 1
+        svm_mobile_count = 0
+        if(predicted_mobile_frontendSVM == "React Native"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_react_native:
+                    svm_mobile_count += 1
+        if(predicted_mobile_frontendSVM == "Flutter"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_flutter:
+                    svm_mobile_count += 1
+        if(predicted_mobile_frontendSVM == "Xamarin"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_xamarin:
+                    svm_mobile_count += 1
+        if(predicted_mobile_frontendSVM == "Ionic"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_ionic:
+                    svm_mobile_count += 1
+        if(predicted_mobile_frontendSVM == "Jquery Mobile"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_jquery_mobile:
+                    svm_mobile_count += 1
+        if(predicted_mobile_frontendSVM == "Mobile angular ui"):
+            for each_word in word_tokenize(final_mobile_front_end):
+                if each_word in mf_mobile_angular_ui:
+                    svm_mobile_count += 1
+        if(svm_mobile_count > nb_mobile_count):
+            predicted_mobile_frontend = predicted_mobile_frontendSVM
+        else:
+            predicted_mobile_frontend = predicted_mobile_frontendNB 
+    elif(predicted_mobile_frontendNB in mobile_frontend_tech):    # if naive bayes prediction is valid then that is the final technology
+        predicted_mobile_frontend = predicted_mobile_frontendNB
+    elif(predicted_mobile_frontendSVM in mobile_frontend_tech):   # if svm prediction is valid then that is the final technology
+        predicted_mobile_frontend = predicted_mobile_frontendSVM  
+
     features_count3 = v.transform([final_web_backend])
-    predicted_web_backend = model.predict(features_count3)
+    predicted_web_backendNB = model.predict(features_count3)
     predicted_web_backendSVM = SVM.predict(features_count3)
-    print("SVM",predicted_web_backendSVM)
+
+    backend_tech = ["Java" ,"Python" ,"PHP", "C#" ,"Dart"  ,"Express", "Ruby"]
+    if(predicted_web_backendNB in backend_tech and predicted_web_backendSVM in backend_tech):
+        nb_backend_count = 0 #NB
+        if(predicted_web_backendNB == "Java"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_java:
+                    nb_backend_count += 1
+        if(predicted_web_backendNB == "Python"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_python:
+                    nb_backend_count += 1
+        if(predicted_web_backendNB == "PHP"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_php:
+                    nb_backend_count += 1
+        if(predicted_web_backendNB == "C#"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_c:
+                    nb_backend_count += 1
+        if(predicted_web_backendNB == "Dart"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_dart:
+                    nb_backend_count += 1
+        if(predicted_web_backendNB == "Express"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_express:
+                    nb_backend_count += 1
+        if(predicted_web_backendNB == "Ruby"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_ruby:
+                    nb_backend_count += 1
+        svm_backend_count = 0   #SVM
+        if(predicted_web_backendSVM == "Java"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_java:
+                    svm_backend_count += 1
+        if(predicted_web_backendSVM == "Python"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_python:
+                    svm_backend_count += 1
+        if(predicted_web_backendSVM == "PHP"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_php:
+                    svm_backend_count += 1
+        if(predicted_web_backendSVM == "C#"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_c:
+                    svm_backend_count += 1
+        if(predicted_web_backendSVM == "Dart"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_dart:
+                    svm_backend_count += 1
+        if(predicted_web_backendSVM == "Express"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_express:
+                    svm_backend_count += 1
+        if(predicted_web_backendSVM == "Ruby"):
+            for each_word in word_tokenize(final_web_backend):
+                if each_word in b_ruby:
+                    svm_backend_count += 1
+        if(svm_backend_count > nb_backend_count):
+            predicted_web_backend = predicted_web_backendSVM
+        else:
+            predicted_web_backend = predicted_web_backendNB 
+    elif(predicted_web_backendNB in backend_tech):    # if naive bayes prediction is valid then that is the final technology
+        predicted_web_backend = predicted_web_backendNB
+    elif(predicted_web_backendSVM in backend_tech):   # if svm prediction is valid then that is the final technology
+        predicted_web_backend = predicted_web_backendSVM 
+
     features_count4 = v.transform([final_database])
-    predicted_database = model.predict(features_count4)
-    predicted_web_databaseSVM = SVM.predict(features_count4)
-    print("SVM",predicted_web_databaseSVM)
+    predicted_databaseNB = model.predict(features_count4)
+    predicted_databaseSVM = SVM.predict(features_count4)
+    database_tech = ["MySQL", "MongoDB", "Firebase", "NoSQL", "SQL Server" ,"PostgreSQL"]
+    if(predicted_databaseNB in database_tech and predicted_databaseSVM in database_tech):
+        nb_database_count = 0 #NB
+        if(predicted_databaseNB == "MySQL"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_mysql:
+                    nb_database_count += 1
+        if(predicted_databaseNB == "MongoDB"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_mongodb:
+                    nb_database_count += 1
+        if(predicted_databaseNB == "Firebase"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_firebase:
+                    nb_database_count += 1
+        if(predicted_databaseNB == "NoSQL"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_nosql:
+                    nb_database_count += 1
+        if(predicted_databaseNB == "SQL Server"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_sqlserver:
+                    nb_database_count += 1
+        if(predicted_databaseNB == "PostgreSQL"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_postgresql:
+                    nb_database_count += 1
+        svm_database_count = 0 #SVM
+        if(predicted_databaseSVM == "MySQL"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_mysql:
+                    svm_database_count += 1
+        if(predicted_databaseSVM == "MongoDB"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_mongodb:
+                    svm_database_count += 1
+        if(predicted_databaseSVM == "Firebase"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_firebase:
+                    svm_database_count += 1
+        if(predicted_databaseSVM == "NoSQL"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_nosql:
+                    svm_database_count += 1
+        if(predicted_databaseSVM == "SQL Server"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_sqlserver:
+                    svm_database_count += 1
+        if(predicted_databaseSVM == "PostgreSQL"):
+            for each_word in word_tokenize(final_database):
+                if each_word in d_postgresql:
+                    svm_database_count += 1
+        if(svm_database_count > nb_database_count):
+            predicted_database = predicted_databaseSVM
+        else:
+            predicted_database = predicted_databaseNB
+    elif(predicted_databaseNB in database_tech):    # if naive bayes prediction is valid then that is the final technology
+        predicted_database = predicted_databaseNB
+    elif(predicted_databaseSVM in database_tech):   # if svm prediction is valid then that is the final technology
+        predicted_database = predicted_databaseSVM
     return "f"
 
 # USER PREFERENCES PART  
