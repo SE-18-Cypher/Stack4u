@@ -86,11 +86,11 @@ export default function Output() {
         [xMark, 'Not Selected']
     ];
 
-    var finalWebFrontend    = sessionStorage.getItem("finalTechStackWF");
-    var finalMobileFrontend = sessionStorage.getItem("finalTechStackMF");
-    var finalBackend        = sessionStorage.getItem("finalTechStackB");
-    var finalDatabase       = sessionStorage.getItem("finalTechStackD");
-    var stackType           = sessionStorage.getItem("stackType")
+    var finalWebFrontend    = localStorage.getItem("finalTechStackWF");
+    var finalMobileFrontend = localStorage.getItem("finalTechStackMF");
+    var finalBackend = localStorage.getItem("finalTechStackB");
+    var finalDatabase = localStorage.getItem("finalTechStackD");
+    var stackType = localStorage.getItem("stackType")
 
     const [frontendWeb, setFrontendWeb]       = React.useState(6);
     const [frontendMobile, setFrontendMobile] = React.useState(6);
@@ -135,7 +135,7 @@ export default function Output() {
             setViewMobStack(true)
             setViewWebStack(true)
         }
-    },)
+    },[finalBackend])
 
     React.useEffect(() => {
         getUserDetails();
@@ -186,7 +186,7 @@ export default function Output() {
         }
     }
 
-    const [preferredFrontendWebIndex, setPreferredFrontendWebIndex]       = React.useState(5);
+    const [preferredFrontendWebIndex, setPreferredFrontendWebIndex]       = React.useState(6);
     const [preferredFrontendMobileIndex, setPreferredFrontendMobileIndex] = React.useState(6);
     const [preferredBackendIndex, setPreferredBackendIndex]               = React.useState(7);
     const [preferredDatabaseIndex, setPreferredDatabaseIndex]             = React.useState(6);

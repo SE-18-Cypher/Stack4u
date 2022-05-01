@@ -17,14 +17,18 @@ import app from './../../Firebase-config';
 // import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 import Tesseract from 'tesseract.js';
+import axios from "axios";
+import Output from '../outputpage/output';
+import ErrorPage from '../errorPage/ErrorPage';
+import { Link } from 'react-router-dom';
 
 const fileTypes = ["JPEG", "PDF", "JPG", "PNG"];
 
 export default function HomePage() {
-    // const storage = getStorage(app);
+    const storage = getStorage(app);
     const localUser = localStorage.getItem("user");
     const user = sessionStorage.getItem("user");
-    // const guser = sessionStorage.getItem("guser");
+    const guser = sessionStorage.getItem("guser");
     // console.log(guser)
     // const guserFN = sessionStorage.getItem("guserFirstName");
     // const guserLN = sessionStorage.getItem("guserSecondName");
@@ -43,7 +47,7 @@ export default function HomePage() {
             setRememberMe(false)
         }
         console.log(rememberMe)
-    }, [remember])
+    }, [rememberMe])
 
     window.onbeforeunload = closingCode;
     function closingCode() {
@@ -66,6 +70,8 @@ export default function HomePage() {
     const handleChange = (file) => {
         setFile(file);
     };
+
+
 
     React.useEffect(() => {
         handleSubmit();
@@ -107,13 +113,66 @@ export default function HomePage() {
             var fileExtension = fileName.split('.').pop();
             console.log(fileExtension)
             if (fileExtension === 'pdf') {
-                
+                postPdfData(file)
+                console.log("file input successful")
             }
             else {
                 extractText(file);
             }
         }
     };
+
+    function postPdfData(file) {
+        console.log(file[0])
+        const formdata = new FormData();
+        formdata.append("file", file);
+
+        console.log(file.name)
+        axios.post("/index", formdata)
+            .then(
+                (response) => {
+                    var result = response.data;
+                    console.log(result)
+                    if (parseInt(response.data["1"]) > 6) {
+                        getTechStack()
+                    }
+                    else if (parseInt(response.data["1"]) < 6) {
+                        console.log("total accuracy is less than 6%")
+                        navigate('/questionnaire')
+                    }
+
+                    if (result != null) {
+                        localStorage.setItem('data', result)
+
+                        navigate('/Output')
+                    }
+                    else {
+                        navigate('*')
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+    }
+
+    function getTechStack() {
+        axios.post('/finalStack')
+            .then(function (response) {
+                localStorage.setItem("finalTechStackWF", response.data["1"]);
+                console.log(response.data["1"])
+                localStorage.setItem("finalTechStackMF", response.data["2"]);
+                console.log(response.data["2"])
+                localStorage.setItem("finalTechStackB", response.data["3"]);
+                console.log(response.data["3"])
+                localStorage.setItem("finalTechStackD", response.data["4"]);
+                console.log(response.data["4"])
+                navigate('/output')
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
     function extractText(file) {
         Tesseract.recognize(file, 'eng',
