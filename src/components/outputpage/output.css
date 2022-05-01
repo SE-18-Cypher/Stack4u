@@ -1,6 +1,7 @@
 .bk2{
     background: linear-gradient(58deg, rgba(17, 138, 225, 0.43) 13.78%, rgba(22, 142, 229, 0.687012) 89.33%, rgba(28, 147, 234, 0.95) 107.25%);
 }
+
 .commonbg2{
     
     height: 100%;
@@ -9,6 +10,7 @@
     margin-right: 120px;
     width: 84.5%;
 }
+
 .mainPageContent2{
     
     margin-left: 5%;
@@ -33,21 +35,14 @@
     border-radius: 4%;
 }
 
-.bkimage {
-    margin-top: -460px;
-    margin-bottom: 10px;
-    position: relative;
-    margin-left: 510px;
-
-}
-
-.footerMainPage2{
+.footerMainPage2 {
     position: relative;
     color: white;
     margin-top: -5%;
     
 }
-.footerImage2{
+
+.footerImage2 {
     width: 100%;
     height:300px;
     opacity: 0.5;
@@ -68,7 +63,7 @@
     padding-right: 10%;
 }
 
-.mainPageGetStartedButton2{
+.mainPageGetStartedButton2 {
     margin-left: 3%;
     margin-top: 4%;
 
@@ -81,11 +76,12 @@
     
 }
 
-.bkimage{
+.bkimage {
     position:absolute;
     padding-top: 3.3%;
-    margin-left: 35%;
-    
+    margin-left: 37%;
+    margin-bottom: 10px;
+    margin-top: -421px;
    
 }
 

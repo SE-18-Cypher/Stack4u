@@ -56,21 +56,22 @@ export default function AboutusPage() {
                 {/* text content in the page */}
                 <div className='Ourstory'>
                     <div className='container1'><h4 className="aboutUsContent">Our Story</h4>
-                        <p>We are a group of 2nd-year undergraduates who are currently following the  BEng(Hons) Software Engineering degree at the informatics
+                        <p style={{fontFamily: "consolas", marginLeft:"3%",marginRight:"3%"}}>We are a group of 2nd-year undergraduates who are currently following the BEng(Hons) Software Engineering degree at the Informatics
                             Institute of Technology. As our second-year Software Development Group Project, We were asked to come up with an innovative solution
-                            to solve real-world problems, covering the aspects of Data Science, Blockchain, Gaming, Cyber Security, Identity, and access
-                            management with a research component and to implement that idea with the front end, back end (web/mobile).
-                            his SDGP module aims to improve students' skills in coding, logical thinking, industrial replacement, teamwork, etc.
-                            So , heres our innovative solution.............
+                            to solve real-world problems, covering the aspects of Data Science, Blockchain, Gaming, Cyber Security, Identity, and Access
+                            Management with a research component and to implement that idea with the front end, back end (web/mobile).
+                            This SDGP module aims to improve students' skills in coding, logical thinking, industrial replacement, teamwork, etc.
+                            So, here's our innovative solution ...
                         </p>
                     </div>
 
                     <div className='container2'> <h4 className="aboutUsContent">About our Project</h4>
-                        <p>In the software development industry, it's common to have new technologies, standards, and common practices change from time to time.
+                        <p style={{fontFamily: "consolas", marginLeft:"3%",marginRight:"3%"}}> In the software development industry, it's common to have new technologies, standards, and common practices change from time to time.
                             Sometimes it can be a bit harsh on new developers. When a new developer enters the industry it would be really helpful to have a tool
-                            to generate a technology stack according to a specific requirement. And it also considers user preferences when generating
-                            a technology stack. Based on the suggested stack user can decide on what is best for their scenario.<br></br> So as the solution, we are
-                            implementing a web application named <b>“Stack4U”</b>. This application recommends the most suitable and accurate technology stack for a software requirement specification document. With the growth of technology, newer technologies are introduced which are much better
+                            to generate a technology stack according to a specific requirement. The Application also considers user preferences when generating
+                            a technology stack and calculates a percentage on how accurate the generated technologies are compared to the user preferred technologies. <br></br> So as the solution, we are
+                            implementing a web application named <b>“ Stack4U ”</b>. This application recommends the most suitable and accurate technology stack for a software requirement specification document. 
+                            With the growth of technology, newer technologies are introduced which are much better
                             and more beneficial compared to the previous technologies. For a project to be successful, the chosen technology stack must be suitable
                             for the given requirement specification document. Choosing the most suitable technology stack is a challenging task, developers face
                             a lot of issues when choosing the right technologies since some developers are not experienced enough to have the knowledge to choose
@@ -78,7 +79,7 @@ export default function AboutusPage() {
                             nowadays constantly want to evolve and learn new technologies.
                         </p>
 
-                        <h6 style={{ textAlign: 'center', paddingTop: 15 }}>Scroll down {'>>>>>>'}</h6>
+                        <h6 style={{ textAlign: 'center', paddingTop: 10 }}> {'<<<<'} Scroll down {'>>>>'}</h6>
                     </div>
                 </div>
             </div>
@@ -87,7 +88,7 @@ export default function AboutusPage() {
                 {/* each member */}
                 <div className='desc'>
                     {/* conditional rendering according view members tate hook */}
-                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Thisaru} alt="Error Logo" />
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Thisaru} alt="Profile Pic of member" />
                     <h6 className='name'><b>THISARU WIKRAMASEKARA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
@@ -125,9 +126,10 @@ export default function AboutusPage() {
                     > <LinkedInIcon color="primary" /></Button>
                 </div>
 
+
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Sadurshan} alt="Error Logo" />
-                    <h6 className='name'><b>SADURSHAN RAVINDRAN</b></h6>
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={chami} alt="Profile Pic of member" />
+                    <h6 className='name'><b>CHAMIDI PERERA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
 
@@ -135,7 +137,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.instagram.com/sadurshan_ravindran/', '_blank')
+                            window.open('https://www.instagram.com/_.chami.iii/', '_blank')
 
                         }}
 
@@ -146,27 +148,28 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.facebook.com/sadu.ravi.1000', '_blank')
+                            window.open('https://www.facebook.com/chamidi.perera.39', '_blank')
 
                         }}
 
-                    > <FacebookIcon color="primary" /></Button>
+                    > <FacebookIcon color="primary" id="bottom" /></Button>
                     <Button
 
                         onClick={(e) => {
 
                             e.preventDefault();
 
-                            window.open('https://www.linkedin.com/in/sadurshan-ravindran-811540113/', '_blank')
+                            window.open('', '_blank')
 
                         }}
 
                     > <LinkedInIcon color="primary" /></Button>
+
                 </div>
-                
-            
+
+           
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage" : "Image"} src={madusha} alt="Error Logo" />
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={madusha} alt="Profile Pic of member" />
                     <h6 className='name'><b>MADUSHA THUMBOWITA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
@@ -206,8 +209,8 @@ export default function AboutusPage() {
                     <p></p>
                 </div>
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage" : "Image"} src={chami} alt="Error Logo" />
-                    <h6 className='name'><b>CHAMIDI PERERA</b></h6>
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Sadurshan} alt="Profile Pic of member" />
+                    <h6 className='name'><b>SADURSHAN RAVINDRAN</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button
 
@@ -215,7 +218,7 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.instagram.com/_.chami.iii/', '_blank')
+                            window.open('https://www.instagram.com/sadurshan_ravindran/', '_blank')
 
                         }}
 
@@ -226,26 +229,25 @@ export default function AboutusPage() {
 
                             e.preventDefault();
 
-                            window.open('https://www.facebook.com/chamidi.perera.39', '_blank')
+                            window.open('https://www.facebook.com/sadu.ravi.1000', '_blank')
 
                         }}
 
-                    > <FacebookIcon color="primary" id="bottom" /></Button>
+                    > <FacebookIcon color="primary" /></Button>
                     <Button
 
                         onClick={(e) => {
 
                             e.preventDefault();
 
-                            window.open('', '_blank')
+                            window.open('https://www.linkedin.com/in/sadurshan-ravindran-811540113/', '_blank')
 
                         }}
 
                     > <LinkedInIcon color="primary" /></Button>
-
                 </div>
                 <div className='desc'>
-                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Bupani} alt="Error Logo" />
+                    <img className={viewMembers ? "ActiveImage" : "Image"} src={Bupani} alt="Profile Pic of member" />
                     <h6 className='name'><b>BUPANIE THALAGALA</b></h6>
                     <p className='para'>BEng(Hons) Software Engineering</p>
                     <Button

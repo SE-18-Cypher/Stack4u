@@ -296,7 +296,7 @@ export default function Forum() {
         <div className='createPost'>    
           <h4 style={{ marginBottom: '3%', marginTop:'30%' }}>Create a post</h4>
           <h5 style={{ marginBottom: '3%', color:'white' }}>
-            Enter a name
+            Enter a Topic
           </h5>
           <TextField
             label="Topic"
@@ -308,7 +308,7 @@ export default function Forum() {
           />  
           <br />
           <h5 style={{ marginBottom: 20, color:'white' }}>
-            Enter a description
+            Enter a Description
           </h5>
           <TextField
             label="Description"

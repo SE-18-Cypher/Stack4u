@@ -16,7 +16,7 @@ import app from '../../../Firebase-config';
 import { Modal } from "@mui/material";
 import error from '../../../resources/images/error.png';
 import cape from '../../../resources/images/astronautCape.png';
-import { addDoc, collection, doc, getDoc, setDoc,onSnapshot, query, updateDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { getFirestore } from "@firebase/firestore";
 
 const theme = createTheme();
@@ -94,13 +94,11 @@ export default function Signup() {
         createUserWithEmailAndPassword(auth, email, password)
             .then((res) => {
                 const user = res.user;
-                console.log(res);
-                console.log(user);
                 addUser(user);
+                sessionStorage.setItem("user", res.user.uid);
                 navigate("/techinput");
             })
             .catch((error) => {
-                console.log(error.code)
                 if (error.code === 'auth/invalid-email') {
                     setErrorText("Invalid Email")
                 }
@@ -128,15 +126,7 @@ export default function Signup() {
                 addGoogleUser(user,nameArray[0],nameArray[1]);
                 sessionStorage.setItem("user", result.user.uid);
                 sessionStorage.setItem("guser", result.user.photoURL);
-                console.log(result.user.photoURL)
 
-                // sessionStorage.setItem("user", result.user.uid);
-                // sessionStorage.setItem("guser", result.user.photoURL);
-                // let text = result.user.displayName;
-                // const myArray = text.split(" ");
-                // sessionStorage.setItem("guserFirstName", myArray[0]);
-                // sessionStorage.setItem("guserSecondName", myArray[1]);
-                // sessionStorage.setItem("rememberMe", rememberMe);
                 navigate("/techinput");
             })
             .catch((error) => {

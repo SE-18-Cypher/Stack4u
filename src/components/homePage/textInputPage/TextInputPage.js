@@ -171,7 +171,7 @@ export default function TextInputPage() {
           </div>
 
           <div className='button'>
-            <Button type="submit" variant="contained" size="small" onClick={(e) => sendData(e)} disabled={!submitButton}>
+            <Button type="submit" variant="contained" size="medium" onClick={(e) => sendData(e)} disabled={!submitButton}>
               Submit
             </Button></div>
         </form>
