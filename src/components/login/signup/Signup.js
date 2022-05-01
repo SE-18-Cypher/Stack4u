@@ -203,11 +203,11 @@ export default function Signup() {
             >
                 <Box sx={style}>
                     <h3 style={{ textAlign: 'center', marginTop: '10%', fontSize: 30, fontWeight: 'bold' }}>ERROR</h3>
-                    <img src={error} width={80} className='decoImage' />
+                    <img src={error} width={80} className='decoImage' alt="deco pic" />
                     <br />
                     <h5 style={{ marginTop: '20%', textAlign: 'center', fontSize: 30, fontWeight: 'bold' }}> {errorText}  </h5>
                     <div>
-                        <img src={cape} width={300} className='decoImageLoudspeaker' style={{ marginTop: -50, marginLeft: 35 }} />
+                        <img src={cape} width={300} className='decoImageLoudspeaker' style={{ marginTop: -50, marginLeft: 35 }} alt='deco pic' />
                     </div>
                 </Box>
             </Modal>

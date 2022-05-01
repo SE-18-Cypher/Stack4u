@@ -21,10 +21,10 @@ import Tesseract from 'tesseract.js';
 const fileTypes = ["JPEG", "PDF", "JPG", "PNG"];
 
 export default function HomePage() {
-    const storage = getStorage(app);
+    // const storage = getStorage(app);
     const localUser = localStorage.getItem("user");
     const user = sessionStorage.getItem("user");
-    const guser = sessionStorage.getItem("guser");
+    // const guser = sessionStorage.getItem("guser");
     // console.log(guser)
     // const guserFN = sessionStorage.getItem("guserFirstName");
     // const guserLN = sessionStorage.getItem("guserSecondName");
@@ -43,7 +43,7 @@ export default function HomePage() {
             setRememberMe(false)
         }
         console.log(rememberMe)
-    }, [rememberMe])
+    }, [remember])
 
     window.onbeforeunload = closingCode;
     function closingCode() {
@@ -71,7 +71,7 @@ export default function HomePage() {
 
     React.useEffect(() => {
         handleSubmit();
-    }, [file])
+    }, [file,handleSubmit])
 
     // const uploadFiles = () => {
     //     if (!file) return;

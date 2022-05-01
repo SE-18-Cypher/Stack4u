@@ -135,7 +135,7 @@ export default function Output() {
             setViewMobStack(true)
             setViewWebStack(true)
         }
-    }, [finalBackend])
+    },)
 
     React.useEffect(() => {
         getUserDetails();
@@ -212,7 +212,7 @@ export default function Output() {
                 setPreferredDatabaseIndex(l);
             }
         }
-    })
+    }, [frontendMobileTech, frontendTech, backendTech, databaseTech, preferredFrontendMobile, preferredFrontendWeb, preferredBackend, preferredDatabase])
 
     return (
         <div className='bk2'>
@@ -225,26 +225,26 @@ export default function Output() {
                     {viewWebStack && (
                         <div style={{ marginTop:'5%',marginLeft:'17%',float: 'left' }}>
                             <p>Web Frontend</p>
-                            <img src={frontendTech[frontendWeb][0]} width={100} />
+                            <img src={frontendTech[frontendWeb][0]} width={100} alt='tech pic' />
                             <p>{frontendTech[frontendWeb][1]} </p>
                         </div>
                     )}
                     {viewMobStack && (
                         <div style={{marginTop:'5%', marginRight:'17%',float: 'right' }}>
                             <p>Mobile Frontend</p>
-                            <img src={frontendMobileTech[frontendMobile][0]} width={100} />
+                            <img src={frontendMobileTech[frontendMobile][0]} width={100}  alt='tech pic'/>
                             <p>{frontendMobileTech[frontendMobile][1]} </p>
                         </div>
                     )}
                     <br />
                     <div style={{marginBottom:'5%', float: 'left', bottom: 0, marginLeft:'17%', position: 'absolute' }}>
                         <p>Backend</p>
-                        <img src={backendTech[backend][0]} width={100} />
+                        <img src={backendTech[backend][0]} width={100}  alt='tech pic'/>
                         <p>{backendTech[backend][1]} </p>
                     </div>
                     <div style={{ marginBottom:'5%', float: 'right', bottom: 0, marginRight:'17%', right: 0, position: 'absolute' }}>
                         <p>Database</p>
-                        <img src={databaseTech[database][0]} width={100} />
+                        <img src={databaseTech[database][0]} width={100}  alt='tech pic'  />
                         <p>{databaseTech[database][1]} </p>
                     </div>
                 </div>
@@ -258,7 +258,7 @@ export default function Output() {
                             {viewWebStack && (
                                 <div style={{ marginTop:'15%', marginLeft:'17%' , position: 'absolute'}}>
                                     <p>Web Frontend</p>
-                                    <img src={frontendTech[preferredFrontendWebIndex][0]} width={100} />
+                                    <img src={frontendTech[preferredFrontendWebIndex][0]} width={100} alt='tech pic'/>
                                     <p style={{marginBottom:'-1%'}}>{frontendTech[preferredFrontendWebIndex][1]} </p>
                                     <p style={{fontWeight:'bold', paddingTop:'0%'}}> Accuracy: {preferredPercentagesWF} % </p>
                                 </div>
@@ -266,7 +266,7 @@ export default function Output() {
                             {viewMobStack && (
                                 <div style={{ marginTop:'15%', marginLeft:'65%',position: 'absolute' }}>
                                     <p>Mobile Frontend</p>
-                                    <img src={frontendMobileTech[preferredFrontendMobileIndex][0]} width={100} />
+                                    <img src={frontendMobileTech[preferredFrontendMobileIndex][0]} width={100} alt='tech pic'/>
                                     <p style={{marginTop:'18%', marginBottom:'-1%'}}>{frontendMobileTech[preferredFrontendMobileIndex][1]} </p>
                                     <p style={{fontWeight:'bold'}}> Accuracy:  {preferredPercentagesMF} % </p>
                                 </div>
@@ -274,15 +274,16 @@ export default function Output() {
                             <br />
                             <div style={{  position: 'absolute',marginTop:'46%', marginLeft:'17%'}}>
                                 <p>Backend</p>
-                                <img src={backendTech[preferredBackendIndex][0]} width={100} />
+                                <img src={backendTech[preferredBackendIndex][0]} width={100} alt='tech pic' />
                                 <p style={{marginTop:'-1%', marginBottom:'-1%'}}>{backendTech[preferredBackendIndex][1]} </p>
                                 <p style={{fontWeight:'bold'}}> Accuracy: {preferredPercentagesB} % </p>
                             </div>
                             <div style={{  position: 'absolute',marginTop:'46%', marginLeft:'65%' }}>
                                 <p>Database</p>
                                 <img src={databaseTech[preferredDatabaseIndex][0]} width={100} />
-                                <p style={{marginTop:'40%',marginBottom:'-1%'}}>{databaseTech[preferredDatabaseIndex][1]} </p>
+                                <p style={{marginTop:'40%',marginBottom:'-1%'}}>{databaseTech[preferredDatabaseIndex][1]} alt='tech pic' </p>
                                 <p style={{paddingTop:'2%',fontWeight:'bold'}}> Accuracy: {preferredPercentagesD} %  </p>
+
                             </div>
                         </div>
                     )}
@@ -293,7 +294,7 @@ export default function Output() {
             </div>
 
             <div className='bkimage'>
-                <img src={output} width="410px" />
+                <img src={output} width="450px"  alt='background pic'/>
             </div>
             <div className='footerMainPage2'>
                 <div style={{ backgroundColor: '#045794C9' }}>

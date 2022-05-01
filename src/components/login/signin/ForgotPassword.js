@@ -92,7 +92,7 @@ export default function ForgotPassword() {
               onChange={e => setEmail(e.target.value)}
             />
             <Button type='submit' variant='contained' onClick={() => submit()} style={{ marginTop: '25%', marginLeft:'70%' }}> Submit </Button>
-            <img src={forgotpassword} width={300} style={{ marginTop: '-20%' }}/>
+            <img src={forgotpassword} width={300} style={{ marginTop: '-20%' }} alt='deco pic'/>
           </Paper>
         </Box>
         {/* sucess box  */}
@@ -102,12 +102,12 @@ export default function ForgotPassword() {
         >
           <Box sx={style}>
             <h3 style={{ textAlign: 'center', marginTop: '10%' }}>SUCCESS</h3>
-            <img src={success} width={100} className='decoImage' />
+            <img src={success} width={100} className='decoImage' alt='deco pic'/>
             <br />
             <h5 style={{ marginTop: '20%', textAlign: 'center' }}> Verification Email has been successfully sent </h5>
             <div className='curvedCornerLoudSpeaker' />
             <div className='decoImageLoduspeakerContainer'>
-              <img src={loudspeaker} width={300} className='decoImageLoudspeaker' />
+              <img src={loudspeaker} width={300} className='decoImageLoudspeaker' alt='deco pic' />
             </div>
 
           </Box>
@@ -119,12 +119,12 @@ export default function ForgotPassword() {
         >
           <Box sx={style}>
             <h3 style={{ textAlign: 'center', marginTop: '10%' }}>ERROR</h3>
-            <img src={error} width={100} className='decoImage' />
+            <img src={error} width={100} className='decoImage' alt='deco pic' />
             <br />
             <h5 style={{ marginTop: '20%', textAlign: 'center' }}> {viewErrorText} </h5>
             <div className='curvedCornerLoudSpeaker' />
             <div className='decoImageLoduspeakerContainer'>
-              <img src={loudspeaker} width={300} className='decoImageLoudspeaker' />
+              <img src={loudspeaker} width={300} className='decoImageLoudspeaker' alt='deco pic'/>
             </div>
 
           </Box>

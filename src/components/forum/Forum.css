@@ -1,7 +1,6 @@
 .eachQuery{
-    width: 50%;
+    width: 80%;
     padding-bottom: 2%;
-    margin-left:45%;
     margin-top: 2%;  
 }
 
@@ -34,4 +33,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.allForumContent{
+    width: 900px;
+    height: 625px;
+    overflow: scroll;
+    overflow-x: hidden;
+    float: right;
 }

@@ -124,8 +124,8 @@ export default function TechInput() {
         setDatabaseView(true);
     }
 
-    const [confirm, setConfirm] = React.useState(true);  //to disable the confirm button 
-    const toggleConfirm = () => setConfirm((confirm) => !confirm);
+    // const [confirm, setConfirm] = React.useState(true);  //to disable the confirm button 
+    // const toggleConfirm = () => setConfirm((confirm) => !confirm);
 
     const [selectedFrontendTech, setSelectedFrontendTech] = React.useState(5);
     const [selectedMobileFrontendTech, setSelectedMobileFrontendTech] = React.useState(6);
@@ -164,23 +164,23 @@ export default function TechInput() {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             for (var i = 0; i < backendTech.length; i++) {
-                if (backendTech[i][1] == docSnap.data().backend) {
+                if (backendTech[i][1] === docSnap.data().backend) {
                     setSelectedBackendTech(i)
                 }
             }
-            for (var i = 0; i < frontendTech.length; i++) {
-                if (frontendTech[i][1] == docSnap.data().frontendWeb) {
-                    setSelectedFrontendTech(i)
+            for (var j = 0; j < frontendTech.length; j++) {
+                if (frontendTech[j][1] === docSnap.data().frontendWeb) {
+                    setSelectedFrontendTech(j)
                 }
             }
-            for (var i = 0; i < frontendMobileTech.length; i++) {
-                if (frontendMobileTech[i][1] == docSnap.data().frontendMobile) {
-                    setSelectedMobileFrontendTech(i)
+            for (var k = 0; k < frontendMobileTech.length; k++) {
+                if (frontendMobileTech[k][1] === docSnap.data().frontendMobile) {
+                    setSelectedMobileFrontendTech(k)
                 }
             }
-            for (var i = 0; i < databaseTech.length; i++) {
-                if (databaseTech[i][1] == docSnap.data().database) {
-                    setSelectedDatabaseTech(i)
+            for (var l = 0; l < databaseTech.length; l++) {
+                if (databaseTech[l][1] === docSnap.data().database) {
+                    setSelectedDatabaseTech(l)
                 }
             }
         } else {
@@ -190,7 +190,7 @@ export default function TechInput() {
 
     React.useEffect(() => {
         getUserDetails()
-    }, [selectedBackendTech])
+    })
 
 
     return (

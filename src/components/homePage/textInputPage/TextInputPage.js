@@ -42,7 +42,7 @@ export default function TextInputPage() {
   const [userinput, setuserinput] = React.useState("")
   const [submitButton, setSubmitButton] = React.useState(false);
   const [inputWordCount, setInputWordCount] = React.useState(0);
-  const [stackType, setStackType] = React.useState(0);
+  // const [stackType, setStackType] = React.useState(0);
 
   const [lessAccuracyBox, setLessAccuracyBox] = React.useState(false);
   const [accuracyValue, setAccuracyValue] = React.useState(0);
