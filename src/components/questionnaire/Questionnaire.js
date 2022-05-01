@@ -101,7 +101,7 @@ export default function VerticalLinearStepper() {
                         )}
                     </Box>
                 </Paper>
-                <img id='pht' src={astro} style={{ height: '40%', width: '20%' }} />
+                <img id='pht' src={astro} style={{ height: '40%', width: '20%' }}  alt='deco pic'/>
             </div>
         </div>
     );

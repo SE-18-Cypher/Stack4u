@@ -159,8 +159,8 @@ export default function Forum() {
     toggleViewCommentQuery();   //switch the view to add comment 
   }
 
-  const [loadingView, setLoadingView] = React.useState(false);
-  const [allLikesInQuery, setAllLikesInQuery] = React.useState("");
+  // const [loadingView, setLoadingView] = React.useState(false);
+  // const [allLikesInQuery, setAllLikesInQuery] = React.useState("");
 
   function content() {
     getContent();
@@ -213,7 +213,7 @@ export default function Forum() {
   return (
 
     <div>
-      <div className={loadingView ? "loading" : "loaded"}>
+      <div>
         <NavBar uidValue={user} />
         <div className="commonOppBg" />
         <div style={{ position: 'relative' }}>
@@ -356,11 +356,11 @@ export default function Forum() {
           </Button>
         </div>
       </div>
-      <div className='loadingCircle'>
+      {/* <div className='loadingCircle'>
         {loadingView && (
           <CircularProgress />
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

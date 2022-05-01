@@ -38,5 +38,6 @@
     width: 900px;
     height: 625px;
     overflow: scroll;
+    overflow-x: hidden;
     float: right;
 }
