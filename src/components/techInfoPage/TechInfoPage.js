@@ -22,7 +22,7 @@ export default function TechInfoPage() {
       setLoggedIn(false)
     }
     console.log(loggedIn)
-  },[user,loggedIn])
+  })
 
   const [frontendView, setFrontendView] = useState(true);
   const [backendView, setBackendView] = useState(false);

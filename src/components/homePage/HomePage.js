@@ -67,11 +67,9 @@ export default function HomePage() {
         setFile(file);
     };
 
-
-
     React.useEffect(() => {
         handleSubmit();
-    }, [file,handleSubmit])
+    }, [file])
 
     // const uploadFiles = () => {
     //     if (!file) return;
