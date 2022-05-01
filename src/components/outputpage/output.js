@@ -280,8 +280,8 @@ export default function Output() {
                             </div>
                             <div style={{  position: 'absolute',marginTop:'46%', marginLeft:'65%' }}>
                                 <p>Database</p>
-                                <img src={databaseTech[preferredDatabaseIndex][0]} width={100} />
-                                <p style={{marginTop:'40%',marginBottom:'-1%'}}>{databaseTech[preferredDatabaseIndex][1]} alt='tech pic' </p>
+                                <img src={databaseTech[preferredDatabaseIndex][0]} width={100} alt='tech pic'/>
+                                <p style={{marginTop:'40%',marginBottom:'-1%'}}>{databaseTech[preferredDatabaseIndex][1]}  </p>
                                 <p style={{paddingTop:'2%',fontWeight:'bold'}}> Accuracy: {preferredPercentagesD} %  </p>
 
                             </div>
