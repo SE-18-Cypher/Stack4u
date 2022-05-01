@@ -7,7 +7,7 @@ export default function AccuracyBar(props) {
     // use effect hook to update the accuracy value from the parameters
     React.useEffect(() => {
         setAccuracyValue(props.value);
-    },[])
+    },[props.value])
     // use effect hook to updat the colors in the accuracy bar according to 
     // the accuracy value, hook runs everytime the accuracy value changes 
     React.useEffect(() => {

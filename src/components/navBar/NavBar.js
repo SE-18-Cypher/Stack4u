@@ -22,13 +22,9 @@ const settings = ['Account', 'Logout'];
 
 
 const NavBar = (props) => {
-    
     var user2 = sessionStorage.getItem("guser");
-    console.log(user2)
     React.useEffect(() => {
-        console.log(user2)
         if (user2 === null || user2 === 'null') {
-            console.log(user2)
             getDownloadURL(ref(storage, 'users/' + props.uidValue + '/picture.jpeg'))
                 .then((url) => {
                     const img = document.getElementById('myimg');
@@ -42,7 +38,6 @@ const NavBar = (props) => {
         else {
             const img = document.getElementById('myimg');
             img.setAttribute('src', user2);
-            console.log(user2)
         }
     })
 

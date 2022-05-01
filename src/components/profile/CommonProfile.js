@@ -15,7 +15,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { setDoc, updateDoc } from "firebase/firestore";
+import { updateDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 
 import reactLogo from './../../resources/images/techpage/frontend/reactLogo.png';
@@ -107,30 +107,30 @@ export default function CommonProfile() {
 
     React.useEffect(() => {
         getTechnologies()
-    }, [selectedBackendTech])
+    })
 
     const docRefTech = doc(database, "UserTechInfo", user);
     const getTechnologies = async () => {
         const docSnap = await getDoc(docRefTech);
         if (docSnap.exists()) {
             for (var i = 0; i < backendTech.length; i++) {
-                if (backendTech[i][1] == docSnap.data().backend) {
+                if (backendTech[i][1] === docSnap.data().backend) {
                     setSelectedBackendTech(i)
                 }
             }
-            for (var i = 0; i < frontendTech.length; i++) {
-                if (frontendTech[i][1] == docSnap.data().frontendWeb) {
-                    setSelectedFrontendTech(i)
+            for (var j = 0; j < frontendTech.length; j++) {
+                if (frontendTech[j][1] === docSnap.data().frontendWeb) {
+                    setSelectedFrontendTech(j)
                 }
             }
-            for (var i = 0; i < frontendMobileTech.length; i++) {
-                if (frontendMobileTech[i][1] == docSnap.data().frontendMobile) {
-                    setSelectedMobileFrontendTech(i)
+            for (var k = 0; k < frontendMobileTech.length; k++) {
+                if (frontendMobileTech[k][1] === docSnap.data().frontendMobile) {
+                    setSelectedMobileFrontendTech(k)
                 }
             }
-            for (var i = 0; i < databaseTech.length; i++) {
-                if (databaseTech[i][1] == docSnap.data().database) {
-                    setSelectedDatabaseTech(i)
+            for (var l = 0; l < databaseTech.length; l++) {
+                if (databaseTech[l][1] === docSnap.data().database) {
+                    setSelectedDatabaseTech(l)
                 }
             }
         } else {
@@ -139,7 +139,6 @@ export default function CommonProfile() {
     }
 
     var user2 = sessionStorage.getItem("guser");
-    console.log(user2)
     React.useEffect(() => {
         if (user2 === null) {
             getDownloadURL(ref(storage, 'users/' + user + '/picture.jpeg'))
@@ -155,9 +154,8 @@ export default function CommonProfile() {
         else {
             const img2 = document.getElementById('myimg2');
             img2.setAttribute('src', user2);
-            console.log(user2)
         }
-    }, [])
+    })
 
     const [userData, setUserData] = React.useState([]);
     const [firstName, setFirstName] = React.useState("");
@@ -166,7 +164,7 @@ export default function CommonProfile() {
 
 
     const auth = getAuth(app);
-    const authUser = auth.currentUser;
+    // const authUser = auth.currentUser;
 
     const docRef = doc(database, "Users", user);    
 
@@ -175,10 +173,8 @@ export default function CommonProfile() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
             setUserData(docSnap.data());
             setFirstName(userData.firstName);
-            console.log(firstName);
             setLastName(userData.lastName);
             setEmail(userData.email);
 
@@ -190,7 +186,7 @@ export default function CommonProfile() {
 
     React.useEffect(() => {
         getUserDetails();
-    }, [firstName]);
+    });
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -219,7 +215,6 @@ export default function CommonProfile() {
         p: 2,
         borderRadius: 10
     };
-    console.log(selectedFrontendTech)
 
     return (
         <div>
