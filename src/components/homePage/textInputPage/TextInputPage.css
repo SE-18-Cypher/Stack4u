@@ -1,7 +1,6 @@
 *{
     margin : 0;
-    padding : 0; 
-    
+    padding : 0;     
 }
 
 .textInputBg{
@@ -16,15 +15,15 @@
 .textinput{
     margin-left:3%;
     margin-right:8%;
-    margin-top: 4%;
-    
+    margin-top: 4%;    
 }
+
 .select{
     margin-top: 2%;
     float: right;
-    background-color: rgba(76, 41, 194, 0.1);
- 
+    background-color: rgba(76, 41, 194, 0.1); 
 }
+
 .description{
     float: left;
     width: 70%;
@@ -38,4 +37,6 @@
 .button{
     padding-top: 46%;
     padding-left: 95%;
+    margin-left: -14.6%;
+    margin-top: -30%;    
 }
