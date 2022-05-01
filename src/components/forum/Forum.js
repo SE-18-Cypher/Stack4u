@@ -28,8 +28,25 @@ export default function Forum() {
       navigate('/access_error')
     }
   })
+
   //database from fiirestore 
   const database = getFirestore(app);
+
+  const docRef = doc(database, "Users", user);
+  const getUserDetails = async () => {
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      setCommentAuthName(docSnap.data().firstName);
+      setCommentAuthName(() => docSnap.data().firstName);
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
+
+  React.useEffect(() => {
+    getUserDetails()
+  }, [user])
 
   const [view, setView] = React.useState(false);                                  //hook to view the comments on each query
   const toggleView = () => setView((view) => !view);                              //switch the view
@@ -75,12 +92,13 @@ export default function Forum() {
       });
       setEachQueryComments({ allQueryArray });
     });
+    getUserDetails()
   };
 
   const [viewCommentQuery, setViewCommentQuery] = React.useState(false);                                //hook to add comment in a query
   const toggleViewCommentQuery = () => setViewCommentQuery((viewCommentQuery) => !viewCommentQuery);    //switch the view 
 
-  const [commentAuthName, setCommentAuthName] = React.useState("Default");
+  const [commentAuthName, setCommentAuthName] = React.useState("");
   const [commentDescription, setCommentDescription] = React.useState("");
   const [commentCount, setCommentCount] = React.useState();
   React.useEffect(() => { }, [commentCount]);
