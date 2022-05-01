@@ -24,13 +24,13 @@ export default function Forum() {
   const navigate = useNavigate();
   //if the id value is null redirectss to the error page 
   React.useEffect(() => {
-      if (user === null) {
-          navigate('/access_error')
-      }
-  },)
+    if (user === null) {
+      navigate('/access_error')
+    }
+  })
   //database from fiirestore 
   const database = getFirestore(app);
-  
+
   const [view, setView] = React.useState(false);                                  //hook to view the comments on each query
   const toggleView = () => setView((view) => !view);                              //switch the view
 
@@ -55,7 +55,7 @@ export default function Forum() {
       });
       setAllForumQueries({ forumData });
     });
-  });
+  }, []);
 
   const [docClicked, setDocClicked] = React.useState('');                         //hook to hold the id of the document clicked 
 
@@ -104,7 +104,7 @@ export default function Forum() {
     toggleViewCommentQuery();   //closing the add comment view modal 
     updateComment(docClicked, commentCount);
   };
-  
+
   const updateComment = async (id, com) => {
     const docs = doc(database, "Forum", id);
     const re = { com: com + 1 };
@@ -131,7 +131,9 @@ export default function Forum() {
   const submitQuery = async () => {
     await addDoc(ref, {
       topicname: newQueryName,
-      topicdesc: newQueryDesc
+      topicdesc: newQueryDesc,
+      likes: 0,
+      com: 0
     });
   };
 
@@ -139,14 +141,14 @@ export default function Forum() {
     toggleViewCommentQuery();   //switch the view to add comment 
   }
 
-  const [loadingView, setLoadingView] = React.useState(false); 
-  const [allLikesInQuery, setAllLikesInQuery] = React.useState(""); 
+  const [loadingView, setLoadingView] = React.useState(false);
+  const [allLikesInQuery, setAllLikesInQuery] = React.useState("");
 
-  function content(){
+  function content() {
     getContent();
   }
 
-  const getContent = async () =>{
+  const getContent = async () => {
     const subRef = doc(database, "Forum/w1zHChbBOTW1rWYfazos/like/QfjWhTpj3Cap9vzmH5qq");
     const docS = await getDoc(subRef);
     console.log(docS.data());
@@ -167,8 +169,8 @@ export default function Forum() {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform:'translate(-50%, -50%)',
-    width: 700 ,
+    transform: 'translate(-50%, -50%)',
+    width: 700,
     bgcolor: 'background.paper',
     // border: '2px solid #000',
     // boxShadow: 24 ,
@@ -180,56 +182,58 @@ export default function Forum() {
   const style2 = {    //style setting for add comment for query modal 
     position: 'absolute',
     top: '45%',
-    left: '50%',  
+    left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 700, 
+    width: 700,
     bgcolor: 'background.paper',
     // border: '2px solid #000',
     // boxShadow: 24,
-    p: 4,         
+    p: 4,
 
   };
 
   return (
-    
+
     <div>
-      <div className={loadingView ? "loading":"loaded"}>
-      <NavBar uidValue={user} />
+      <div className={loadingView ? "loading" : "loaded"}>
+        <NavBar uidValue={user} />
         <div className="commonOppBg" />
         <div style={{ position: 'relative' }}>
-          <h1 style={{ textAlign: 'center', paddingTop:'2%',  fontSize:'30px',  }}>FORUM </h1>
-          {allForumQueries.forumData && allForumQueries.forumData.map((eachContent, index) =>
-          (
-            <div className="eachQuery" key={index}>
-              <Paper elevation={1}
-                onClick={() => {
-                  setDocClicked(eachContent.id);
-                  expandView(eachContent.id);
-                  content(eachContent);
-                  toggleView();
-                }}
-              >
-                {/* <img src={eachContent.profilePicture} width={40} alt="profile figure" style={{float:'left'}}/> */}
-                <h5 style={{ marginLeft: '2.5%',paddingTop:'1.7%', wordWrap: 'break-word' }} > {eachContent.topicname} </h5>
-                <br />  
-                <p style={{ wordWrap: 'break-word',  marginLeft: '2.5%', marginTop:'-1.7%' }}> {eachContent.topicdesc} </p>
-                <div className='button2'>
-                  {eachContent.currentuserliked ? (
-                    <Button> <FavoriteIcon /> {eachContent.likes} </Button>
-                  ) : (
-                    <Button> <FavoriteBorderIcon /> {eachContent.likes} </Button>
-                  )}
-                  <Button> <CommentIcon /> {eachContent.com} </Button>
-                </div>
-              </Paper>
-            </div>
-          ))}
+          <h1 style={{ textAlign: 'center', paddingTop: '2%', fontSize: '30px', }}>FORUM </h1>
+          <div className='allForumContent'>
+            {allForumQueries.forumData && allForumQueries.forumData.map((eachContent, index) =>
+            (
+              <div className="eachQuery" key={index}>
+                <Paper elevation={1}
+                  onClick={() => {
+                    setDocClicked(eachContent.id);
+                    expandView(eachContent.id);
+                    content(eachContent);
+                    toggleView();
+                  }}
+                >
+                  {/* <img src={eachContent.profilePicture} width={40} alt="profile figure" style={{float:'left'}}/> */}
+                  <h5 style={{ marginLeft: '2.5%', paddingTop: '1.7%', wordWrap: 'break-word' }} > {eachContent.topicname} </h5>
+                  <br />
+                  <p style={{ wordWrap: 'break-word', marginLeft: '2.5%', marginTop: '-1.7%' }}> {eachContent.topicdesc} </p>
+                  <div className='button2'>
+                    {eachContent.currentuserliked ? (
+                      <Button> <FavoriteIcon /> {eachContent.likes} </Button>
+                    ) : (
+                      <Button> <FavoriteBorderIcon /> {eachContent.likes} </Button>
+                    )}
+                    <Button> <CommentIcon /> {eachContent.com} </Button>
+                  </div>
+                </Paper>
+              </div>
+            ))}
+          </div>
           {!viewCommentQuery && (
             <Modal open={view} onClose={toggleView}>
               <Box sx={style}>
                 <CloseIcon onClick={toggleView} style={{ float: 'right' }} />
                 {/* <img src={docClicked.profilePicture} width={40}  alt="profile figure" style={{float:'left'}}/> */}
-                <h4 style={{ wordWrap: 'break-word' }}> {clickedQuery.topicname} </h4>                
+                <h4 style={{ wordWrap: 'break-word' }}> {clickedQuery.topicname} </h4>
                 <p style={{ wordWrap: 'break-word' }}> {clickedQuery.topicdesc} </p>
                 <div className='buttonsinside'>
                   <Button
@@ -241,24 +245,24 @@ export default function Forum() {
                       <FavoriteIcon />
                     ) : (
                       <FavoriteBorderIcon />
-                    )}                 
+                    )}
                     {clickedQuery.likes}
-                    <br/>
+                    <br />
                   </Button>
-                  <Button 
+                  <Button
                     onClick={() => {
                       addComment();
                       setCommentCount(clickedQuery.com);
-                    }}  
-                  > <CommentIcon /> {clickedQuery.com} </Button>                  
-                </div> 
-                <br/> 
+                    }}
+                  > <CommentIcon /> {clickedQuery.com} </Button>
+                </div>
+                <br />
                 {eachQueryComments.allQueryArray && eachQueryComments.allQueryArray.map((eachQuery, index) =>
                 (
                   <div key={index}>
                     {/* <img src={eachComment.profilePicture} width={30}  alt="profile figure" style={{float:'left'}}/> */}
-                    <h6 style={{  wordWrap: 'break-word' }}> {eachQuery.name} </h6>
-                    <p style={{  wordWrap: 'break-word' }}> {eachQuery.desc} </p>
+                    <h6 style={{ wordWrap: 'break-word' }}> {eachQuery.name} </h6>
+                    <p style={{ wordWrap: 'break-word' }}> {eachQuery.desc} </p>
                     <hr />
                   </div>
                 ))}
@@ -270,7 +274,7 @@ export default function Forum() {
               <Box sx={style2}>
                 <CloseIcon onClick={toggleViewCommentQuery} style={{ float: 'right' }} />
                 <h4>Add Comment</h4>
-                <br/>    
+                <br />
                 <TextField
                   label="Description"
                   multiline
@@ -291,11 +295,11 @@ export default function Forum() {
                 </Button>
               </Box>
             </Modal>
-          )}        
+          )}
         </div>
-        <div className='createPost'>    
-          <h4 style={{ marginBottom: '3%', marginTop:'30%' }}>Create a post</h4>
-          <h5 style={{ marginBottom: '3%', color:'white' }}>
+        <div className='createPost'>
+          <h4 style={{ marginBottom: '3%', marginTop: '30%' }}>Create a post</h4>
+          <h5 style={{ marginBottom: '3%', color: 'white' }}>
             Enter a name
           </h5>
           <TextField
@@ -305,9 +309,9 @@ export default function Forum() {
             style={{ marginBottom: 20 }}
             value={newQueryName}
             onChange={e => setNewQueryName(e.target.value)}
-          />  
+          />
           <br />
-          <h5 style={{ marginBottom: 20, color:'white' }}>
+          <h5 style={{ marginBottom: 20, color: 'white' }}>
             Enter a description
           </h5>
           <TextField
@@ -326,18 +330,18 @@ export default function Forum() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             style={{ float: 'right' }}
-            onClick= {() => {
+            onClick={() => {
               checkQuery();
             }}
           >
-            SUBMIT 
+            SUBMIT
           </Button>
         </div>
       </div>
       <div className='loadingCircle'>
         {loadingView && (
           <CircularProgress />
-        )}    
+        )}
       </div>
     </div>
   );
