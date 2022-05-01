@@ -118,7 +118,7 @@ export default function CommonProfile() {
                     setSelectedBackendTech(i)
                 }
             }
-            for (var j = 0; j < frontendTech.length; jQuery++) {
+            for (var j = 0; j < frontendTech.length; j++) {
                 if (frontendTech[j][1] === docSnap.data().frontendWeb) {
                     setSelectedFrontendTech(j)
                 }
@@ -128,7 +128,7 @@ export default function CommonProfile() {
                     setSelectedMobileFrontendTech(k)
                 }
             }
-            for (var l = 0; l < databaseTech.length; li++) {
+            for (var l = 0; l < databaseTech.length; l++) {
                 if (databaseTech[l][1] === docSnap.data().database) {
                     setSelectedDatabaseTech(l)
                 }
