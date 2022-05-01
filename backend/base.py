@@ -1,3 +1,12 @@
+from fileinput import filename
+import docx2txt
+from flask import Flask
+from pdf2docx import parse
+from typing import Tuple
+from tkinter import _tkinter
+from tkinter import Tk, messagebox
+import os
+import sys
 from flask import Flask, render_template, request
 import joblib
 import nltk
@@ -10,55 +19,48 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn import svm
 v = CountVectorizer()
 
-# import sys
-# import os
-# from tkinter import Tk, messagebox
-# from tkinter import _tkinter
-# from typing import Tuple
-# from pdf2docx import parse
-# from flask import Flask
-# import docx2txt
-# from fileinput import filename
-# UPLOADER_FOLDER = ''
-# app = Flask(__name__)
-# app.config['UPLOADER_FOLDER'] = UPLOADER_FOLDER
-
-# fileName2 = ''
-
-# @app.route('/index', methods=['GET', 'POST'])
-# def index():
-#     if request.method == "POST":
-#         def convert_pdf2docx(input_file: str, output_file: str, pages: Tuple = None):
-#            if pages:
-#                pages = [int(i) for i in list(pages) if i.isnumeric()]
-
-#            result = parse(pdf_file=input_file,
-#                           docx_with_path=output_file, pages=pages)
-#            summary = {
-#                "File": input_file, "Pages": str(pages), "Output File": output_file
-#            }
-
-#            print("\n".join("{}:{}".format(i, j) for i, j in summary.items()))
-#            return result
-
-#         file = request.files['filename']
-#         if file.filename != '':
-#            file.save(os.path.join(
-#                app.config['UPLOADER_FOLDER'], file.filename))
-#            input_file = file.filename
-#            output_file = r"hello.docx"
-#            convert_pdf2docx(input_file, output_file)
-#            doc = input_file.split(".")[0]+".docx"
-#            global fileName2
-#            fileName2 = input_file.split(".")[0]
-#            my_text = docx2txt.process(fileName2+".docx")
-#            print(my_text)
-#            lis = doc.replace(" ", "=")
-#            return render_template("docx.html", variable=lis)
-#     return render_template("index.html")
-
-
+UPLOADER_FOLDER = ''
 api = Flask(__name__)
+api.config['UPLOADER_FOLDER'] = UPLOADER_FOLDER
+
+fileName2 = ''
+
+
+@api.route('/index', methods=['GET', 'POST'])
+def index():
+    if request.method == "POST":
+        def convert_pdf2docx(input_file: str, output_file: str, pages: Tuple = None):
+           if pages:
+               pages = [int(i) for i in list(pages) if i.isnumeric()]
+
+           result = parse(pdf_file=input_file,
+                          docx_with_path=output_file, pages=pages)
+           summary = {
+               "File": input_file, "Pages": str(pages), "Output File": output_file
+           }
+
+           print("\n".join("{}:{}".format(i, j) for i, j in summary.items()))
+           return result
+
+        file = request.files['file']
+        if file.filename != '':
+           file.save(os.path.join(
+               api.config['UPLOADER_FOLDER'], file.filename))
+           input_file = file.filename
+           output_file = r"hello.docx"
+           convert_pdf2docx(input_file, output_file)
+           doc = input_file.split(".")[0]+".docx"
+           global fileName2
+           fileName2 = input_file.split(".")[0]
+           my_text = docx2txt.process(fileName2+".docx")
+        #    print(my_text)
+           lis = doc.replace(" ", "=")
+        #    return render_template("docx.html", variable=lis)
+        # print(userInputDoc(my_text))
+        return userInputDoc(my_text)
+    # return render_template("index.html")
+    return "file name might be empty"
+
 #all keywords in web frontend
 web_frontend_values = ['easy', 'rich user interface', 'fast', 'trusted', 'trending', 'strong community support', 'speed', 
                        'efficient', 'flexible', 'performance', 'one way data binding', 'dynamic web development', 
@@ -171,7 +173,25 @@ def userInput():
         user_input = request.json['userInput']                      # getting the user input from frontend 
         extract_preproces_sentences(user_input)                     # prerpocessing the text input 
         percentage = calculate_relevancy_percentage(user_input)     # calculating the percentage 
-        return percentage                                           # returning the percentage 
+        return percentage
+        
+
+def userInputDoc(userInputData):
+    print("1111111111111111111")
+    if request.method == 'POST':
+        # global final technologies array
+        global final_technologies
+        # resetting the array
+        final_technologies = []
+        # getting the user input from frontend
+        user_input = userInputData
+        # prerpocessing the text input
+        extract_preproces_sentences(user_input)
+        percentage = calculate_relevancy_percentage(
+            user_input)     # calculating the percentage
+        # returning the percentage
+        return percentage
+                                           # returning the percentage 
 
 @api.route('/finalStack',methods=['GET', 'POST'])
 def getStack():
