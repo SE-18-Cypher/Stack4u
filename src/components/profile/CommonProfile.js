@@ -139,7 +139,6 @@ export default function CommonProfile() {
     }
 
     var user2 = sessionStorage.getItem("guser");
-    console.log(user2)
     React.useEffect(() => {
         if (user2 === null) {
             getDownloadURL(ref(storage, 'users/' + user + '/picture.jpeg'))
@@ -155,7 +154,6 @@ export default function CommonProfile() {
         else {
             const img2 = document.getElementById('myimg2');
             img2.setAttribute('src', user2);
-            console.log(user2)
         }
     })
 
@@ -175,10 +173,8 @@ export default function CommonProfile() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
             setUserData(docSnap.data());
             setFirstName(userData.firstName);
-            console.log(firstName);
             setLastName(userData.lastName);
             setEmail(userData.email);
 
@@ -219,7 +215,6 @@ export default function CommonProfile() {
         p: 2,
         borderRadius: 10
     };
-    console.log(selectedFrontendTech)
 
     return (
         <div>
