@@ -17,6 +17,10 @@ import app from './../../Firebase-config';
 // import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getStorage } from "firebase/storage";
 import Tesseract from 'tesseract.js';
+import axios from "axios";
+import Output from '../outputpage/output';
+import ErrorPage from '../errorPage/ErrorPage';
+import { Link } from 'react-router-dom';
 
 const fileTypes = ["JPEG", "PDF", "JPG", "PNG"];
 
@@ -109,13 +113,76 @@ export default function HomePage() {
             var fileExtension = fileName.split('.').pop();
             console.log(fileExtension)
             if (fileExtension === 'pdf') {
-                
+                // getPdfData(file)
+                postPdfData(file)
+                console.log("file input successful")
             }
             else {
                 extractText(file);
             }
         }
     };
+
+    // function getPdfData(file) {
+    //     axios({
+    //         method: "POST",
+    //         url: "http://localhost:5000/index",
+    //         data: file
+    //     })
+    //         .then((response) => {
+    //             console.log(response)
+    //         }).catch((error) => {
+    //             if (error.response) {
+    //                 console.log(error.response)
+    //             }
+    //         })
+    // }
+
+    // function getPdfData(file) {
+    //     axios.get("http://localhost:5000/index").then(
+    //         (response) => {
+    //             var result = response.data;
+    //             console.log(result);
+    //         },
+    //         (error) => {
+    //             console.log(error);
+    //         }
+    //     );
+    // }
+
+    function postPdfData(file) {
+        console.log(file[0])
+        const formdata = new FormData();
+        formdata.append("file", file);
+        // const requestOptions = {
+        //     headers: {
+        //         "Content-Type": "multipart/form-data",
+        //     },
+        //     mode: "no-cors",
+        //     method: "POST",
+        //     files: file,
+        //     body: formdata,
+        // };
+        // axios.get("http://localhost:5000/index",file)
+        console.log(file.name)
+        axios.post("http://localhost:5000/index", formdata)
+        .then(
+            (response) => {
+                var result = response.data;
+                console.log(result);
+                if(result != null){
+                    localStorage.setItem('data',result)
+                    navigate('/output')
+                }
+                else {
+                    navigate('*')
+                }
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    }
 
     function extractText(file) {
         Tesseract.recognize(file, 'eng',

@@ -19,10 +19,12 @@
 .paper{
     position: relative;
     padding: 30px;
+    margin-top: -80px;
 }
 
 #pht{
-    position: absolute;
+    position: fixed;
+    margin-top: -50px;
     margin-left: 1000px;
     margin-bottom: 200px;
 }

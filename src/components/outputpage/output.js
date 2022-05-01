@@ -101,6 +101,9 @@ export default function Output() {
     const [viewMobStack, setViewMobStack]     = React.useState(true);
 
     React.useEffect(() => {
+        var uData = localStorage.getItem('data')
+        console.log(uData)
+
         for (var i = 0; i < frontendTech.length; i++) {
             if (frontendTech[i][1] === finalWebFrontend) {
                 setFrontendWeb(i);
