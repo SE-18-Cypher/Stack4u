@@ -190,7 +190,7 @@ export default function TechInput() {
 
     React.useEffect(() => {
         getUserDetails()
-    })
+    },[])
 
 
     return (
