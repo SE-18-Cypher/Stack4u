@@ -113,7 +113,6 @@ export default function HomePage() {
             var fileExtension = fileName.split('.').pop();
             console.log(fileExtension)
             if (fileExtension === 'pdf') {
-                // getPdfData(file)
                 postPdfData(file)
                 console.log("file input successful")
             }
@@ -123,55 +122,27 @@ export default function HomePage() {
         }
     };
 
-    // function getPdfData(file) {
-    //     axios({
-    //         method: "POST",
-    //         url: "http://localhost:5000/index",
-    //         data: file
-    //     })
-    //         .then((response) => {
-    //             console.log(response)
-    //         }).catch((error) => {
-    //             if (error.response) {
-    //                 console.log(error.response)
-    //             }
-    //         })
-    // }
-
-    // function getPdfData(file) {
-    //     axios.get("http://localhost:5000/index").then(
-    //         (response) => {
-    //             var result = response.data;
-    //             console.log(result);
-    //         },
-    //         (error) => {
-    //             console.log(error);
-    //         }
-    //     );
-    // }
-
     function postPdfData(file) {
         console.log(file[0])
         const formdata = new FormData();
         formdata.append("file", file);
-        // const requestOptions = {
-        //     headers: {
-        //         "Content-Type": "multipart/form-data",
-        //     },
-        //     mode: "no-cors",
-        //     method: "POST",
-        //     files: file,
-        //     body: formdata,
-        // };
-        // axios.get("http://localhost:5000/index",file)
+
         console.log(file.name)
-        axios.post("http://localhost:5000/index", formdata)
+        axios.post("/index", formdata)
         .then(
             (response) => {
                 var result = response.data;
-                console.log(result);
+                if (parseInt(response.data["1"])> 6){
+                    getTechStack()
+                } 
+                else if (parseInt(response.data["1"]) < 6) {
+                    console.log("total accuracy is less than 6%")
+                    navigate('/questionnaire')
+                }
+
                 if(result != null){
                     localStorage.setItem('data',result)
+
                     navigate('/output')
                 }
                 else {
@@ -182,6 +153,24 @@ export default function HomePage() {
                 console.log(error);
             }
         );
+    }
+
+    function getTechStack() {
+        axios.post('/finalStack')
+            .then(function (response) {
+                localStorage.setItem("finalTechStackWF", response.data["1"]);
+                console.log(response.data["1"])
+                localStorage.setItem("finalTechStackMF", response.data["2"]);
+                console.log(response.data["2"])
+                localStorage.setItem("finalTechStackB", response.data["3"]);
+                console.log(response.data["3"])
+                localStorage.setItem("finalTechStackD", response.data["4"]);
+                console.log(response.data["4"])
+                navigate('/output')
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     function extractText(file) {

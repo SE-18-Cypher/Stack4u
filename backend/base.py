@@ -27,9 +27,6 @@ fileName2 = ''
 
 @api.route('/index', methods=['GET', 'POST'])
 def index():
-    print("***********")
-    print(request.data)
-    print("***********")
     if request.method == "POST":
         def convert_pdf2docx(input_file: str, output_file: str, pages: Tuple = None):
            if pages:
@@ -44,11 +41,7 @@ def index():
            print("\n".join("{}:{}".format(i, j) for i, j in summary.items()))
            return result
         
-        print("/////////////")
-        print(request.files)
         file = request.files['file']
-        print(file)
-        print("&&&&&&&&&&&&&&&&&&&&&")
         if file.filename != '':
            file.save(os.path.join(
                api.config['UPLOADER_FOLDER'], file.filename))
@@ -59,13 +52,13 @@ def index():
            global fileName2
            fileName2 = input_file.split(".")[0]
            my_text = docx2txt.process(fileName2+".docx")
-           print("+++++++++++++++++++++++++")
-           print(my_text)
+        #    print(my_text)
            lis = doc.replace(" ", "=")
         #    return render_template("docx.html", variable=lis)
-        return my_text
+        # print(userInputDoc(my_text))
+        return userInputDoc(my_text)
     # return render_template("index.html")
-    return "it does return"
+    return "file name might be empty"
 
 
 # api = Flask(__name__)
@@ -178,7 +171,24 @@ def userInput():
         user_input = request.json['userInput']                      # getting the user input from frontend 
         extract_preproces_sentences(user_input)                     # prerpocessing the text input 
         percentage = calculate_relevancy_percentage(user_input)     # calculating the percentage 
-        return percentage                                           # returning the percentage 
+        return percentage
+
+
+def userInputDoc(userInputData):
+    print("1111111111111111111")
+    if request.method == 'POST':
+        # global final technologies array
+        global final_technologies
+        # resetting the array
+        final_technologies = []
+        # getting the user input from frontend
+        user_input = userInputData
+        # prerpocessing the text input
+        extract_preproces_sentences(user_input)
+        percentage = calculate_relevancy_percentage(
+            user_input)     # calculating the percentage
+        # returning the percentage
+        return percentage
 
 @api.route('/finalStack',methods=['GET', 'POST'])
 def getStack():
@@ -186,7 +196,9 @@ def getStack():
         classify_sentences()                             # classifying the preprocess sentences into the respective classes 
         create_predicatable_sentences()                  # merging all the sentences in each classifed arrays to one 
         prediction()                                     # technology predictions Naive Bayes 
-
+        print("******************")
+        print(predicted_web_backend)
+        print("******************")
         confirmTechnologies(predicted_web_frontend)      # adding the predicted technologies to the final technology array 
         confirmTechnologies(predicted_mobile_frontend)
         confirmTechnologies(predicted_web_backend)

@@ -90,11 +90,11 @@ export default function TextInputPage() {
   function getTechStack() {
     axios.post('/finalStack')
       .then(function (response) {
-        sessionStorage.setItem("finalTechStackWF", response.data["1"]);
-        sessionStorage.setItem("finalTechStackMF", response.data["2"]);
-        sessionStorage.setItem("finalTechStackB", response.data["3"]);
-        sessionStorage.setItem("finalTechStackD", response.data["4"]);
-        sessionStorage.setItem("stackType", currency)
+        localStorage.setItem("finalTechStackWF", response.data["1"]);
+        localStorage.setItem("finalTechStackMF", response.data["2"]);
+        localStorage.setItem("finalTechStackB", response.data["3"]);
+        localStorage.setItem("finalTechStackD", response.data["4"]);
+        localStorage.setItem("stackType", currency)
         navigate('/output')
       })
       .catch(function (error) {

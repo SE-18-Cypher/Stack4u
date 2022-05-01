@@ -86,13 +86,18 @@ export default function Output() {
         [xMark, 'Not Selected']
     ];
 
-    var finalWebFrontend    = sessionStorage.getItem("finalTechStackWF");
-    var finalMobileFrontend = sessionStorage.getItem("finalTechStackMF");
-    var finalBackend        = sessionStorage.getItem("finalTechStackB");
-    var finalDatabase       = sessionStorage.getItem("finalTechStackD");
-    var stackType           = sessionStorage.getItem("stackType")
+    var finalWebFrontend = localStorage.getItem("finalTechStackWF");
+    var finalMobileFrontend = localStorage.getItem("finalTechStackMF");
+    var finalBackend = localStorage.getItem("finalTechStackB");
+    var finalDatabase = localStorage.getItem("finalTechStackD");
+    var stackType           = localStorage.getItem("stackType")
 
-    const [frontendWeb, setFrontendWeb]       = React.useState(5);
+    // var finalWebFrontendDoc = localStorage.getItem("finalTechStackWFDoc");
+    // var finalMobileFrontendDoc = localStorage.getItem("finalTechStackMFDoc");
+    // var finalBackendDoc = localStorage.getItem("finalTechStackBDoc");
+    // var finalDatabaseDoc = localStorage.getItem("finalTechStackDDoc");
+
+    const [frontendWeb, setFrontendWeb]       = React.useState(6);
     const [frontendMobile, setFrontendMobile] = React.useState(6);
     const [backend, setBackend]               = React.useState(7);
     const [database, setDatabase]             = React.useState(6);
