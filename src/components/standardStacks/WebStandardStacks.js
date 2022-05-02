@@ -26,6 +26,9 @@ import firebaseLogo from './../../resources/images/techpage/database/firebase.pn
 import nosqlLogo from './../../resources/images/techpage/database/nosql.png';
 import sqlserverLogo from './../../resources/images/techpage/database/sqlserver.png';
 import postgresqlLogo from './../../resources/images/techpage/database/postgresql.png';
+import apacheLogo from './../../resources/images/techpage/database/apache.png';
+import linuxLogo from './../../resources/images/techpage/database/linux.png';
+
 
 import './WebStandardStacks.css'
 import { Paper } from '@mui/material';
@@ -113,6 +116,8 @@ export default function WebStandardStacks() {
                         </thead>
                     </table>
                 </div>
+                <br/>
+                <br/>
                 <div className="eachTechStack">
                     <br />
                     <h4> MEVN STACK </h4>
@@ -150,6 +155,47 @@ export default function WebStandardStacks() {
                         </thead>
                     </table>
                 </div>
+                <br/>
+                <br/>
+                <div className="eachTechStack">
+                    <br />
+                    <h4> LAMP STACK </h4>
+                    <br />
+                    <table style={{ marginRight: 'auto', marginLeft: 'auto' }}>
+                        <thead>
+                            <tr>
+                                <td>
+                                    <img src={linuxLogo} alt='logo' width={120} style={{ margin: 20 }} />
+                                </td>
+                                <td>
+                                    <img src={apacheLogo} alt='logo' width={120} style={{ margin: 20 }} />
+                                </td>
+                                <td>
+                                    <img src={mysqlLogo} alt='logo' width={120} style={{ margin: 20 }} />
+                                </td>
+                                <td>
+                                    <img src={phpLogo} alt='logo' width={120} style={{ margin: 20 }} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p> Linux </p>
+                                </td>
+                                <td>
+                                    <p> Apache </p>
+                                </td>
+                                <td>
+                                    <p> MySQL </p>
+                                </td>
+                                <td>
+                                    <p> PHP </p>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <br/>
+                <br/>
             </div>
         </div>
     )
