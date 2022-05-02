@@ -1,0 +1,12 @@
+.mainContainerWebSS{
+    text-align: center;
+    background: linear-gradient(58deg, rgba(17, 138, 225, 0.43) 13.78%, rgba(22, 142, 229, 0.687012) 89.33%, rgba(28, 147, 234, 0.95) 107.25%);
+}
+.eachTechStack{
+    background-color: #FFFFFF;
+    width: 55%;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}

@@ -21,6 +21,7 @@ import TechInput from './components/userTechInput/TechInput';
 import Output from './components/outputpage/output';
 import Questionnaire from './components/questionnaire/Questionnaire';
 import AccuracyBar from './components/accuracyBar/AccuracyBar';
+import WebStandardStacks from './components/standardStacks/WebStandardStacks';
 
 function App() {
   return (
@@ -40,13 +41,13 @@ function App() {
           <Route path="/aboutus" element={<AboutusPage />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/techinput" element={<TechInput />} />
-        
+          <Route path="/textInputPage" element={<TextInputPage />} />
           <Route path="/output" element={<Output />} />
           <Route path="/constructionPage" element={<ConstructionPage />} />
           <Route path="/questionnaire" element={<Questionnaire />} />
           <Route path="/accuracy" element={<AccuracyBar />} />
+          <Route path="/webstandardstack" element={<WebStandardStacks />} />
           <Route path="*" element={<ErrorPage />} />
-          <Route path="/textInputPage" element={<TextInputPage />} />
         </Routes>
       </Router>
     </div>
