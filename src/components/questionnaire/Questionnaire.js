@@ -10,9 +10,13 @@ import Typography from '@mui/material/Typography';
 import './Questionnaire.css';
 import astro from '../../resources/images/output.png'
 import Radio from '@mui/material/Radio';
+import { useNavigate } from "react-router";
 
 
 var dict = {}
+var key = ""
+var value = ""
+
 
 const steps = [
     {
@@ -23,9 +27,9 @@ const steps = [
     },
     {
         label: 'Question 2',
-        description: 'If it is a mobile application, what type is it?',
-        answers: ["21", "22"],
-        ca: ["Native", "Cross Platform"],
+        description: 'If it is web, what do you value in a library, framework or in a language? ',
+        answers: ["41", "42", "43"],
+        ca: ["Allows MVC architecture", "Fast loading of new data", "Flexibility and simplicity in the utilization"],
     },
     {
         label: 'Question 3',
@@ -35,23 +39,24 @@ const steps = [
     },
     {
         label: 'Question 4',
-        description: 'If it is web, what do you value in a library, framework or in a language? ',
-        answers: ["41", "42"],
-        ca: ["community support", "Cross Platform"],
+        description: 'If it is a mobile application, what type is it?',
+        answers: ["21", "22"],
+        ca: ["Native", "Cross Platform"],
     },
     {
         label: 'Question 5',
-        description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
+        description: 'If it is native, what is the platform?',
         answers: ["51", "52"],
-        ca: ["Native", "Cross Platform"],
+        ca: ["Android", "ios"],
     },
 ];
 
+
 export default function VerticalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
+    const navigate = useNavigate();
+
+    const [type , setType ] = React.useState(0);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -92,16 +97,42 @@ export default function VerticalLinearStepper() {
         inputProps: { 'aria-label': item },
     });
 
+    React.useEffect(() => {
+       
+    }, [activeStep]);
+
     const handleChange = (event) => {
         console.log(event.target.value)
         var str = event.target.value+""
-        var key = str.substring(0,1)
-        var value = str.substring(1)
+        key = str.substring(0,1)
+        value = str.substring(1,2)
         console.log(key)
         console.log(value)
+
+        if(key == "1" && value == "1"){
+            console.log("final check")
+            setType(0)
+        }
+        if(key == "2" && value == "2"){
+            setType(1)
+        }
+
         dict[key] = value
         setSelectedValue(event.target.value);
+        if(key=="5"){
+            console.log(type)
+            onFinish()
+        }
     };
+
+    const onFinish = () => {
+        if(type == 0){
+            navigate('/webstandardstack')
+        }
+        else if(type == 1){
+            navigate('/techInfoPage')
+        }
+    }
 
 
     // const handleAnswerChange = e => {
